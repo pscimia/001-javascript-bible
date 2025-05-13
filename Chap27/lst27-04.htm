@@ -1,0 +1,46 @@
+<HTML>
+<HEAD>
+<TITLE>Regular Expression Replace and Search</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+var mainString = "To be, or not to be: that is the question:\n"
+mainString += "Whether \'tis nobler in the mind to suffer\n"
+mainString += "The slings and arrows of outrageous fortune,\n"
+mainString += "Or to take arms against a sea of troubles,\n"
+mainString += "And by opposing end them."
+
+function doReplace(form) {
+	var replaceStr = form.replaceEntry.value
+	var delim = (form.caseSens.checked) ? "/g" : "/gi"
+	var regexp = eval("/" + form.regexp.value + delim)
+	form.result.value = mainString.replace(regexp, replaceStr)
+}
+function doSearch(form) {
+	var replaceStr = form.replaceEntry.value
+	var delim = (form.caseSens.checked) ? "/g" : "/gi"
+	var regexp = eval("/" + form.regexp.value + delim)
+	form.result.value = mainString.search(regexp)
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+<B>String Replace and Search with Regular Expressions</B>
+<HR>
+Text used for string.replace() and string.search() methods:<BR>
+<B>To be, or not to be: that is the question:<BR>
+Whether 'tis nobler in the mind to suffer<BR>
+The slings and arrows of outrageous fortune,<BR>
+Or to take arms against a sea of troubles,<BR>
+And by opposing end them.</B>
+
+<FORM>
+Enter a regular expression to match:<INPUT TYPE="text" NAME="regexp" SIZE=25 VALUE="\B't">
+<INPUT TYPE="checkbox" NAME="caseSens">Case-sensitive<BR>
+Enter a string to replace the matching strings:<INPUT TYPE="text" NAME="replaceEntry" SIZE=30 VALUE="it "><P>
+<INPUT TYPE="button" VALUE="Execute replace()" onClick="doReplace(this.form)">
+<INPUT TYPE="reset">
+<INPUT TYPE="button" VALUE="Execute search()" onClick="doSearch(this.form)"><P>
+Result:<BR>
+<TEXTAREA NAME="result" COLS=60 ROWS=5 WRAP="virtual"></TEXTAREA>
+</FORM>
+</BODY>
+</HTML>

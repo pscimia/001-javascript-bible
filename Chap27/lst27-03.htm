@@ -1,0 +1,35 @@
+<HTML>
+<HEAD>
+<TITLE>Regular Expression Match</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+function doMatch(form) {
+	var str = form.entry.value
+	var delim = (form.caseSens.checked) ? "/g" : "/gi"
+	var regexp = eval("/" + form.regexp.value + delim)
+	var resultArray = str.match(regexp)
+	if (resultArray) {
+		form.result.value = resultArray.toString()
+		form.count.value = resultArray.length
+	} else {
+		form.result.value = "<no matches>"
+		form.count.value = ""
+	}
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+<B>String Match with Regular Expressions</B>
+<HR>
+<FORM>
+Enter a main string:<INPUT TYPE="text" NAME="entry" SIZE=60
+  VALUE="Many a maN and womAN have meant to visit GerMAny."><BR>
+Enter a regular expression to match:<INPUT TYPE="text" NAME="regexp" SIZE=25
+  VALUE="\wa\w">
+<INPUT TYPE="checkbox" NAME="caseSens">Case-sensitive<P>
+<INPUT TYPE="button" VALUE="Execute match()" onClick="doMatch(this.form)">
+<INPUT TYPE="reset"><P>
+Result:<INPUT TYPE="text" NAME="result" SIZE=40><BR>
+Count:<INPUT TYPE="text" NAME="count" SIZE=3><BR>
+</FORM>
+</BODY>
+</HTML>

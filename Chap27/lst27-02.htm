@@ -1,0 +1,42 @@
+<HTML>
+<HEAD>
+<TITLE>Character Codes</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+var isNav = (navigator.appName == "Netscape")
+var isNav4 = (isNav && parseInt(navigator.appVersion == 4))
+function showCharCode() {
+	if (isNav) {
+		var theText = document.getSelection() 
+	} else {
+		var theText = document.selection.createRange().text
+	}
+	if (theText) {
+		document.forms[0].charCodeDisplay.value = theText.charCodeAt()
+	} else {
+		document.forms[0].charCodeDisplay.value = " "
+	}
+}
+function showString(form) {
+	form.result.value = String.fromCharCode(form.entry1.value,form.entry2.value,form.entry3.value)
+}
+if (isNav4) {
+	document.captureEvents(Event.MOUSEUP)
+}
+document.onmouseup = showCharCode
+</SCRIPT>
+</HEAD>
+<BODY>
+<B>Capturing Character Codes</B>
+<FORM>
+Select any of this text, and see the character code of the first character.<P>
+Character Code:<INPUT TYPE="text" NAME="charCodeDisplay" SIZE=3><BR>
+<HR>
+<B>Converting Codes to Characters</B><BR>
+Enter a value  0-255:<INPUT TYPE="text" NAME="entry1" SIZE=4><BR>
+Enter a value  0-255:<INPUT TYPE="text" NAME="entry2" SIZE=4><BR>
+Enter a value  0-255:<INPUT TYPE="text" NAME="entry3" SIZE=4><BR>
+<INPUT TYPE="button" VALUE="Show String" onClick="showString(this.form)">
+Result:<INPUT TYPE="text" NAME="result" SIZE=5>
+</FORM>
+</BODY>
+</HTML>

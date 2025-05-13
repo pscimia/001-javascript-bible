@@ -1,0 +1,47 @@
+<HTML>
+<HEAD>
+<TITLE>String Slicing and Dicing, Part III</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+var mainString = "Electroencephalograph"
+function showResults() {
+	var form = document.forms[0]
+	var param1 = parseInt(form.param1.options[form.param1.selectedIndex].value)
+	var param2 = parseInt(form.param2.options[form.param2.selectedIndex].value)
+	if (!param2) {
+		form.result1.value = mainString.substring(param1)
+	} else {
+		form.result1.value = mainString.substring(param1, param2)
+	}
+}
+</SCRIPT>
+</HEAD>
+<BODY onLoad="showResults()">
+<B>String substr() Method</B>
+<HR>
+Text used for the methods:<BR>
+<FONT SIZE=+1><TT><B>Electroencephalograph<BR>
+----5----5----5----5-</B></TT></FONT>
+<TABLE BORDER=1>
+<FORM>
+<TR><TH>String Method</TH><TH>Method Parameters</TH><TH>Results</TH></TR>
+<TR>
+<TD>string.substring()</TD><TD>
+(&nbsp;<SELECT NAME="param1" onChange="showResults()">
+	<OPTION VALUE=0>0
+	<OPTION VALUE=1>1
+	<OPTION VALUE=2>2
+	<OPTION VALUE=3>3
+	<OPTION VALUE=5>5
+</SELECT>,
+<SELECT NAME="param2" onChange="showResults()">
+	<OPTION >(None)
+	<OPTION VALUE=3>3
+	<OPTION VALUE=5>5
+	<OPTION VALUE=10>10
+</SELECT>&nbsp;) </TD>
+<TD><INPUT TYPE="text" NAME="result1" SIZE=25></TD>
+</TR>
+</FORM>
+</TABLE>
+</BODY>
+</HTML>
