@@ -1,0 +1,237 @@
+<!-- evaluator.html"
+     From "JavaScript Bible" 4th Edition by Danny Goodman
+     http://www.dannyg.com
+     Copyright 2001 Danny Goodman. All Rights Reserved.
+-->
+<HTML ID="myHTML">
+<HEAD ID="myHead">
+<TITLE ID="myTitle">The Evaluator</TITLE>
+<STYLE ID="myStyle" DISABLED TYPE="text/css">
+#myP {font-weight:bold}
+EM {color:green}
+</STYLE>
+
+<SCRIPT ID="myScript" LANGUAGE="JavaScript">
+// global variables to play with
+var a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z
+var hasNNSecurity = (typeof netscape != "undefined")
+
+function doIt(form){
+	if (form.security.checked && hasNNSecurity) {
+		netscape.security.PrivilegeManager.enablePrivilege("UniversalBrowserRead")
+		netscape.security.PrivilegeManager.enablePrivilege("UniversalBrowserWrite")
+	}
+
+	form.output.value = eval(form.input.value)
+	
+	if (form.security.checked && hasNNSecurity) {
+		netscape.security.PrivilegeManager.disablePrivilege("UniversalBrowserRead")
+		netscape.security.PrivilegeManager.disablePrivilege("UniversalBrowserWrite")
+	}
+}
+
+function showProps(form) {
+	objName = form.inspector.value
+	obj = eval(objName)
+	var msg = ""
+	for (var i in obj) {
+		// work around bug in IE
+		if (i != "domain") {
+			msg += objName + "." + i + "=" + obj[i] + "\n"
+		}
+	}
+	form.output.value = msg
+}
+
+function evalIfReady(form, evt) {
+	evt = (evt) ? evt : (window.event) ? window.event : ""
+	if (evt) {
+		var theKey = (evt.which) ? evt.which : evt.keyCode
+		if (theKey == 13) {
+			doIt(form)
+			return false	
+		}
+	}
+	return true
+}
+
+function showPropsIfReady(form, evt) {
+	evt = (evt) ? evt : (window.event) ? window.event : ""
+	if (evt) {
+		var theKey = (evt.which) ? evt.which : evt.keyCode
+		if (theKey == 13) {
+			showProps(form)
+			return false	
+		}
+	}
+	return true
+}
+
+function walkChildNodes(objRef, n) {
+	var obj
+	if (objRef) {
+		if (typeof objRef == "string") {
+			obj = document.getElementById(objRef)
+		} else {
+			obj = objRef
+		}
+	} else {
+		obj = (document.body.parentElement) ? 
+			document.body.parentElement : document.body.parentNode
+	}
+	var output = ""
+	var indent = ""
+	var i, group, txt
+	if (n) {
+		for (i = 0; i < n; i++) {
+			indent += "+---"
+		}
+	} else {
+		n = 0
+		output += "Child Nodes of <" + obj.tagName 
+		output += ">\n=====================\n"
+	}
+	group = obj.childNodes
+	for (i = 0; i < group.length; i++) {
+		output += indent
+		switch (group[i].nodeType) {
+			case 1:
+				output += "<" + group[i].tagName
+				output += (group[i].id) ? " ID=" + group[i].id : ""
+				output += (group[i].name) ? " NAME=" + group[i].name : ""
+				output += ">\n"
+				break
+			case 3:
+				txt = group[i].nodeValue.substr(0,15)
+				output += "[Text:\"" + txt.replace(/[\r\n]/g,"<cr>")
+				if (group[i].nodeValue.length > 15) {
+					output += "..."
+				}
+				output += "\"]\n"
+				break
+			case 8:
+				output += "[!COMMENT!]\n"
+				break
+			default:
+				output += "[Node Type = " + group[i].nodeType + "]\n"
+		}
+		if (group[i].childNodes.length > 0) {
+			output += walkChildNodes(group[i], n+1)
+		}
+	}
+	return output
+}
+
+function walkChildren(objRef, n) {
+	var obj
+	if (objRef) {
+		if (typeof objRef == "string") {
+			obj = document.getElementById(objRef)
+		} else {
+			obj = objRef
+		}
+	} else {
+		obj = document.body.parentElement
+	}
+	var output = ""
+	var indent = ""
+	var i, group
+	if (n) {
+		for (i = 0; i < n; i++) {
+			indent += "+---"
+		}
+	} else {
+		n = 0
+		output += "Children of <" + obj.tagName
+		output += ">\n=====================\n"
+	}
+	group = obj.children
+	for (i = 0; i < group.length; i++) {
+		output += indent + "<" + group[i].tagName
+		output += (group[i].id) ? " ID=" + group[i].id : ""
+		output += (group[i].name) ? " NAME=" + group[i].name : ""
+		output += ">\n"
+		if (group[i].children.length > 0) {
+			output += walkChildren(group[i], n+1)
+		}
+	}
+	return output
+}
+
+</SCRIPT>
+</HEAD>
+
+<BODY BGCOLOR="white">
+<FORM onSubmit="return false">
+<FIELDSET ID="myFIELDSET">
+<LEGEND ID="myLEGEND">The Evaluator</LEGEND>
+<P>Enter an expression to evaluate (<INPUT TYPE="checkbox" NAME="security">Use NN Code Base Security):<BR>
+<INPUT TYPE="text" NAME="input" SIZE=80 onKeyPress="return evalIfReady(this.form, event)">
+<INPUT TYPE="button" VALUE="Evaluate" onClick="doIt(this.form)">
+
+</P>
+<P>
+Results:<BR>
+<TEXTAREA NAME="output" COLS="80" ROWS="6" WRAP="virtual"></TEXTAREA>
+</P>
+<P>
+Enter a reference to an object:<BR>
+<INPUT TYPE="text" NAME="inspector" SIZE=80 HIDEFOCUS onKeyPress="return showPropsIfReady(this.form, event)">
+<INPUT TYPE="button" VALUE="List Properties" onClick="showProps(this.form)"><BR>
+</FIELDSET>
+</FORM>
+
+<!--
+   BEGIN SAMPLE HTML ELEMENTS
+-->
+<P ID="myP">Now is the time for <EM ID="myEM">all </EM> good men to come to the aid of their country.
+</P>
+
+<TABLE ID="myTable" CELLPADDING="10" BORDER=2>
+<CAPTION ID="myCap">This is a table caption.</CAPTION>
+<COLGROUP ID="myCol" SPAN=3>
+<THEAD ID="myTHEAD">
+<TR>
+<TH><FONT ID="myFont" SIZE=4>Quantity</FONT><TH ID="myTH">Description<TH>Price
+</TR></THEAD>
+<TBODY BGCOLOR="salmon" ID="myTBODY">
+<TR ALIGN="center">
+<TD WIDTH=200>4</TD>
+<TD ID="myTD" STYLE="filter:blur(add=true, direction=225)">Primary Widget</TD>
+<TD>$14.96</TD>
+</TR>
+
+<TR ID="myTR">
+<TD>10</TD>
+<TD STYLE="filter:blur(add=true, direction=225)">Secondary Widget</TD>
+<TD ID="myTD2" >$114.96</TD>
+</TR>
+</TBODY>
+</TABLE>
+
+<FORM NAME="myForm2">
+<SELECT ID="mySelect" NAME="aSelect" MULTIPLE SIZE=4>
+<OPTION VALUE="Larry Fine">Larry
+<OPTION>Moe
+<OPTION>Curly
+</SELECT>
+<P>
+<INPUT TYPE="checkbox" ID="myCheckbox">Sample Checkbox
+</P>
+<P>
+<FIELDSET ID="form2set1">
+<LEGEND ID="form1set1legend">Choose the Desired Performance</LEGEND>
+<INPUT TYPE="radio" NAME="speed" ID="speed1">
+	<LABEL FOR="speed1">Fastest (lower quality)</LABEL><BR>
+<INPUT TYPE="radio" NAME="speed" ID="speed2">
+	<LABEL FOR="speed2">Slower (best quality)</LABEL>
+</FIELDSET>
+</P>
+</FORM>
+
+<DIV ID="myDIV" STYLE="position:absolute; top:350; left:550; width:50px; border:5px ridge green; padding:5px; margin:5px">
+This is a positioned element with a whole bunch of text in it.
+</DIV>
+<P><IMG NAME="myIMG" SRC="desk1.gif"></P>
+</BODY>
+</HTML>

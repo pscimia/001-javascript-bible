@@ -1,0 +1,64 @@
+<HTML>
+<HEAD>
+<TITLE>addBehavior() and removeBehavior() Methods</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+var myPBehaviorID
+
+function turnOn() {
+	myPBehaviorID = document.all.myP.addBehavior("makeHot.htc")
+	setInitialColor()
+}
+
+function setInitialColor() {
+	if (document.all.myP.readyState == "complete") {
+		var select = document.forms[0].colorChoice
+		var color = select.options[select.selectedIndex].value
+		document.all.myP.setHotColor(color)
+	} else {
+		setTimeout("setInitialColor()", 500)
+	}
+}
+
+function turnOff() {
+	document.all.myP.removeBehavior(myPBehaviorID)
+}
+
+function setColor(select, color) {
+	if (document.all.myP.hotColor) {
+		document.all.myP.setHotColor(color)
+	} else {
+		alert("This feature is not available. Turn on the Behavior first.")
+		select.selectedIndex = 0
+	}
+}
+function showBehaviorCount() {
+	var num = document.all.myP.behaviorUrns.length
+	var msg = "The myP element has " + num + " behavior(s). "
+	if (num > 0) {
+		msg += "Name(s): \r\n"
+		for (var i = 0; i < num; i++) {
+			msg += document.all.myP.behaviorUrns[i] + "\r\n"
+		}
+	}
+	alert(msg)
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+<H1>addBehavior() and removeBehavior() Method Lab</H1>
+<HR>
+<P ID="myP">This is a sample paragraph. After turning on the behavior, 
+it will turn your selected color when you mouse down anywhere in this 
+paragraph.</P>
+<FORM>
+<INPUT TYPE="button" VALUE="Switch On Behavior" onClick="turnOn()">
+Choose a 'hot' color:
+<SELECT NAME="colorChoice" onChange="setColor(this, this.value)">
+<OPTION VALUE="red">red
+<OPTION VALUE="blue">blue
+<OPTION VALUE="cyan">cyan
+</SELECT><BR>
+<INPUT TYPE="button" VALUE="Switch Off Behavior" onClick="turnOff()">
+<P><INPUT TYPE="button" VALUE="Count the URNs" onClick="showBehaviorCount()"></P>
+</BODY>
+</HTML>

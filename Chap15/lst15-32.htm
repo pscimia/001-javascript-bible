@@ -1,0 +1,64 @@
+<HTML>
+<HEAD>
+<TITLE>getExpression(), setExpression(), and recalc() Methods</TITLE>
+<STYLE TYPE="text/css">
+TH {text-align:right}
+SPAN {vertical-align:bottom}
+</STYLE>
+<SCRIPT LANGUAGE="JavaScript">
+
+var now = new Date()
+var shortWidth = 5
+var multiple = 2.5
+
+function init() {
+	with (document.all) {
+		hoursBlock.style.setExpression("width","now.getHours() * shortWidth * multiple","jscript")
+		hoursLabel.setExpression("innerHTML","now.getHours()","jscript")
+		minutesBlock.style.setExpression("width","now.getMinutes() * shortWidth","jscript")
+		minutesLabel.setExpression("innerHTML","now.getMinutes()","jscript")
+		secondsBlock.style.setExpression("width","now.getSeconds() * shortWidth","jscript")
+		secondsLabel.setExpression("innerHTML","now.getSeconds()","jscript")
+    }
+	
+	updateClock()
+}
+
+function updateClock() {
+	now = new Date()
+	document.recalc()
+	setTimeout("updateClock()",1000)
+}
+
+function showExpr() {
+	alert("Expression for the \'Hours\' innerHTML property is:\r\n" + document.all.hoursLabel.getExpression("innerHTML") + ".")
+}
+</SCRIPT>
+</HEAD>
+<BODY onLoad="init()">
+<H1>getExpression(), setExpression(), recalc() Methods</H1>
+<HR>
+<P>This clock uses Dynamic Properties to calculate bar width and time numbers:</P>
+<TABLE BORDER=0>
+<TR>
+	<TH>Hours:</TH>
+	<TD><SPAN ID="hoursBlock" STYLE="background-color:red"></SPAN>
+&nbsp;<SPAN ID="hoursLabel"></SPAN></TD>
+</TR>
+<TR>
+	<TH>Minutes:</TH>
+	<TD><SPAN ID="minutesBlock" STYLE="background-color:yellow"></SPAN>
+&nbsp;<SPAN ID="minutesLabel"></SPAN></TD>
+</TR>
+<TR>
+	<TH>Seconds:</TH>
+	<TD><SPAN ID="secondsBlock" STYLE="background-color:green"></SPAN>
+&nbsp;<SPAN ID="secondsLabel"></SPAN></TD>
+</TR>
+</TABLE>
+<HR>
+<FORM>
+<INPUT TYPE="button" VALUE="Show 'Hours' number innerHTML Expression" onClick="showExpr()"
+</FORM>
+</BODY>
+</HTML>

@@ -1,0 +1,63 @@
+<HTML>
+<HEAD>
+<TITLE>accessKey Property</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+function assignKey(type, elem) {
+	if (window.event.keyCode == 13) {
+		switch (type) {
+			case "button":
+				document.forms["output"].access1.accessKey = elem.value
+				break
+			case "text":
+				document.forms["output"].access2.accessKey = elem.value
+				break
+			case "table":
+				document.all.myTable.accessKey = elem.value
+		}
+		return false
+	}
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+<H1>accessKey Property Lab</H1>
+<HR>
+Settings:<BR>
+<FORM NAME="input">
+Assign an accessKey value to the Button below and press Return:
+<INPUT TYPE="text" SIZE=2 MAXLENGTH=1 onKeyPress="return assignKey('button', this)">
+<BR>
+Assign an accessKey value to the Text Box below and press Return:
+<INPUT TYPE="text" SIZE=2 MAXLENGTH=1 onKeyPress="return assignKey('text', this)">
+<BR>
+Assign an accessKey value to the Table below (IE5.5 only) and press Return:
+<INPUT TYPE="text" SIZE=2 MAXLENGTH=1 onKeyPress="return assignKey('table', this)">
+</FORM>
+<BR>
+Then press Alt (Windows) or Control (Mac) + the key.
+<BR>
+<I>Size the browser window to view nothing lower than this line.</I>
+<HR>
+
+<FORM NAME="output" onSubmit="return false">
+<INPUT TYPE="button" NAME="access1" VALUE="Standard Button">
+<P></P>
+<INPUT TYPE="text" NAME="access2">
+<P></P>
+</FORM>
+<TABLE ID="myTable" CELLPADDING="10" BORDER=2>
+<TR>
+<TH>Quantity<TH>Description<TH>Price
+</TR>
+<TBODY BGCOLOR="red">
+<TR>
+	<TD WIDTH=100>4<TD>Primary Widget<TD>$14.96
+</TR>
+<TR>
+	<TD>10<TD>Secondary Widget<TD>$114.96
+</TR>
+</TBODY>
+</TABLE>
+
+</BODY>
+</HTML>

@@ -1,0 +1,56 @@
+<HTML>
+<HEAD>
+<TITLE>Inserting an IE5+/Windows Table Row</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+function addRow(item1) {
+	if (item1) {
+		// assign long reference to shorter var name
+		var theTable = document.all.myTable
+		// append new row to the end of the table
+		var newRow = theTable.insertRow(theTable.rows.length)
+	   	// give the row its own ID
+		newRow.id = newRow.uniqueID
+    	
+		// declare cell variable
+		var newCell
+    	
+  		// an inserted row has no cells, so insert the cells
+   		newCell = newRow.insertCell(0)
+   		// give this cell its own id
+   		newCell.id = newCell.uniqueID
+   		// display the row's id as the cell text
+   		newCell.innerText = newRow.id
+   		newCell.bgColor = "yellow"
+   		// re-use cell var for second cell insertion
+   		newCell = newRow.insertCell(1)
+		newCell.id = newCell.uniqueID
+  		newCell.innerText = item1
+	}
+}
+</SCRIPT>
+</HEAD>
+
+<BODY>
+<TABLE ID="myTable" BORDER=1>
+<TR>
+<TH>Row ID</TH>
+<TH>Data</TH>
+</TR>
+
+<TR ID="firstDataRow">
+<TD>firstDataRow
+<TD>Fred
+</TR>
+<TR ID="secondDataRow">
+<TD>secondDataRow
+<TD>Jane
+</TR>
+</TABLE>
+<HR>
+<FORM>
+Enter text to be added to the table:<BR>
+<INPUT TYPE="text" NAME="input" SIZE=25><BR>
+<INPUT TYPE='button' VALUE='Insert Row' onClick='addRow(this.form.input.value)'>
+</FORM>
+</BODY>
+</HTML>

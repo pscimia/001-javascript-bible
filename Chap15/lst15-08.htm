@@ -1,0 +1,64 @@
+<HTML>
+<HEAD>
+<TITLE>Data Binding</TITLE>
+<STYLE TYPE="text/css">
+#display {width:500px; border:10px ridge blue; padding:20px}
+.hiddenControl {display:none}
+</STYLE>
+<SCRIPT LANGUAGE="JavaScript">
+function nextField() {
+	var elem = document.all.display
+	var fieldName = elem.dataFld
+	var currFieldNum = parseInt(fieldName.substring(7, fieldName.length),10)
+	currFieldNum = (currFieldNum == 10) ? 1 : ++currFieldNum
+	elem.dataFld = "Article" + currFieldNum
+}
+function prevField() {
+	var elem = document.all.display
+	var fieldName = elem.dataFld
+	var currFieldNum = parseInt(fieldName.substring(7, fieldName.length),10)
+	currFieldNum = (currFieldNum == 1) ? 10 : --currFieldNum
+	elem.dataFld = "Article" + currFieldNum
+}
+
+function toggleComplete() {
+	if (document.all.buttonWrapper.className == "") {
+		document.all.display.dataSrc = "#rights_raw"
+		document.all.display.dataFld = "column1"
+		document.all.display.dataFormatAs = "text"
+		document.all.buttonWrapper.className = "hiddenControl"
+	} else {
+		document.all.display.dataSrc = "#rights_html"
+		document.all.display.dataFld = "Article1"
+		document.all.display.dataFormatAs = "HTML"
+		document.all.buttonWrapper.className = ""
+	}
+}
+</SCRIPT>
+
+</HEAD>
+<BODY>
+<P><B>U.S. Bill of Rights</B></P>
+<FORM>
+<INPUT TYPE="button" VALUE="Toggle Complete/Individual" onClick="toggleComplete()">
+<SPAN ID="buttonWrapper" CLASS="">
+<INPUT TYPE="button" VALUE="Prev" onClick="prevField()">
+<INPUT TYPE="button" VALUE="Next" onClick="nextField()">
+</SPAN>
+</FORM>
+
+
+<DIV ID="display" DATASRC="#rights_html" DATAFLD="Article1" DATAFORMATAS="HTML"></DIV>
+
+<OBJECT ID="rights_html" CLASSID="clsid:333C7BC4-460F-11D0-BC04-0080C7055A83">
+	<PARAM NAME="DataURL" VALUE="Bill of Rights.txt">
+	<PARAM NAME="UseHeader" VALUE="True">
+	<PARAM NAME="FieldDelim" VALUE="&#09;">
+</OBJECT>
+<OBJECT ID="rights_raw" CLASSID="clsid:333C7BC4-460F-11D0-BC04-0080C7055A83">
+	<PARAM NAME="DataURL" VALUE="Bill of Rights (no format).txt">
+	<PARAM NAME="FieldDelim" VALUE="\">
+	<PARAM NAME="RowDelim" VALUE="\">
+</OBJECT>
+</BODY>
+</HTML>

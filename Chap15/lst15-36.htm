@@ -1,0 +1,66 @@
+<HTML>
+<HEAD>
+<TITLE>onBeforeCut and onCut Event Handlers</TITLE>
+<STYLE TYPE="text/css">
+TD {text-align:center}
+TH {text-decoration:underline}
+.blanks {text-decoration:underline}
+</STYLE>
+<SCRIPT LANGUAGE="JavaScript">
+function selectWhole() {
+	var obj = window.event.srcElement
+	var range = document.body.createTextRange()
+	range.moveToElementText(obj)
+	range.select()
+	event.returnValue = false
+}
+function handleCut() {
+	var rng = document.selection.createRange()
+	clipboardData.setData("Text",rng.text)
+	var elem = event.srcElement
+	elem.innerText = ""
+	event.returnValue = false
+}
+
+function handlePaste() {
+	var elem = window.event.srcElement
+	if (elem.className == "blanks") {
+		elem.innerHTML = clipboardData.getData("Text")
+	}
+	event.returnValue = false
+}
+function handleBeforePaste() {
+	var elem = window.event.srcElement
+	if (elem.className == "blanks") {
+		event.returnValue = false
+	}
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+<H1>onBeforeCut and onCut Event Handlers</H1>
+<HR>
+<P>Your goal is to cut and paste one noun and one
+adjective from the following table into the blanks
+of the sentence. Select a word from the table and
+use the Edit or context menu to cut it from the table.
+Select one or more spaces of the blanks in the
+sentence and choose Paste to replace the blank with 
+the clipboard contents.</P>
+
+<TABLE CELLPADDING=5 onBeforeCut="selectWhole()" onCut="handleCut()" >
+<TR><TH>Nouns</TH><TH>Adjectives</TH></TR>
+<TR><TD>truck</TD><TD>round</TD></TR>
+<TR><TD>doll</TD><TD>red</TD></TR>
+<TR><TD>ball</TD><TD>pretty</TD></TR>
+</TABLE>
+
+<P ID="myP" onBeforePaste="handleBeforePaste()" onPaste="handlePaste()">
+Pat said, "Oh my, the <SPAN ID="blank1" CLASS="blanks">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</SPAN> 
+is so <SPAN ID="blank2" CLASS="blanks">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</SPAN>!"</P>
+
+<BUTTON onClick="location.reload()">Reset</BUTTON>
+</BODY>
+</HTML>

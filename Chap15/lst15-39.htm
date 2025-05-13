@@ -1,0 +1,41 @@
+<HTML>
+<HEAD>
+<TITLE>onFilterChange Event Handler</TITLE>
+<SCRIPT LANGUAGE=JavaScript>
+function init() {
+	image1.filters[0].apply()
+	image2.filters[0].apply()
+	start()
+}
+
+function start() {
+	image1.style.visibility = "hidden"
+	image1.filters[0].play()
+}
+
+function finish() {
+	// verify that first transition is done (optional)
+	if (image1.filters[0].status == 0) {
+		image2.style.visibility = "visible"
+		image2.filters[0].play()
+	}
+}
+</SCRIPT>
+</HEAD>
+<BODY onLoad="init()">
+<H1>onFilterChange Event Handler</H1>
+<HR>
+<P>The completion of the first transition ("circle-in") 
+triggers the second ("circle-out").
+<BUTTON onClick="location.reload()">Play It Again</BUTTON></P>
+<DIV ID="image1" STYLE="visibility:visible; 
+	position:absolute; top:150px; left:150px;
+	filter:progID:DXImageTransform.Microsoft.Iris(irisstyle='CIRCLE', motion='in')"
+	onFilterChange="finish()"><IMG SRC="desk1.gif" HEIGHT=90
+	WIDTH=120></DIV>
+<DIV ID="image2" STYLE="visibility:hidden; 
+	position:absolute; top:150px; left:150px;
+	filter:progID:DXImageTransform.Microsoft.Iris(irisstyle='CIRCLE', motion='out')">
+	<IMG SRC="desk3.gif" HEIGHT=90 WIDTH=120></DIV>
+</BODY>
+</HTML>

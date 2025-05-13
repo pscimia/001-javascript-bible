@@ -1,0 +1,28 @@
+<HTML> 
+<HEAD> 
+<TITLE>mergeAttributes() Method</TITLE> 
+<SCRIPT LANGUAGE="JavaScript"> 
+function doMerge(form) {
+	var newPElem = document.createElement("P")
+	var newInputElem = document.createElement("INPUT")
+	newInputElem.id = newInputElem.uniqueID
+	newInputElem.mergeAttributes(form.field1)
+	newPElem.appendChild(newInputElem)
+	form.appendChild(newPElem)
+	newInputElem.value = newInputElem.outerHTML	
+}
+// called by onChange event handler of fields
+function upperMe(field) {
+	field.value = field.value.toUpperCase()
+}
+</SCRIPT> 
+</HEAD> 
+<BODY onLoad="document.expandable.field1.value = document.expandable.field1.outerHTML"> 
+<H1>mergeAttributes() Method</H1> 
+<HR>
+<FORM NAME="expandable" onSubmit="return false">
+<P><INPUT TYPE="button" VALUE="Append Field 'Clone'" onClick="doMerge(this.form)"></P>
+<P><INPUT TYPE="text" NAME="field1" ID="FIELD1" SIZE=120 VALUE="" STYLE="font-size:9pt" onChange="upperMe(this)"></P>
+</FORM> 
+</BODY> 
+</HTML>

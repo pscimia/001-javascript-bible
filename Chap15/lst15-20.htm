@@ -1,0 +1,65 @@
+<HTML>
+<HEAD>
+<TITLE>W3C Event Model Lab</TITLE>
+<STYLE TYPE="text/css">
+TD {text-align:center}
+</STYLE>
+<SCRIPT LANGUAGE="JavaScript">
+// add event listeners
+function addBubbleListener(elemID) {
+	document.getElementById(elemID).addEventListener("click", reportEvent, false)
+}
+function addCaptureListener(elemID) {
+	document.getElementById(elemID).addEventListener("click", reportEvent, true)
+}
+// remove event listeners
+function removeBubbleListener(elemID)  {
+	document.getElementById(elemID).removeEventListener("click", reportEvent, false)
+}
+function removeCaptureListener(elemID) {
+	document.getElementById(elemID).removeEventListener("click", reportEvent, true)
+}
+// display details about any event heard
+function reportEvent(evt) {
+	if (evt.target.parentNode.id == "mySPAN") {
+		var msg = "Event processed at " + evt.currentTarget.tagName + 
+			" element (event phase = " + evt.eventPhase + ").\n"
+		document.controls.output.value += msg
+	}
+}
+// clear the details textarea
+function clearTextArea() {
+	document.controls.output.value = ""
+}
+</SCRIPT>
+</HEAD>
+<BODY ID="myBODY">
+<H1>W3C Event Model Lab</H1>
+<HR>
+<P ID="myP"><SPAN ID="mySPAN">This paragraph (a SPAN element nested inside a P element) can be set to listen for "click" events.</SPAN></P>
+<HR>
+<TABLE CELLPADDING=5 BORDER=1>
+<CAPTION STYLE="font-weight:bold">Control Panel</CAPTION>
+<FORM NAME="controls">
+<TR STYLE="background-color:#ffff99"><TD ROWSPAN=2>"Bubble"-type click listener: 
+	<TD><INPUT TYPE="button" VALUE="Add to BODY" onClick="addBubbleListener('myBODY')">
+	<TD><INPUT TYPE="button" VALUE="Remove from BODY" onClick="removeBubbleListener('myBODY')">
+</TR>
+<TR STYLE="background-color:#ffff99">
+	<TD><INPUT TYPE="button" VALUE="Add to P" onClick="addBubbleListener('myP')">
+	<TD><INPUT TYPE="button" VALUE="Remove from P" onClick="removeBubbleListener('myP')">
+</TR>
+<TR STYLE="background-color:#ff9999"><TD ROWSPAN=2>"Capture"-type click listener: 
+	<TD><INPUT TYPE="button" VALUE="Add to BODY" onClick="addCaptureListener('myBODY')">
+	<TD><INPUT TYPE="button" VALUE="Remove from BODY" onClick="removeCaptureListener('myBODY')">
+</TR>
+<TR STYLE="background-color:#ff9999"> 
+	<TD><INPUT TYPE="button" VALUE="Add to P" onClick="addCaptureListener('myP')">
+	<TD><INPUT TYPE="button" VALUE="Remove from P" onClick="removeCaptureListener('myP')">
+</TR>
+<P>Examine click event characteristics:&nbsp;<INPUT TYPE="button" VALUE="Clear" onClick="clearTextArea()"><BR>
+<TEXTAREA NAME="output" COLS="80" ROWS="6" WRAP="virtual"></TEXTAREA>
+</FORM>
+</TABLE>
+</BODY>
+</HTML>

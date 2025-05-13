@@ -1,0 +1,38 @@
+<HTML>
+<HEAD>
+<TITLE>onPropertyChange Event Handler</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+function normalText() {
+	myP.innerText = "This is a sample paragraph."
+}
+function shortText() {
+	myP.innerText = "Short stuff."
+}
+function normalColor() {
+	myP.style.color = "black"
+}
+function hotColor() {
+	myP.style.color = "red"
+}
+function showChange() {
+	var objID = event.srcElement.id
+	var propName = event.propertyName
+	var newValue = eval(objID + "." + propName)
+	status = "The " + propName + " property of the " + objID
+	status += " object has changed to \"" + newValue + "\"."
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+<H1>onPropertyChange Event Handler</H1>
+<HR>
+<P ID="myP" onPropertyChange = "showChange()">This is a sample paragraph.</P>
+<FORM>
+Text: <INPUT TYPE="radio" NAME="btn1" CHECKED onClick="normalText()">Normal
+	  <INPUT TYPE="radio" NAME="btn1" onClick="shortText()">Short
+<BR>
+Color: <INPUT TYPE="radio" NAME="btn2" CHECKED onClick="normalColor()">Black
+	  <INPUT TYPE="radio" NAME="btn2" onClick="hotColor()">Red
+</FORM>
+</BODY>
+</HTML>

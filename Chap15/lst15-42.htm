@@ -1,0 +1,51 @@
+<HTML>
+<HEAD>
+<TITLE>onMouseDown and onMouseUp Event Handlers</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+if (document.images) {
+	var RightNormImg = new Image(16,16)
+	var RightUpImg = new Image(16,16)
+	var RightDownImg = new Image(16,16)
+	var LeftNormImg = new Image(16,16)
+	var LeftUpImg = new Image(16,16)
+	var LeftDownImg = new Image(16,16)
+
+	RightNormImg.src = "RightNorm.gif"
+	RightUpImg.src = "RightUp.gif"
+	RightDownImg.src = "RightDown.gif"
+	LeftNormImg.src = "LeftNorm.gif"
+	LeftUpImg.src = "LeftUp.gif"
+	LeftDownImg.src = "LeftDown.gif"
+}
+function setImage(imgName, type) {
+	if (document.images) {
+		var imgFile = eval(imgName + type + "Img.src")
+		document.images[imgName].src = imgFile
+		return false
+	}
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+<H1>onMouseDown and onMouseUp Event Handlers</H1>
+<HR>
+<P>Roll atop and click on the buttons to see how the link event handlers swap images:</P>
+<CENTER>
+<A HREF="javascript:void(0)"
+	onMouseOver="return setImage('Left','Up')"
+	onMouseDown="return setImage('Left','Down')"
+	onMouseUp="return setImage('Left','Up')"
+	onMouseOut="return setImage('Left','Norm')"
+>
+<IMG NAME="Left" SRC="LeftNorm.gif" HEIGHT=16 WIDTH=16 BORDER=0></A>
+&nbsp;&nbsp;
+<A HREF="javascript:void(0)" 
+	onMouseOver="return setImage('Right','Up')"
+	onMouseDown="return setImage('Right','Down')"
+	onMouseUp="return setImage('Right','Up')"
+	onMouseOut="return setImage('Right','Norm')"
+>
+<IMG NAME="Right" SRC="RightNorm.gif" HEIGHT=16 WIDTH=16 BORDER=0></A>
+</CENTER>
+</BODY>
+</HTML>

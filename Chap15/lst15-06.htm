@@ -1,0 +1,27 @@
+<HTML>
+<HEAD>
+<TITLE>clientHeight and clientWidth Properties</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+function showLogo() {
+	var paragraphW = document.all.myDIV.clientWidth
+	var paragraphH = document.all.myDIV.clientHeight
+	// correct for Windows/Mac discrepancies
+	var paragraphTop = (document.all.myDIV.clientTop) ? 
+		document.all.myDIV.clientTop : document.all.myDIV.offsetTop
+	var logoW = document.all.logo.style.pixelWidth
+	// center logo horizontally against paragraph
+	document.all.logo.style.pixelLeft = (paragraphW-logoW)/2
+	// position image immediately below end of paragraph
+	document.all.logo.style.pixelTop = paragraphTop + paragraphH
+	document.all.logo.style.visibility = "visible"
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+<BUTTON onClick="showLogo()">Position and Show Logo Art</BUTTON>
+<DIV ID="logo" STYLE="position:absolute; width:120px; visibility:hidden"><IMG SRC="logo.gif"></DIV>
+<DIV ID="myDIV" STYLE="width:200px">
+<P>Lorem ipsum dolor sit amet, consectetaur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim adminim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit involuptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</P>
+</DIV>
+</BODY>
+</HTML>

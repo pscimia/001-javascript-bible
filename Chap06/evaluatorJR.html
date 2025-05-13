@@ -1,0 +1,77 @@
+<!-- evaluatorJR.html"
+     From "JavaScript Bible" 4th Edition by Danny Goodman
+     http://www.dannyg.com
+     Copyright 2001 Danny Goodman. All Rights Reserved.
+-->
+<HTML ID="myHTML">
+<HEAD ID="myHead">
+<TITLE ID="myTitle">The Evaluator Jr.</TITLE>
+
+<SCRIPT ID="myScript" LANGUAGE="JavaScript">
+// global variables to play with
+var a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z
+
+function doIt(form){
+	form.output.value = eval(form.input.value)
+	form.input.focus()
+	form.input.select()
+}
+
+function showProps(form) {
+	objName = form.inspector.value
+	obj = eval(objName)
+	var msg = ""
+	for (var i in obj) {
+		// work around bug in IE
+		if (i != "domain") {
+			msg += objName + "." + i + "=" + obj[i] + "\n"
+		}
+	}
+	form.output.value = msg
+}
+
+function evalIfReady(form, evt) {
+	evt = (evt) ? evt : (window.event) ? window.event : ""
+	if (evt) {
+		var theKey = (evt.which) ? evt.which : evt.keyCode
+		if (theKey == 13) {
+			doIt(form)
+			return false	
+		}
+	}
+	return true
+}
+
+function showPropsIfReady(form, evt) {
+	evt = (evt) ? evt : (window.event) ? window.event : ""
+	if (evt) {
+		var theKey = (evt.which) ? evt.which : evt.keyCode
+		if (theKey == 13) {
+			showProps(form)
+			return false	
+		}
+	}
+	return true
+}
+</SCRIPT>
+</HEAD>
+
+<BODY BGCOLOR="white">
+<H2>The Evaluator Jr.</H2>
+<HR>
+<FORM onSubmit="return false">
+<P>Enter an expression to evaluate:<BR>
+<INPUT TYPE="text" NAME="input" SIZE=80 onKeyPress="return evalIfReady(this.form, event)">
+<INPUT TYPE="button" VALUE="Evaluate" onClick="doIt(this.form)">&nbsp;
+</P>
+<P>
+Results:<BR>
+<TEXTAREA NAME="output" COLS="80" ROWS="6" WRAP="virtual"></TEXTAREA>
+</P>
+<P>
+Enter a reference to an object:<BR>
+<INPUT TYPE="text" NAME="inspector" SIZE=80 onKeyPress="return showPropsIfReady(this.form, event)">
+<INPUT TYPE="button" VALUE="List Properties" onClick="showProps(this.form)"><BR>
+</FORM>
+</BODY>
+</HTML>

@@ -1,0 +1,45 @@
+<HTML>
+<HEAD>
+<TITLE>tabIndex Property</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+function invert() {
+    var form = document.lab
+    for (var i = 0, j = form.elements.length; i < form.elements.length; i++, j--) {
+        form.elements[i].tabIndex = j
+    }
+}
+
+function skip2() {
+	if (navigator.userAgent.indexOf("MSIE") != -1) {
+    	document.lab.text2.tabIndex = -1
+    } else {
+    	alert("Not available in NN6.")
+    }
+}
+
+function resetTab() {
+    var form = document.lab
+    for (var i = 0; i < form.elements.length; i++) {
+        form.elements[i].tabIndex = 0
+    }
+}
+</SCRIPT>
+</HEAD>
+
+<BODY>
+<H1>tabIndex Property Lab</H1>
+<HR>
+<FORM NAME="lab">
+Text box no. 1: <INPUT TYPE="text" NAME="text1"><BR>
+Text box no. 2: <INPUT TYPE="text" NAME="text2"><BR>
+<INPUT TYPE="button" VALUE="A Button"><BR>
+<INPUT TYPE="checkbox">And a checkbox
+</FORM>
+<HR>
+<FORM NAME="control">
+<INPUT TYPE="button" VALUE="Invert Tabbing Order" TABINDEX=-1 onClick="invert()"><BR>
+<INPUT TYPE="button" VALUE="Skip Text box no. 2 (IE Only)" TABINDEX=-1 onClick="skip2()"><BR>
+<INPUT TYPE="button" VALUE="Reset to Normal Order" TABINDEX=-1 onClick="resetTab()">
+</FORM>
+</BODY>
+</HTML>

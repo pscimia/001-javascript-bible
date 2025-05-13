@@ -1,0 +1,36 @@
+<HTML>
+<HEAD>
+<TITLE>componentFromPoint() Method</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+function whereInWorld(elem) {
+	var x = event.clientX
+	var y = event.clientY
+	var component = document.all.myTextarea.componentFromPoint(x,y)
+	if (window.event.srcElement == document.all.myTextarea) {
+		if (component == "") {
+			status = "mouseDown event occurred inside the element"
+		} else {
+			status = "mouseDown occurred on the element\'s " + component
+		}
+	} else {
+		status = "mouseDown occurred " + component + " of the element"
+	}
+}
+</SCRIPT>
+</HEAD>
+<BODY onMouseDown="whereInWorld()">
+<H1>componentFromPoint() Method</H1>
+<HR>
+<P>Tracking the mouseDown event relative to the textarea object. View results in status bar.</P>
+<FORM>
+<TEXTAREA NAME="myTextarea" WRAP="off" COLS=12 ROWS=4>
+This is Line 1
+This is Line 2
+This is Line 3
+This is Line 4
+This is Line 5
+This is Line 6
+</TEXTAREA>
+</FORM>
+</BODY>
+</HTML>

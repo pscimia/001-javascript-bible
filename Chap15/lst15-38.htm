@@ -1,0 +1,26 @@
+<HTML>
+<HEAD>
+<TITLE>onDragEnter and onDragLeave Event Handlers</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+function showEnter() {
+	status = "Entered at: " + new Date()
+	event.returnValue = false
+}
+function clearMsg() {
+	status = ""
+	event.returnValue = false
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+<H1 onDragEnter="showEnter()" onDragLeave="clearMsg()">
+onDragEnter and onDragLeave Event Handlers
+</H1>
+<HR>
+<P>Select any character(s) from this paragraph,
+and slowly drag it around the page. When the dragging action enters the
+large header above, the status bar displays when the onDragEnter
+event handler fires. When you leave the header, the message is cleared
+via the onDragLeave event handler.</P>
+</BODY>
+</HTML>

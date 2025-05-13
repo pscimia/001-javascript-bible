@@ -1,0 +1,54 @@
+<HTML>
+<HEAD>
+<TITLE>canHaveChildren Property</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+function colorAll() {
+	for (var i = 0; i < document.all.length; i++) {
+		document.all[i].style.color = "red"
+	}
+}
+
+function colorChildBearing() {
+	for (var i = 0; i < document.all.length; i++) {
+		if (document.all[i].canHaveChildren) {
+			document.all[i].style.color = "red"
+		}	
+	}
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+<H1>canHaveChildren Property Lab</H1>
+<HR>
+<FORM NAME="input">
+<INPUT TYPE="button" VALUE="Color All Elements" onClick="colorAll()">
+<BR>
+<INPUT TYPE="button" VALUE="Reset" onClick="history.go(0)">
+<BR>
+<INPUT TYPE="button" VALUE="Color Only Elements That Can Have Children" onClick="colorChildBearing()">
+</FORM>
+<BR>
+<HR>
+
+<FORM NAME="output">
+<INPUT TYPE="checkbox" CHECKED>Your basic checkbox
+<P></P>
+<INPUT TYPE="text" NAME="access2" VALUE="Some textbox text.">
+<P></P>
+</FORM>
+<TABLE ID="myTable" CELLPADDING="10" BORDER=2>
+<TR>
+<TH>Quantity<TH>Description<TH>Price
+</TR>
+<TBODY>
+<TR>
+	<TD WIDTH=100>4<TD>Primary Widget<TD>$14.96
+</TR>
+<TR>
+	<TD>10<TD>Secondary Widget<TD>$114.96
+</TR>
+</TBODY>
+</TABLE>
+
+</BODY>
+</HTML>

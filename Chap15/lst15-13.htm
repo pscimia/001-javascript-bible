@@ -1,0 +1,45 @@
+<HTML>
+<HEAD>
+<TITLE>outerHTML and outerText Properties</TITLE>
+<STYLE TYPE="text/css">
+H1 {font-size:18pt; font-weight:bold; font-family:"Comic Sans MS", Arial, sans-serif}
+.heading {font-size:20pt; font-weight:bold; font-family:"Arial Black", Arial, sans-serif}
+</STYLE>
+<SCRIPT LANGUAGE="JavaScript">
+
+function setGroupLabelAsText(form) {
+	var content = form.textInput.value
+	if (content) {
+		document.all.label1.outerText = content
+	}
+}
+function setGroupLabelAsHTML(form) {
+	var content = form.HTMLInput.value
+	if (content) {
+		document.all.label1.outerHTML = content
+	}
+}
+</SCRIPT>
+</HEAD>
+
+<BODY>
+<FORM>
+<P>
+	<INPUT TYPE="text" NAME="HTMLInput" 
+	VALUE="<SPAN ID='label1' CLASS='heading'>Article the First</SPAN>" SIZE=55>
+	<INPUT TYPE="button" VALUE="Change Heading HTML" 
+	onClick="setGroupLabelAsHTML(this.form)">
+</P>
+<P>
+	<INPUT TYPE="text" NAME="textInput" 
+	VALUE="<SPAN ID='label1' CLASS='heading'>Article the First</SPAN>" SIZE=55>
+	<INPUT TYPE="button" VALUE="Change Heading Text" 
+	onClick="setGroupLabelAsText(this.form)">
+</P>
+</FORM>
+<H1 ID="label1">ARTICLE I</H1>
+<P>
+Congress shall make no law respecting an establishment of religion, or prohibiting the free exercise thereof; or abridging the freedom of speech, or of the press; or the right of the people peaceably to assemble, and to petition the government for a redress of grievances.
+</P>
+</BODY>
+</HTML>

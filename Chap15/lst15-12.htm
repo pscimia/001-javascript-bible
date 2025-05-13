@@ -1,0 +1,52 @@
+<HTML>
+<HEAD>
+<TITLE>offsetParent Property</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+function setImagePosition(){
+	var cElement = document.all.myCell
+	// Set flag for whether calculations should use
+	// client- or offset- property measures. Use
+	// client- for IE5/Mac and IE4/Windows; otherwise
+	// use offset- properties. An ugly, but necessary
+	// workaround.
+	var useClient = (cElement.offsetTop == 0) ? 
+		((cElement.offsetParent.tagName == "TR") ? false : true) : false
+	if (useClient) {
+		var x = cElement.clientLeft
+		var y = cElement.clientTop
+	} else {
+		var x = cElement.offsetLeft
+		var y = cElement.offsetTop
+	}
+	var pElement = document.all.myCell.offsetParent
+	while (pElement != document.body) {
+		if (useClient) {
+			x += pElement.clientLeft
+			y += pElement.clientTop
+		} else {
+			x += pElement.offsetLeft
+			y += pElement.offsetTop
+		}
+		pElement = pElement.offsetParent
+	}
+	document.all.myDIV.style.pixelLeft = x
+	document.all.myDIV.style.pixelTop = y
+	document.all.myDIV.style.visibility = "visible"
+}
+</SCRIPT>
+</HEAD>
+<BODY onload="setImagePosition()">
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<H1>The offsetParent Property</H1>
+<HR>
+<P>After the document loads, the script positions a small image in the upper left corner of the second table cell.</P>
+<TABLE BORDER=1 ALIGN="center">
+<TR>
+	<TD>This is the first cell</TD>
+	<TD ID="myCell">This is the second cell.</TD>
+</TR>
+</TABLE>
+<DIV ID="myDIV" STYLE="position:absolute; visibility:hidden; height:12; width:12"><IMG SRC="end.gif" HEIGHT=12 WIDTH=12></DIV>
+</BODY>
+</HTML>

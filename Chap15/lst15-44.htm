@@ -1,0 +1,23 @@
+<HTML>
+<HEAD>
+<TITLE>onMouseOver and onMouseOut Event Handlers</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+function setStatus(msg) {
+	status = msg
+	return true
+}
+// destination of all link HREFs
+function emulate() {
+	alert("Not going there in this demo.")
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+<H1>onMouseOver and onMouseOut Event Handlers
+</H1>
+<HR>
+<H1>Pledge of Allegiance</H1>
+<HR>
+I pledge <A HREF="javascript:emulate()" onMouseOver="return setStatus('View dictionary definition')" onMouseOut="return setStatus('')">allegiance</A> to the <A HREF="javascript:emulate()" onMouseOver="return setStatus('Learn about the U.S. flag (http://lcweb.loc.gov)')" onMouseOut="return setStatus('')">flag</A> of the <A HREF="javascript:emulate()" onMouseOver="return setStatus('View info about the U.S. government')" onMouseOut="return setStatus('')">United States of America</A>, and to the Republic for which it stands, one nation <A HREF="javascript:emulate()" onMouseOver="return setStatus('Read about the history of this phrase in the Pledge')" onMouseOut="return setStatus('')">under God</A>, indivisible, with liberty and justice for all.
+</BODY>
+</HTML>

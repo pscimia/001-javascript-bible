@@ -1,0 +1,52 @@
+<HTML>
+<HEAD>
+<SCRIPT LANGUAGE="JavaScript">
+function showNameHelp() {
+	alert("Enter your first and last names.")
+	event.cancelBubble = true
+	return false
+}
+function showYOBHelp() {
+	alert("Enter the four-digit year of your birth. For example: 1972")
+	event.cancelBubble = true
+	return false
+}
+function showGenericHelp() {
+	alert("All fields are required.")
+	event.cancelBubble = true
+	return false
+}
+function showLegend() {
+	document.all.legend.style.visibility = "visible"
+}
+function hideLegend() {
+	document.all.legend.style.visibility = "hidden"
+}
+function init() {
+	var msg = ""
+	if (navigator.userAgent.indexOf("Mac") != -1) {
+		msg = "Press \'help\' key for help."
+	} else if (navigator.userAgent.indexOf("Win") != -1) {
+		msg = "Press F1 for help."
+	}
+	document.all.legend.style.visibility = "hidden"
+	document.all.legend.innerHTML = msg
+}
+</SCRIPT>
+</HEAD>
+
+<BODY onLoad="init()" onHelp="return showGenericHelp()">
+<H1>onHelp Event Handler</H1>
+<HR>
+<P ID="legend" STYLE="visibility:hidden; font-size:10px">&nbsp;</P>
+<FORM>
+Name: <INPUT TYPE="text" NAME="name" SIZE=30 
+	onFocus="showLegend()" onBlur="hideLegend()"
+	onHelp="return showNameHelp()">
+<BR>
+Year of Birth: <INPUT TYPE="text" NAME="YOB" SIZE=30 
+	onFocus="showLegend()" onBlur="hideLegend()"
+	onHelp="return showYOBHelp()">
+</FORM>
+</BODY>
+</HTML>

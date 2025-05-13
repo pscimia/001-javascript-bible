@@ -1,0 +1,29 @@
+<HTML>
+<HEAD>
+<TITLE>onBeforeCopy Event Handler</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+function selectWhole() {
+	var obj = window.event.srcElement
+	var range = document.body.createTextRange()
+	range.moveToElementText(obj)
+	range.select()
+	event.returnValue = false
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+<H1>onBeforeCopy Event Handler</H1>
+<HR>
+<P>Select one or more characters in the following paragraph. Then 
+execute a Copy command via Edit or context menu.</P>
+<P ID="myP" onBeforeCopy="selectWhole()">Lorem ipsum dolor sit amet, 
+consectetaur adipisicing elit, sed do eiusmod tempor incididunt ut 
+labore et dolore magna aliqua. Ut enim adminim veniam, quis nostrud 
+exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</P>
+<FORM>
+<P>Paste results here:<BR>
+<TEXTAREA NAME="output" COLS="60" ROWS="5"></TEXTAREA>
+</P>
+</FORM>
+</BODY>
+</HTML>

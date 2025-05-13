@@ -1,0 +1,36 @@
+<HTML>
+<HEAD>
+<TITLE>onBlur and onBlur Event Handlers</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+function showBlur() {
+	var id = event.srcElement.id
+	alert("Element \"" + id + "\" has blurred.")
+}
+function showFocus() {
+	var id = event.srcElement.id
+	alert("Element \"" + id + "\" has received focus.")
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+<H1 ID="H1" TABINDEX=2>onBlur and onBlur Event Handlers</H1>
+<HR>
+<P ID="P1" onBlur="showBlur()" onFocus="showFocus()">Lorem ipsum
+dolor sit amet, consectetaur adipisicing elit, sed do eiusmod tempor 
+incididunt ut labore et dolore magna aliqua. Ut enim adminim veniam, 
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea 
+commodo consequat.</P>
+
+<P ID="P2" TABINDEX=1 onBlur="showBlur()" onFocus="showFocus()">Bis 
+nostrud exercitation ullam mmodo consequet. Duis aute involuptate 
+velit esse cillum dolore eu fugiat nulla pariatur. At vver eos et 
+accusam dignissum qui blandit est praesent luptatum delenit 
+aigueexcepteur sint occae.</P>
+
+<P ID="P3" onBlur="showBlur()" onFocus="showFocus()">Unte af phen 
+neigepheings atoot Prexs eis phat eit sakem eit vory gast te Plok 
+peish ba useing phen roxas. Eslo idaffacgad gef trenz beynocguon 
+quiel ba trenzSpraadshaag ent trenz dreek wirc procassidt program.</P>
+
+</BODY>
+</HTML>

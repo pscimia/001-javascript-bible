@@ -1,0 +1,8 @@
+<!-- XMP tags added for display of HTML in a browser window -->
+<XMP>
+<SCRIPT LANGUAGE="JavaScript">
+if (top != self) {
+    top.location = location
+}
+</SCRIPT>
+</XMP>

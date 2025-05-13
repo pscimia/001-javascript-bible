@@ -1,0 +1,46 @@
+<HTML>
+<HEAD>
+<TITLE>appendChild(), removeChild(), and replaceChild() Methods</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+function append(form) {
+	if (form.input.value) {
+		var newItem = document.createElement("LI")
+		newItem.appendChild(document.createTextNode(form.input.value))
+		document.getElementById("myUL").appendChild(newItem)
+	}
+}
+
+function replace(form) {
+	if (form.input.value) {
+		var newItem = document.createElement("LI")
+		var lastChild = document.getElementById("myUL").lastChild
+		newItem.appendChild(document.createTextNode(form.input.value))
+		document.getElementById("myUL").replaceChild(newItem, lastChild)
+	}
+}
+
+function restore() {
+	var oneChild
+	var mainObj = document.getElementById("myUL")
+	while (mainObj.childNodes.length > 2) {
+		oneChild = mainObj.lastChild
+		mainObj.removeChild(oneChild)
+	}
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+<H1>Child Methods</H1>
+<HR>
+Here is a list of items:
+<UL ID="myUL"><LI>First Item
+<LI>Second Item
+</UL>
+<FORM>
+Enter some text to add/replace in the list:
+<INPUT TYPE="text" NAME="input" SIZE=30><BR>
+<INPUT TYPE="button" VALUE="Append to List" onClick="append(this.form)">
+<INPUT TYPE="button" VALUE="Replace Final Item" onClick="replace(this.form)">
+<INPUT TYPE="button" VALUE="Restore List" onClick="restore()">
+</BODY>
+</HTML>

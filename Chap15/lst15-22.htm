@@ -1,0 +1,33 @@
+<HTML>
+<HEAD>
+<TITLE>applyElement() Method</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+function applyOutside() {
+	var newItem = document.createElement("EM")
+	newItem.id = newItem.uniqueID
+	document.all.mySpan.applyElement(newItem)
+}
+
+function applyInside() {
+	var newItem = document.createElement("EM")
+	newItem.id = newItem.uniqueID
+	document.all.mySpan.applyElement(newItem, "inside")
+}
+
+function showHTML() {
+	alert(document.all.myP.outerHTML)
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+<H1>applyElement() Method</H1>
+<HR>
+<P ID="myP">A simple paragraph with a <SPAN ID="mySpan">
+<FONT SIZE=+1>special</FONT></SPAN> word in it.</P>
+<FORM>
+<INPUT TYPE="button" VALUE="Apply <EM> Outside" onClick="applyOutside()">
+<INPUT TYPE="button" VALUE="Apply <EM> Inside" onClick="applyInside()">
+<INPUT TYPE="button" VALUE="Show <P> HTML..." onClick="showHTML()"><BR>
+<INPUT TYPE="button" VALUE="Restore Paragraph" onClick="location.reload()">
+</BODY>
+</HTML>

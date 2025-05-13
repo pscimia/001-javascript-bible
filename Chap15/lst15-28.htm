@@ -1,0 +1,39 @@
+<HTML> 
+<HEAD> 
+<TITLE>insertBefore() Method</TITLE> 
+<SCRIPT LANGUAGE="JavaScript"> 
+function doInsert(form) {
+	if (form.newText) {
+		var newChild = document.createElement("LI")
+		newChild.innerHTML = form.newText.value
+		var choice = form.itemIndex.options[form.itemIndex.selectedIndex].value
+		var insertPoint = (isNaN(choice)) ? 
+			null : document.getElementById("myUL").childNodes[choice]
+		document.getElementById("myUL").insertBefore(newChild, insertPoint)
+	}
+}
+</SCRIPT> 
+</HEAD> 
+<BODY> 
+<H1>insertBefore() Method</H1> 
+<HR>
+<FORM onSubmit="return false">
+<P>Enter text or HTML for a new list item:
+<INPUT TYPE="text" NAME="newText" SIZE=40 VALUE=""></P>
+<P>Before which existing item?
+<SELECT NAME="itemIndex">
+	<OPTION VALUE=null>None specified
+	<OPTION VALUE=0>1
+	<OPTION VALUE=1>2
+	<OPTION VALUE=2>3
+</SELECT></P>
+<INPUT TYPE="button" VALUE="Insert Item" onClick="doInsert(this.form)">
+</FORM> 
+
+<OL ID="myUL">
+	<LI>Originally the First Item
+	<LI>Originally the Second Item
+	<LI>Originally the Third Item
+</OL>
+</BODY> 
+</HTML>

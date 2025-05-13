@@ -1,0 +1,21 @@
+<HTML>
+<HEAD>
+	<SCRIPT LANGUAGE="JavaScript">
+	<!--
+	function doIt() {
+		// statements
+	}
+	//-->
+	</SCRIPT>
+</HEAD>
+<BODY>
+<FORM>
+	<INPUT TYPE=button NAME=janeButton VALUE="Click Me">
+	<SCRIPT LANGUAGE="JavaScript1.1">
+	<!--
+		document.forms[0].janeButton.onclick=doIt
+	//-->
+	</SCRIPT>
+</FORM>
+</BODY>
+</HTML>

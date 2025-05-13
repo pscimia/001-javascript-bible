@@ -1,0 +1,36 @@
+<HTML>
+<HEAD>
+<TITLE>onSelectStart Event Handler</TITLE>
+<STYLE TYPE="text/css">
+TD {text-align:center}
+</STYLE>
+<SCRIPT LANGUAGE="JavaScript">
+function showObj() {
+	var objID = event.srcElement.id
+	status = "Selection started with object: " + objID
+}
+</SCRIPT>
+</HEAD>
+<BODY ID="myBody" onSelectStart="showObj()">
+<H1 ID="myH1">onSelectStart Event Handler</H1>
+<HR ID="myHR">
+<P ID="myP">This is a sample paragraph.</P>
+<TABLE BORDER="1">
+<TR ID="row1">
+	<TH ID="header1">Column A</TH>
+	<TH ID="header2">Column B</TH>
+	<TH ID="header3">Column C</TH>
+</TR>
+<TR ID="row2">
+	<TD ID="cellA2">text</TD>
+	<TD ID="cellB2">text</TD>
+	<TD ID="cellC2">text</TD>
+</TR>
+<TR ID="row3">
+	<TD ID="cellA3">text</TD>
+	<TD ID="cellB3">text</TD>
+	<TD ID="cellC3">text</TD>
+</TR>
+</TABLE>
+</BODY>
+</HTML>

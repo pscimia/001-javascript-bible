@@ -1,0 +1,23 @@
+<HTML>
+<HEAD>
+<TITLE>onClick and onDblClick Event Handlers</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+var msg = ""
+function showClick() {
+	msg = "The element has been clicked. "
+	status = msg
+}
+function showDblClick() {
+	msg = "The element has been double-clicked."
+	status = msg
+	return false
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+<H1>onClick and onDblClick Event Handlers</H1>
+<HR>
+<A HREF="#" onClick="showClick();return false" onDblClick="return showDblClick()">
+A sample link.</A>
+</BODY>
+</HTML>

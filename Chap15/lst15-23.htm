@@ -1,0 +1,40 @@
+<HTML>
+<HEAD>
+<TITLE>Window Focus() and Blur()</TITLE>
+<SCRIPT LANGUAGE="JavaScript1.1">
+// declare global variable name
+var newWindow = null
+function makeNewWindow() {
+	// check if window already exists
+	if (!newWindow || newWindow.closed) {
+		// store new window object in global variable
+		newWindow = window.open("","","width=250,height=250")
+		// pause briefly to let IE3 window finish opening
+		setTimeout("fillWindow()",100)
+	} else {
+	// window already exists, so bring it forward
+	newWindow.focus()
+	}
+}
+// assemble new content and write to subwindow
+function fillWindow() {
+	var newContent = "<HTML><HEAD><TITLE>Another Sub Window</TITLE></HEAD>"
+	newContent += "<BODY bgColor='salmon'>"
+	newContent += "<H1>A Salmon-Colored Subwindow.</H1>"
+	newContent += "<FORM><INPUT TYPE='button' VALUE='Bring Main to Front' onClick='self.opener.focus()'>"
+	newContent += "<FORM><INPUT TYPE='button' VALUE='Put Me in Back' onClick='self.blur()'>"
+	newContent += "</FORM></BODY></HTML>"
+	// write HTML to new window document
+	newWindow.document.write(newContent)
+	newWindow.document.close()
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+<H1>Window focus() and blur() Methods</H1>
+<HR>
+<FORM>
+<INPUT TYPE="button" NAME="newOne" VALUE="Show New Window" onClick="makeNewWindow()">
+</FORM>
+</BODY>
+</HTML>

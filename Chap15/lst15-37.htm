@@ -1,0 +1,92 @@
+<HTML>
+<HEAD>
+<TITLE>Dragging Event Handlers</TITLE>
+<STYLE TYPE="text/css">
+TD {text-align:center}
+TH {text-decoration:underline}
+.blanks {text-decoration:underline}
+</STYLE>
+<SCRIPT LANGUAGE="JavaScript">
+var timer
+function setupDrag() {
+	if (event.srcElement.tagName != "TD") {
+		// don't allow dragging for any other elements
+		event.returnValue = false
+	} else {
+		// setup array of data to be passed to drop target
+		var passedData = [event.srcElement.innerText, event.srcElement.className]
+		// store it as a string
+		event.dataTransfer.setData("Text", passedData.join(":"))
+		event.dataTransfer.effectAllowed = "copy"
+		timer = new Date()
+	}
+}
+function timeIt() {
+	if (event.srcElement.tagName == "TD" && timer) {
+		if ((new Date()) - timer > 2000) {
+			alert("Sorry, time is up. Try again.")
+			timer = 0
+		}
+	}
+}
+function handleDrop() {
+	var elem = event.srcElement
+	var passedData = event.dataTransfer.getData("Text")
+	var errMsg = ""
+	if (passedData) {
+		// reconvert passed string to an array
+		passedData = passedData.split(":")
+		if (elem.id == "blank1") {
+			if (passedData[1] == "noun") {
+				event.dataTransfer.dropEffect = "copy"
+				event.srcElement.innerText = passedData[0]
+			} else {
+				errMsg = "You can't put an adjective into the noun placeholder."
+			}
+		} else if (elem.id == "blank2") {
+			if (passedData[1] == "adjective") {
+				event.dataTransfer.dropEffect = "copy"
+				event.srcElement.innerText = passedData[0]
+			} else {
+				errMsg = "You can't put an noun into the adjective placeholder."
+			}
+		}
+		if (errMsg) {
+			alert(errMsg)
+		}
+	}
+}
+function cancelDefault() {
+	if (event.srcElement.id.indexOf("blank") == 0) {
+		event.dataTransfer.dropEffect = "copy"
+		event.returnValue = false
+	}
+}
+</SCRIPT>
+</HEAD>
+<BODY onDragStart="setupDrag()" onDrag="timeIt()">
+<H1>Dragging Event Handlers</H1>
+<HR>
+<P>Your goal is to drag one noun and one
+adjective from the following table into the blanks
+of the sentence. Select a word from the table and
+drag it to the desired blank. When you release the
+mouse, the word will appear in the blank.You have
+two seconds to complete each blank.</P>
+
+<TABLE CELLPADDING=5>
+<TR><TH>Nouns</TH><TH>Adjectives</TH></TR>
+<TR><TD class="noun">truck</TD><TD class="adjective">round</TD></TR>
+<TR><TD class="noun">doll</TD><TD class="adjective">red</TD></TR>
+<TR><TD class="noun">ball</TD><TD class="adjective">pretty</TD></TR>
+</TABLE>
+
+<P ID="myP" onDragEnter="cancelDefault()" onDragOver="cancelDefault()" onDrop="handleDrop()">
+Pat said, "Oh my, the <SPAN ID="blank1" CLASS="blanks">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</SPAN> 
+is so <SPAN ID="blank2" CLASS="blanks">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</SPAN>!"</P>
+
+<BUTTON onClick="location.reload()">Reset</BUTTON>
+</BODY>
+</HTML>

@@ -1,0 +1,42 @@
+// NN6 document.all equalizer
+if (!document.all) {
+	Node.prototype.__defineGetter__("all", function() {
+		if (document.getElementsByTagName("*").length) {
+			switch (this.nodeType) {
+				case 9:
+					return document.getElementsByTagName("*")
+					break
+				case 1:
+					return this.getElementsByTagName("*")
+					break
+			}
+		}
+		return ""
+	})
+	Node.prototype.__defineSetter__("all", function() {})
+}
+
+// NN6 innerText and outerHTML equalizer
+if (HTMLElement) {
+	HTMLElement.prototype.__defineSetter__("innerText", function (txt) {
+		var rng = document.createRange()
+		rng.selectNodeContents(this)
+		rng.deleteContents()
+		var newText = document.createTextNode(txt)
+		this.appendChild(newText)
+		return txt
+	})
+	HTMLElement.prototype.__defineGetter__("innerText", function () {
+		var rng = document.createRange()
+		rng.selectNode(this)
+		return rng.toString()
+	})
+	HTMLElement.prototype.__defineSetter__("outerHTML", function (html) {
+		var rng = document.createRange()
+		rng.selectNode(this)
+		var newHTML = rng.createContextualFragment(html)
+		this.parentNode.replaceChild(newHTML,this)
+		return html
+	})
+	HTMLElement.prototype.__defineGetter__("outerHTML", function() {return ''})
+}

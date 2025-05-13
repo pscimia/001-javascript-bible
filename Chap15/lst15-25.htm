@@ -1,0 +1,74 @@
+<HTML>
+<HEAD>
+<STYLE TYPE="text/css">
+#mySPAN {font-style:italic}
+</STYLE>
+<SCRIPT LANGUAGE="JavaScript">
+// assemble a couple event object properties
+function getEventProps(evt) {
+	var msg = ""
+	var elem = evt.target
+	msg += "event.target.nodeName: " + elem.nodeName + "\n"
+	msg += "event.target.parentNode: " + elem.parentNode.id + "\n"
+	msg += "event button: " + evt.button
+	return msg
+}
+
+// onClick event handlers for body, myP, and mySPAN
+function bodyClick(evt) {
+	var msg = "Click event processed in BODY\n\n"
+	msg += getEventProps(evt)
+	alert(msg)
+	checkCancelBubble(evt)
+}
+function pClick(evt) {
+	var msg = "Click event processed in P\n\n"
+	msg += getEventProps(evt)
+	alert(msg)
+	checkCancelBubble(evt)
+}
+function spanClick(evt) {
+	var msg = "Click event processed in SPAN\n\n"
+	msg += getEventProps(evt)
+	alert(msg)
+	checkCancelBubble(evt)
+}
+
+// cancel event bubbling if checkbox is checked
+function checkCancelBubble(evt) {
+	if (document.controls.bubbleOn.checked) {
+		evt.stopPropagation()
+	}
+}
+
+// assign onClick event handlers to three elements
+function init() {
+	document.body.onclick = bodyClick
+	document.getElementById("myP").onclick = pClick
+	document.getElementById("mySPAN").onclick = spanClick
+}
+
+// invoke fireEvent() on object whose ID is passed as parameter
+function doDispatch(objID, evt) {
+	var newEvt = document.createEvent("MouseEvent")
+	newEvt.button = 3
+	document.getElementById(objID).dispatchEvent(newEvt)
+	// don't let button clicks bubble
+	evt.stopPropagation()
+}
+</SCRIPT>
+</HEAD>
+<BODY ID="myBODY" onLoad="init()">
+<H1>fireEvent() Method</H1>
+<HR>
+<P ID="myP">This is a paragraph <SPAN ID="mySPAN">(with a nested SPAN)</SPAN> that receives click events.</SPAN></P>
+<HR>
+<P><B>Control Panel</B></P>
+<FORM NAME="controls">
+<P><INPUT TYPE="checkbox" NAME="bubbleOn" onClick="event.stopPropagation()">Cancel event bubbling.</P>
+<P><INPUT TYPE="button" VALUE="Fire Click Event on BODY" onClick="doDispatch('myBODY', event)"></P>
+<P><INPUT TYPE="button" VALUE="Fire Click Event on myP" onClick="doDispatch('myP', event)"></P>
+<P><INPUT TYPE="button" VALUE="Fire Click Event on mySPAN" onClick="doDispatch('mySPAN', event)"></P>
+</FORM>
+</BODY>
+</HTML>

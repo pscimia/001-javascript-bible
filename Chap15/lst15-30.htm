@@ -1,0 +1,73 @@
+<HTML>
+<STYLE TYPE="text/css">
+#contextMenu {position:absolute; background-color:#cfcfcf; 
+			  border-style:solid; border-width:1px; 
+			  border-color:#EFEFEF #505050 #505050 #EFEFEF; 
+			  padding:3px 10px; font-size:8pt; font-family:Arial, Helvetica; 
+			  line-height:150%; visibility:hidden}
+.menuItem {color:black}
+.menuItemOn {color:white}
+OL {list-style-position:inside; font-weight:bold; cursor:nw-resize}
+LI {font-weight:normal}
+</STYLE>
+<SCRIPT LANGUAGE="JavaScript">
+function showContextMenu() {
+	contextMenu.setCapture()
+	contextMenu.style.pixelTop = event.clientY + document.body.scrollTop
+	contextMenu.style.pixelLeft = event.clientX + document.body.scrollLeft
+	contextMenu.style.visibility = "visible"
+	event.returnValue = false
+}
+
+function revert() {
+	document.releaseCapture()
+	hideMenu()
+}
+
+function hideMenu() {
+	contextMenu.style.visibility = "hidden"
+}
+
+function handleClick() {
+	var elem = window.event.srcElement
+	if (elem.id.indexOf("menuItem") == 0) {
+		shapesList.style.listStyleType = elem.LISTTYPE
+	}
+	revert()
+	event.cancelBubble = true
+}
+
+function highlight() {
+	var elem = event.srcElement
+	if (elem.className == "menuItem") {
+		elem.className = "menuItemOn"
+	}
+}
+
+function unhighlight() {
+	var elem = event.srcElement
+	if (elem.className == "menuItemOn") {
+		elem.className = "menuItem"
+	}
+}
+</SCRIPT>
+<BODY onClick="alert('You reached the document object.')" >
+<OL ID="shapesList" onContextMenu="showContextMenu()">
+<A HREF="javascript:alert('A sample link.')">Three-Dimensional Shapes</A>
+<LI>Circular Cylinder</LI>
+<LI>Cube</LI>
+<LI>Rectangular Prism</LI>
+<LI>Regular Right Pyramid</LI>
+<LI>Right Circular Cone</LI>
+<LI>Sphere</LI>
+</OL>
+
+<DIV ID="contextMenu" onLoseCapture="hideMenu()" onClick="handleClick()" onMouseOver="highlight()" onMouseOut="unhighlight()">
+<SPAN ID="menuItem1" CLASS="menuItem" LISTTYPE="upper-alpha">A,B,C,...</SPAN><BR>
+<SPAN ID="menuItem2" CLASS="menuItem" LISTTYPE="lower-alpha">a,b,c,...</SPAN><BR>
+<SPAN ID="menuItem3" CLASS="menuItem" LISTTYPE="upper-roman">I,II,III,...</SPAN><BR>
+<SPAN ID="menuItem4" CLASS="menuItem" LISTTYPE="lower-roman">i,ii,iii,...</SPAN><BR>
+<SPAN ID="menuItem5" CLASS="menuItem" LISTTYPE="decimal">1,2,3,...</SPAN><BR>
+</DIV>
+</BODY>
+</HTML>

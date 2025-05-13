@@ -1,0 +1,24 @@
+<HTML>
+<HEAD>
+<STYLE TYPE="text/css">
+.normal {color: black}
+.editing {color: red}
+</STYLE>
+<SCRIPT LANGUAGE="JavaScript">
+function toggleEdit() {
+	var newState = !editableText.isContentEditable
+	editableText.contentEditable = newState
+	editableText.className = (newState) ? "editing" : "normal"
+	editBtn.innerText = (newState) ? "Disable Editing" : "Enable Editing"
+}
+</SCRIPT>
+<BODY>
+<H1>Editing Contents</H1>
+<HR>
+<P>Turn on editing to modify the following text:</P>
+<DIV ID="editableText">Edit this text on the fly....</DIV>
+<P><BUTTON ID="editBtn" onClick="toggleEdit()" onFocus="this.blur()">
+Enable Editing
+</BUTTON></P>
+</BODY>
+</HTML>

@@ -1,0 +1,70 @@
+<HTML>
+<HEAD>
+<TITLE>removeNode(), replaceNode(), and swapNode() Methods</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+// store original node between changes
+var oldNode
+
+// replace UL node with OL
+function replace() {
+	if (document.all.myUL) {
+		var newNode = document.createElement("OL")
+		newNode.id = "myOL"
+		var innards = document.all.myUL.children
+		while (innards.length > 0) {
+			newNode.insertBefore(innards[0])
+		}
+		oldNode = document.all.myUL.replaceNode(newNode)
+	}
+}
+
+// restore OL to UL
+function restore() {
+	if (document.all.myOL && oldNode) {
+		var innards = document.all.myOL.children
+		while (innards.length > 0) {
+			oldNode.insertBefore(innards[0])
+		}
+		document.all.myOL.replaceNode(oldNode)
+		
+	}
+}
+
+// swap first and last nodes
+function swap() {
+	if (document.all.myUL) {
+		document.all.myUL.firstChild.swapNode(document.all.myUL.lastChild)	
+	}
+	if (document.all.myOL) {
+		document.all.myOL.firstChild.swapNode(document.all.myOL.lastChild)	
+	}
+}
+
+// remove last node
+function remove() {
+	if (document.all.myUL) {
+		document.all.myUL.lastChild.removeNode(true)	
+	}
+	if (document.all.myOL) {
+		document.all.myOL.lastChild.removeNode(true)	
+	}
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+<H1>Node Methods</H1>
+<HR>
+Here is a list of items:
+<UL ID="myUL">
+<LI>First Item
+<LI>Second Item
+<LI>Third Item
+<LI>Fourth Item
+</UL>
+<FORM>
+<INPUT TYPE="button" VALUE="Change to OL List" onClick="replace()">&nbsp;&nbsp;
+<INPUT TYPE="button" VALUE="Restore LI List" onClick="restore()">&nbsp;&nbsp;
+<INPUT TYPE="button" VALUE="Swap First/Last" onClick="swap()">&nbsp;&nbsp;
+<INPUT TYPE="button" VALUE="Remove Last" onClick="remove()">
+</BODY>
+</HTML>

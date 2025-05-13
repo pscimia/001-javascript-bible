@@ -1,0 +1,42 @@
+<HTML>
+<HEAD>
+<TITLE>parentTextEdit Property</TITLE>
+<STYLE TYPE="text/css">
+P {cursor:hand}
+</STYLE>
+<SCRIPT LANGUAGE="JavaScript">
+function selectChunk() {
+	var chunk, range
+	for (var i = 0; i < document.forms[0].chunk.length; i++) {
+		if (document.forms[0].chunk[i].checked) {
+			chunk = document.forms[0].chunk[i].value
+			break	
+		}
+	}
+	var x = window.event.clientX
+	var y = window.event.clientY
+	if (window.event.srcElement.parentTextEdit) {
+		range = window.event.srcElement.parentTextEdit.createTextRange()
+		range.collapse()
+		range.moveToPoint(x, y)
+		range.expand(chunk)
+		range.select()
+	}
+}
+</SCRIPT>
+</HEAD>
+
+<BODY BGCOLOR="white">
+<FORM>
+<P>Choose how much of the paragraph is to be selected when you click anywhere in it:<BR>
+<INPUT TYPE="radio" NAME="chunk" VALUE="character" CHECKED>Character
+<INPUT TYPE="radio" NAME="chunk" VALUE="word">Word
+<INPUT TYPE="radio" NAME="chunk" VALUE="sentence">Sentence
+<FONT COLOR="white">.</FONT></P>
+</FORM>
+
+<P onClick="selectChunk()">
+Lorem ipsum dolor sit amet, consectetaur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim adminim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit involuptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</P>
+</BODY>
+</HTML>

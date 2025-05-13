@@ -1,0 +1,45 @@
+<HTML>
+<HEAD>
+<TITLE>Data Binding (recordNumber)</TITLE>
+<STYLE TYPE="text/css">
+.filmTitle {font-style:italic}
+</STYLE>
+<SCRIPT LANGUAGE="JavaScript">
+// set recordset pointer to the record clicked on in the table.
+function setRecNum(row) {
+	document.oscars.recordset.AbsolutePosition = row.recordNumber
+}
+</SCRIPT>
+
+</HEAD>
+<BODY>
+<P><B>Academy Awards 1978-1997</B> (Click on a table row to extract data from one record.)</P>
+<P>The award for Best Actor of <SPAN DATASRC="#oscars" DATAFLD="Year"></SPAN>
+&nbsp;went to <SPAN DATASRC="#oscars" DATAFLD="Best Actor"></SPAN>
+&nbsp;for his outstanding achievement in the film 
+<SPAN CLASS="filmTitle" DATASRC="#oscars" DATAFLD="Best Actor Film"></SPAN>.</P>
+<TABLE BORDER=1 DATASRC="#oscars" ALIGN="center">
+<THEAD STYLE="background-color:yellow; text-align:center">
+<TR><TD>Year</TD>
+	<TD>Film</TD>
+	<TD>Director</TD>
+	<TD>Actress</TD>
+	<TD>Actor</TD>
+</TR>
+</THEAD>
+<TR ID=repeatableRow onClick="setRecNum(this)">
+	<TD><DIV ID="col1" DATAFLD="Year"></DIV></TD>
+	<TD><DIV CLASS="filmTitle" ID="col2" DATAFLD="Best Picture"></DIV></TD>
+	<TD><DIV ID="col3" DATAFLD="Best Director"></DIV></TD>
+	<TD><DIV ID="col4" DATAFLD="Best Actress"></DIV></TD>
+	<TD><DIV ID="col5" DATAFLD="Best Actor"></DIV></TD>
+</TR>
+</TABLE>
+
+<OBJECT ID="oscars" CLASSID="clsid:333C7BC4-460F-11D0-BC04-0080C7055A83">
+	<PARAM NAME="DataURL" VALUE="Academy Awards.txt">
+	<PARAM NAME="UseHeader" VALUE="True">
+	<PARAM NAME="FieldDelim" VALUE="&#09;">
+</OBJECT>
+</BODY>
+</HTML>

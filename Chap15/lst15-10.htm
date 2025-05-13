@@ -1,0 +1,53 @@
+<HTML>
+<HEAD>
+<TITLE>firstChild and lastChild Properties</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+// helper function for prepend() and append()
+function makeNewLI(txt) {
+	var newItem = document.createElement("LI")
+	newItem.innerHTML = txt
+	return newItem
+}
+function prepend(form) {
+	var newItem = makeNewLI(form.input.value)
+	var firstLI = document.getElementById("myList").firstChild
+	document.getElementById("myList").insertBefore(newItem, firstLI)
+}
+function append(form) {
+	var newItem = makeNewLI(form.input.value)
+	var lastLI = document.getElementById("myList").lastChild
+	document.getElementById("myList").appendChild(newItem)
+}
+function replaceFirst(form) {
+	var newItem = makeNewLI(form.input.value)
+	var firstLI = document.getElementById("myList").firstChild
+	document.getElementById("myList").replaceChild(newItem, firstLI)
+}
+function replaceLast(form) {
+	var newItem = makeNewLI(form.input.value)
+	var lastLI = document.getElementById("myList").lastChild
+	document.getElementById("myList").replaceChild(newItem, lastLI)
+}
+</SCRIPT>
+
+</HEAD>
+<BODY>
+<H1>firstChild and lastChild Property Lab</H1>
+<HR>
+<FORM>
+<LABEL>Enter some text to add to or replace in the OL element:</LABEL><BR>
+<INPUT TYPE="text" NAME="input" SIZE=50><BR>
+<INPUT TYPE="button" VALUE="Insert at Top" onClick="prepend(this.form)">
+<INPUT TYPE="button" VALUE="Append to Bottom" onClick="append(this.form)">
+<BR>
+<INPUT TYPE="button" VALUE="Replace First Item" onClick="replaceFirst(this.form)">
+<INPUT TYPE="button" VALUE="Replace Last Item" onClick="replaceLast(this.form)">
+</FORM>
+<P></P>
+<OL ID="myList"><LI>Initial Item 1
+<LI>Initial Item 2
+<LI>Initial Item 3
+<LI>Initial Item 4
+<OL>
+</BODY>
+</HTML>

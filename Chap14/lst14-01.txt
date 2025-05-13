@@ -1,0 +1,19 @@
+<!-- XMP tags added for display of HTML in a browser window -->
+<XMP>
+<HTML> 
+	<HEAD> 
+		<TITLE> 
+			A Simple Page 
+		</TITLE> 
+	</HEAD> 
+	<BODY> 
+		<P ID="paragraph1"> 
+			This is the 
+			<EM ID="emphasis1"> 
+				one and only 
+			</EM> 
+			paragraph on the page. 
+		</P> 
+	</BODY> 
+</HTML>
+</XMP>

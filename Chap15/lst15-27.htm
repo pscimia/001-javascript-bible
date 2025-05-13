@@ -1,0 +1,75 @@
+<HTML>
+<HEAD>
+<TITLE>getClientRects() and getBoundClientRect() Methods</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+function hilite() {
+	var hTop, hLeft, hRight, hBottom, hWidth
+	var select = document.forms[0].choice
+	var n = parseInt(select.options[select.selectedIndex].value) - 1
+	var clientRects = document.all.main.getClientRects()
+	var mainElem = document.all.main
+	if (n >= 0 && n < clientRects.length) {
+		if (document.forms[0].fullWidth.checked) {
+			hLeft = mainElem.getBoundingClientRect().left
+			hRight = mainElem.getBoundingClientRect().right
+		} else {
+			hLeft = clientRects[n].left
+			hRight = clientRects[n].right
+		}
+		document.all.hiliter.style.pixelTop = clientRects[n].top + document.body.scrollTop
+		document.all.hiliter.style.pixelBottom = clientRects[n].bottom
+		document.all.hiliter.style.pixelLeft = hLeft + document.body.scrollLeft
+		document.all.hiliter.style.pixelWidth = hRight - hLeft
+		document.all.hiliter.style.visibility = "visible"
+	} else if (n > 0) {
+		alert("The content does not have that many lines.")
+		document.all.hiliter.style.visibility = "hidden"
+	}
+}
+</SCRIPT>
+</HEAD>
+<BODY onResize="hilite()">
+<H1>getClientRects() and getBoundClientRect() Methods</H1>
+<HR>
+<FORM>
+Choose a line to highlight:
+<SELECT NAME="choice" onChange="hilite()">
+<OPTION VALUE=0>
+<OPTION VALUE=1>1
+<OPTION VALUE=2>2
+<OPTION VALUE=3>3
+<OPTION VALUE=4>4
+<OPTION VALUE=5>5
+<OPTION VALUE=6>6
+<OPTION VALUE=7>7
+<OPTION VALUE=8>8
+<OPTION VALUE=9>9
+<OPTION VALUE=10>10
+<OPTION VALUE=11>11
+<OPTION VALUE=12>12
+<OPTION VALUE=13>13
+<OPTION VALUE=14>14
+<OPTION VALUE=15>15
+</SELECT><BR>
+
+<INPUT NAME="fullWidth" TYPE="checkbox" onClick="hilite()">
+Full Width (bounding rectangle)
+</FORM>
+<SPAN ID="main">
+<P>Lorem ipsum dolor sit amet, consectetaur adipisicing elit, sed do 
+eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+Ut enim adminim veniam, quis nostrud exercitation ullamco:</P>
+<UL>
+<LI>laboris
+<LI>nisi
+<LI>aliquip ex ea commodo 
+</UL>
+<P>Duis aute irure dolor in reprehenderit involuptate velit esse 
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat 
+cupidatat non proident, sunt in culpa qui officia deseruntmollit 
+anim id est laborum Et harumd und lookum like Greek to me, dereud 
+facilis est er expedit distinct.</P>
+</SPAN>
+<DIV ID="hiliter" STYLE="position:absolute; background-color:yellow; z-index:-1; visibility:hidden"></DIV>
+</BODY>
+</HTML>
