@@ -1,0 +1,27 @@
+<HTML>
+<HEAD>
+<TITLE>Drag and Drop</TITLE>
+<SCRIPT LANGUAGE="JavaScript1.2">
+function handleDrag(evt) {
+	netscape.security.PrivilegeManager.enablePrivilege("UniversalBrowserRead")
+	var URLArray = evt.data
+	netscape.security.PrivilegeManager.disablePrivilege("UniversalBrowserRead")
+	if (URLArray) {
+		document.forms[0].output.value = URLArray.join("\n")
+	} else {
+		document.forms[0].output.value = "Nothing found."
+	}
+	return false
+}
+</SCRIPT>
+</HEAD>
+<BODY onDragDrop="return handleDrag(event)">
+<B>Drag a URL to this window (NN4 only).</B>
+<HR>
+<FORM>
+URLs:<BR>
+<TEXTAREA NAME="output" COLS=70 ROWS=4></TEXTAREA><BR>
+<INPUT TYPE="reset">
+</FORM>
+</BODY>
+</HTML>

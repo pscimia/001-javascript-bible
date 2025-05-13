@@ -1,0 +1,76 @@
+<HTML>
+<HEAD>
+<TITLE>W3C DOM Event Propagation</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+function init() {
+	// using old syntax to assign bubble-type event handlers
+	window.onclick = winEvent
+	document.onclick = docEvent
+	document.body.onclick = docBodEvent
+	// turn on click event capture for two objects
+	document.addEventListener("click", docEvent, true)
+	document.forms[0].addEventListener("click", formCaptureEvent, true)
+	// set event listener for bubble
+	document.forms[0].addEventListener("click", formBubbleEvent, false)
+}
+function winEvent(evt) {
+	if (evt.target.type == "button") {
+		alert("Event is now at the window object level (" + getPhase(evt) + ").")
+	}
+}
+function docEvent(evt) {
+	if (evt.target.type == "button") {
+		alert("Event is now at the **document** object level (" + getPhase(evt) + ").")
+	}
+}
+function docBodEvent(evt) {
+	if (evt.target.type == "button") {
+		alert("Event is now at the BODY level (" + getPhase(evt) + ").")
+	}
+}
+function formCaptureEvent(evt) {
+	if (evt.target.type == "button") {
+		alert("This alert triggered by FORM only on CAPTURE.")
+		if (document.forms[0].stopAllProp.checked) {
+			evt.stopPropagation()
+		}
+	}
+}
+function formBubbleEvent(evt) {
+	if (evt.target.type == "button") {
+		alert("This alert triggered by FORM only on BUBBLE.")
+		if (document.forms[0].stopDuringBubble.checked) {
+			evt.preventBubble()
+		}
+	}
+}
+// reveal event phase of current event object
+function getPhase(evt) {
+	switch (evt.eventPhase) {
+		case 1:
+			return "CAPTURING"
+			break
+		case 2:
+			return "AT TARGET"
+			break
+		case 3:
+			return "BUBBLING"
+			break
+		default:
+			return ""	
+	}
+}
+</SCRIPT>
+</HEAD>
+<BODY onLoad="init()">
+<H1>W3C DOM Event Propagation</H1>
+<HR>
+<FORM>
+<INPUT TYPE="checkbox" NAME="stopAllProp">Stop all propagation at FORM<BR>
+<INPUT TYPE="checkbox" NAME="stopDuringBubble">Prevent bubbling past FORM
+<HR>
+<INPUT TYPE="button" VALUE="Button 'main1'" NAME="main1" 
+	onClick="alert('Event is now at the button object level (' + getPhase(event) + ').')">
+</FORM>
+</BODY>
+</HTML>

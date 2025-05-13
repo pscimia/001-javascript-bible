@@ -1,0 +1,46 @@
+<HTML>
+<HEAD>
+<TITLE>X and Y Event Properties (IE4+)</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+function checkCoords() {
+	var form = document.forms[0]
+	form.srcElemTag.value = "<" + event.srcElement.tagName + ">"
+	form.clientCoords.value = event.clientX + "," + event.clientY
+	form.pageCoords.value = (event.clientX + document.body.scrollLeft) + 
+	"," + (event.clientY + document.body.scrollTop)
+	form.offsetCoords.value = event.offsetX + "," + event.offsetY
+	form.screenCoords.value = event.screenX + "," + event.screenY
+	form.xyCoords.value = event.x + "," + event.y
+	form.parElem.value = "<" + event.srcElement.offsetParent.tagName + ">"
+	return false
+}
+function handleSize() {
+	document.forms[0].resizeCoords.value = event.clientX + "," + event.clientY
+}
+</SCRIPT>
+</HEAD>
+<BODY onMouseDown="checkCoords()" onResize="handleSize()">
+<H1>X and Y Event Properties (IE4+)</H1>
+<HR>
+<P>Click on the button and in the DIV/image to see the coordinate values for the event object.</P>
+<FORM NAME="output">
+<TABLE>
+<TR><TD COLSPAN=2>IE Mouse Event Coordinates:</TD></TR>
+<TR><TD ALIGN="right">srcElement:</TD><TD><INPUT TYPE="text" NAME="srcElemTag" SIZE=10></TD></TR>
+<TR><TD ALIGN="right">clientX, clientY:</TD><TD><INPUT TYPE="text" NAME="clientCoords" SIZE=10></TD>
+<TD ALIGN="right">...With scrolling:</TD><TD><INPUT TYPE="text" NAME="pageCoords" SIZE=10></TD></TR>
+<TR><TD ALIGN="right">offsetX, offsetY:</TD><TD><INPUT TYPE="text" NAME="offsetCoords" SIZE=10></TD></TR>
+<TR><TD ALIGN="right">screenX, screenY:</TD><TD><INPUT TYPE="text" NAME="screenCoords" SIZE=10></TD></TR>
+<TR><TD ALIGN="right">x, y:</TD><TD><INPUT TYPE="text" NAME="xyCoords" SIZE=10></TD>
+<TD ALIGN="right">...Relative to:</TD><TD><INPUT TYPE="text" NAME="parElem" SIZE=10></TD></TR>
+<TR><TD ALIGN="right"><INPUT TYPE="button" VALUE="Click Here"></TD></TR>
+<TR><TD COLSPAN=2><HR></TD></TR>
+<TR><TD COLSPAN=2>Window Resize Coordinates:</TD></TR>
+<TR><TD ALIGN="right">clientX, clientY:</TD><TD><INPUT TYPE="text" NAME="resizeCoords" SIZE=10></TD></TR>
+</TABLE>
+</FORM>
+<DIV ID="display" STYLE="position:relative; left:100">
+<IMG SRC="nile.gif" WIDTH=320 HEIGHT=240" BORDER=0>
+</DIV>
+</BODY>
+</HTML>

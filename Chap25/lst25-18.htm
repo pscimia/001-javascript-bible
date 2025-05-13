@@ -1,0 +1,41 @@
+<HTML>
+<HEAD>
+<TITLE>charCode and keyCode Properties</TITLE>
+<STYLE TYPE="text/css">
+TD {text-align:center}
+</STYLE>
+<SCRIPT LANGUAGE="JavaScript">
+function showCode(which, evt) {
+	document.forms[0].elements[which + "Char"].value = evt.charCode
+	document.forms[0].elements[which + "Key"].value = evt.keyCode
+}
+function clearEm() {
+	for (var i = 1; i < document.forms[0].elements.length; i++) {
+		document.forms[0].elements[i].value = ""	
+	}
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+<H1>charCode and keyCode Properties</H1>
+<HR>
+<P></P>
+<FORM>
+<P>
+<TEXTAREA NAME="scratchpad" COLS="40" ROWS="5" WRAP="hard"
+onKeyDown="clearEm(); showCode('down', event)" onKeyUp="showCode('up', event)"
+onKeyPress="showCode('press', event)"></TEXTAREA>
+</P>
+<TABLE CELLPADDING="5">
+<TR><TH>Event</TH><TH>event.charCode</TH><TH>event.keyCode</TH></TR>
+<TR><TD>onKeyDown:</TD><TD><INPUT TYPE="text" NAME="downChar" SIZE="3"></TD>
+<TD><INPUT TYPE="text" NAME="downKey" SIZE="3"></TD></TR>
+<TR><TD>onKeyPress:</TD><TD><INPUT TYPE="text" NAME="pressChar" SIZE="3"></TD>
+<TD><INPUT TYPE="text" NAME="pressKey" SIZE="3"></TD></TR>
+<TR><TD>onKeyUp:</TD><TD><INPUT TYPE="text" NAME="upChar" SIZE="3"></TD>
+<TD><INPUT TYPE="text" NAME="upKey" SIZE="3"></TD></TR>
+</TABLE>
+</FORM>
+
+</BODY>
+</HTML>

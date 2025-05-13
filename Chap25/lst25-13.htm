@@ -1,0 +1,44 @@
+<HTML>
+<HEAD>
+<TITLE>X and Y Event Properties</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+function checkCoords(evt) {
+	var form = document.forms[0]
+	form.layerCoords.value = evt.layerX + "," + evt.layerY
+	form.pageCoords.value = evt.pageX + "," + evt.pageY
+	form.screenCoords.value = evt.screenX + "," + evt.screenY
+	return false
+}
+function checkSize(evt) {
+	document.forms[0].resizeCoords.value = evt.layerX + "," + evt.layerY
+}
+function checkLoc(evt) {
+	document.forms[0].moveCoords.value = evt.screenX + "," + evt.screenY
+}
+</SCRIPT>
+</HEAD>
+<BODY onResize="checkSize(event)" onMove="checkLoc(event)">
+<H1>X and Y Event Properties (NN4)</H1>
+<HR>
+<P>Click on the button and in the layer/image to see the coordinate values for the event object.</P>
+<FORM NAME="output">
+<TABLE>
+<TR><TD COLSPAN=2>Mouse Event Coordinates:</TD></TR>
+<TR><TD ALIGN="right">layerX, layerY:</TD><TD><INPUT TYPE="text" NAME="layerCoords" SIZE=10></TD></TR>
+<TR><TD ALIGN="right">pageX, pageY:</TD><TD><INPUT TYPE="text" NAME="pageCoords" SIZE=10></TD></TR>
+<TR><TD ALIGN="right">screenX, screenY:</TD><TD><INPUT TYPE="text" NAME="screenCoords" SIZE=10></TD></TR>
+<TR><TD ALIGN="right"><INPUT TYPE="button" VALUE="Click Here" onMouseDown="checkCoords(event)"></TD></TR>
+<TR><TD COLSPAN=2><HR></TD></TR>
+<TR><TD COLSPAN=2>Window Resize Coordinates:</TD></TR>
+<TR><TD ALIGN="right">layerX, layerY:</TD><TD><INPUT TYPE="text" NAME="resizeCoords" SIZE=10></TD></TR>
+<TR><TD COLSPAN=2><HR></TD></TR>
+<TR><TD COLSPAN=2>Window Move Coordinates:</TD></TR>
+<TR><TD ALIGN="right">screenX, screenY:</TD><TD><INPUT TYPE="text" NAME="moveCoords" SIZE=10></TD></TR>
+</TABLE>
+</FORM>
+<LAYER NAME="display" BGCOLOR="coral" TOP=140 LEFT=300 HEIGHT=250 WIDTH=330>
+<A HREF="javascript:void(0)" onClick="return checkCoords(event)">
+<IMG SRC="nile.gif" WIDTH=320 HEIGHT=240" BORDER=0></A>
+</LAYER>
+</BODY>
+</HTML>

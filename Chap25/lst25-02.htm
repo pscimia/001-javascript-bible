@@ -1,0 +1,63 @@
+<HTML>
+<HEAD>
+<SCRIPT LANGUAGE="JavaScript">
+function setDocCapture(enable) {
+	if (!enable) {
+		document.captureEvents(Event.CLICK)
+	} else {
+		document.releaseEvents(Event.CLICK)
+	}
+}
+function setLayerCapture(enable) {
+	if (!enable) {
+		document.layer1.captureEvents(Event.CLICK)
+	} else {
+		document.layer1.releaseEvents(Event.CLICK)
+	}
+}
+function doMainClick(e) {
+	if (e.target.type == "button") {
+		alert("Captured in top document")
+	}
+}
+document.captureEvents(Event.CLICK)
+document.onclick=doMainClick
+</SCRIPT>
+</HEAD>
+<BODY>
+<B>Document-level and/or Layer-level capture of Event.CLICK</B>
+<HR>
+<FORM>
+<INPUT TYPE="checkbox" onMouseDown="setDocCapture(this.checked)" CHECKED>Enable Document Capture
+<INPUT TYPE="checkbox" onMouseDown="setLayerCapture(this.checked)" CHECKED>Enable Layer Capture
+<HR>
+<INPUT TYPE="button" VALUE="Button 'main1'" NAME="main1" 
+	onClick="alert('Event finally reached Button:' + this.name)">
+</FORM>
+
+<LAYER ID="layer1" LEFT=200 TOP=150 BGCOLOR="coral">
+<HEAD>
+<SCRIPT LANGUAGE="JavaScript">
+function doLayerClick(e) {
+	if (e.target.type == "button") {
+		alert("Captured in layer1")
+	}
+}
+layer1.captureEvents(Event.CLICK)
+layer1.onclick=doLayerClick
+</SCRIPT>
+</HEAD> 
+<BODY> 
+<FORM> 
+&nbsp;layer1<BR><P><INPUT TYPE="button" VALUE="Button 'layerButton1'" 
+	NAME="layerButton1" 
+	onClick="alert('Event finally reached Button:' + this.name)"></P> 
+<P><INPUT TYPE="button" VALUE="Button 'layerButton2'" 
+	NAME="layerButton2" 
+	onClick="alert('Event finally reached Button:' + this.name)"></P>
+</FORM>
+</BODY>
+</LAYER>
+
+</BODY>
+</HTML>

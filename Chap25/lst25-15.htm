@@ -1,0 +1,36 @@
+<HTML>
+<HEAD>
+<TITLE>fromElement and toElement Properties</TITLE>
+<STYLE TYPE="text/CSS">
+.direction {background-color:#00FFFF; width:100; height:50; text-align:center}
+#main {background-color:#FF6666; text-align:center}
+</STYLE>
+<SCRIPT LANGUAGE="JavaScript">
+function showArrival() {
+	var direction = (event.fromElement.innerText) ? event.fromElement.innerText :
+	"parts unknown"
+	status = "Arrived from: " + direction
+}
+function showDeparture() {
+	var direction = (event.toElement.innerText) ? event.toElement.innerText :
+	"parts unknown"
+	status = "Departed to: " + direction
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+<H1>fromElement and toElement Properties</H1>
+<HR>
+<P>Roll the mouse to the center box and look for arrival information
+in the status bar. Roll the mouse away from the center box and look for
+departure information in the status bar.</P>
+
+<TABLE CELLSPACING=0 CELLPADDING=5>
+<TR><TD></TD><TD CLASS="direction">North</TD><TD></TD></TR>
+<TR><TD CLASS="direction">West</TD>
+<TD ID="main" onMouseOver="showArrival()" onMouseOut="showDeparture()">Roll</TD>
+<TD CLASS="direction">East</TD></TR>
+<TR><TD></TD><TD CLASS="direction">South</TD><TD></TD></TR>
+</TABLE>
+</BODY>
+</HTML>

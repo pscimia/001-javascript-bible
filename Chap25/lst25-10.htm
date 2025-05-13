@@ -1,0 +1,44 @@
+<HTML>
+<HEAD>
+<TITLE>Event Modifiers</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+function checkMods(evt) {
+	evt = (evt) ? evt : (window.event) ? window.event : ""
+	if (evt) {
+		var elem = (evt.target) ? evt.target : evt.srcElement
+		var form = document.output
+		if (evt.modifiers) {
+			form.modifier[0].checked = evt.modifiers & Event.ALT_MASK
+			form.modifier[1].checked = evt.modifiers & Event.CONTROL_MASK
+			form.modifier[2].checked = evt.modifiers & Event.SHIFT_MASK
+			form.modifier[3].checked = evt.modifiers & Event.META_MASK
+		} else {
+			form.modifier[0].checked = evt.altKey
+			form.modifier[1].checked = evt.ctrlKey
+			form.modifier[2].checked = evt.shiftKey
+			form.modifier[3].checked = false
+		}
+	}
+	return false
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+<H1>Event Modifiers</H1>
+<HR>
+<P>Hold one or more modifier keys and click on 
+<A HREF="javascript:void(0)" onMouseDown="return checkMods(event)">
+this link</A> to see which keys you are holding.</P>
+<FORM NAME="output">
+<P>Enter some text with uppercase and lowercase letters:
+<INPUT TYPE="text" SIZE=40 onKeyUp="checkMods(event)"></P>
+<P><INPUT TYPE="button" VALUE="Click Here With Modifier Keys" onClick="checkMods(event)"></P>
+<P>
+<INPUT TYPE="checkbox" NAME="modifier">Alt
+<INPUT TYPE="checkbox" NAME="modifier">Control
+<INPUT TYPE="checkbox" NAME="modifier">Shift
+<INPUT TYPE="checkbox" NAME="modifier">Meta
+</P>
+</FORM>
+</BODY>
+</HTML>

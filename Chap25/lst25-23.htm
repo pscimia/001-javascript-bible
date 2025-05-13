@@ -1,0 +1,26 @@
+<HTML>
+<HEAD>
+<TITLE>timeStamp Property</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+var stamp
+function calcSpeed(evt) {
+	if (stamp) {
+		var gross = evt.timeStamp - stamp
+		var wpm = Math.round(6000/gross)
+		document.getElementById("wpm").firstChild.nodeValue = wpm + " wpm."
+	}
+	stamp = evt.timeStamp
+	
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+<H1>timeStamp Property</H1>
+<HR>
+<P>Start typing, and watch your instantaneous typing speed below:</P>
+<P>
+<TEXTAREA COLS=60 ROWS=10 WRAP="hard" onKeyPress="calcSpeed(event)"></TEXTAREA>
+</P>
+<P>Typing Speed: <SPAN ID="wpm">&nbsp;</SPAN></P>
+</BODY>
+</HTML>

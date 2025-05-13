@@ -1,0 +1,52 @@
+<HTML>
+<HEAD>
+<TITLE>currentTarget and eventPhase Properties</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+function init() {
+	// using old syntax to assign bubble-type event handlers
+	document.onclick = processEvent
+	document.body.onclick = processEvent
+	// turn on click event capture for document and form
+	document.addEventListener("click", processEvent, true)
+	document.forms[0].addEventListener("click", processEvent, true)
+	// set bubble event listener for form
+	document.forms[0].addEventListener("click", processEvent, false)
+}
+function processEvent(evt) {
+	var currTargTag, msg
+	if (evt.currentTarget.nodeType == 1) {
+		currTargTag = "<" + evt.currentTarget.tagName + ">"
+	} else {
+		currTargTag = evt.currentTarget.nodeName
+	}
+	 msg = "Event is now at the " + currTargTag + " level "
+	 msg += "(" + getPhase(evt) + ")."
+	 alert(msg)
+}
+// reveal event phase of current event object
+function getPhase(evt) {
+	switch (evt.eventPhase) {
+		case 1:
+			return "CAPTURING"
+			break
+		case 2:
+			return "AT TARGET"
+			break
+		case 3:
+			return "BUBBLING"
+			break
+		default:
+			return ""	
+	}
+}
+</SCRIPT>
+</HEAD>
+<BODY onLoad="init()">
+<H1>currentTarget and eventPhase Properties</H1>
+<HR>
+<FORM>
+<INPUT TYPE="button" VALUE="A Button" NAME="main1" 
+	onClick="processEvent(event)">
+</FORM>
+</BODY>
+</HTML>

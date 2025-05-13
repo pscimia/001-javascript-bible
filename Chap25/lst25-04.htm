@@ -1,0 +1,112 @@
+<HTML>
+<HEAD>
+<SCRIPT LANGUAGE="JavaScript">
+function setDocCapture(enable) {
+	if (!enable) {
+		document.captureEvents(Event.CLICK)
+	} else {
+		document.releaseEvents(Event.CLICK)
+		document.forms[0].setDocRte.checked = false
+		docRoute = false
+	}
+	
+}
+function setLayerCapture(enable) {
+	if (!enable) {
+		document.layer1.captureEvents(Event.CLICK)
+	} else {
+		document.layer1.releaseEvents(Event.CLICK)
+		document.forms[0].setLyrRte.checked = false
+		layerRoute = false
+	}
+}
+var docRoute = false
+var layerRoute = false
+function setDocRoute(enable) {
+	docRoute = !enable
+	document.forms[0].setDocShortCircuit.checked = false
+	docShortCircuit = false
+}
+function setLayerRoute(enable) {
+	layerRoute = !enable
+	document.forms[0].setLyrShortCircuit.checked = false
+	layerShortCircuit = false
+}
+
+var docShortCircuit = false
+var layerShortCircuit = false
+function setDocShortcut(enable) {
+	docShortCircuit = !enable
+	if (docShortCircuit) {
+		document.forms[0].setDocRte.checked = false
+		docRoute = false
+	}
+}
+function setLayerShortcut(enable) {
+	layerShortCircuit = !enable
+	if (layerShortCircuit) {
+		document.forms[0].setLyrRte.checked = false
+		layerRoute = false
+	}
+}
+
+function doMainClick(e) {
+	if (e.target.type == "button") {
+		alert("Captured in top document")
+		if (docRoute) {
+			routeEvent(e)
+		} else if (docShortCircuit) {
+			document.layer1.document.forms[0].layerButton2.handleEvent(e)
+		}
+	}
+}
+document.captureEvents(Event.CLICK)
+document.onclick=doMainClick
+</SCRIPT>
+</HEAD>
+<BODY>
+<B>Redirecting Event.CLICK</B>
+<HR>
+<FORM>
+<INPUT TYPE="checkbox" NAME="setDocCap" onMouseDown="setDocCapture(this.checked)" CHECKED>Enable Document Capture&nbsp;
+<INPUT TYPE="checkbox" NAME="setDocRte" onMouseDown ="setDocRoute(this.checked)">And let event continue
+<INPUT TYPE="checkbox" NAME="setDocShortCircuit" onMouseDown ="setDocShortcut(this.checked)">Send event to 'layerButton2'<P>
+<INPUT TYPE="checkbox" NAME="setLyrCap" onMouseDown ="setLayerCapture(this.checked)" CHECKED>Enable Layer Capture&nbsp;
+<INPUT TYPE="checkbox" NAME="setLyrRte" onMouseDown ="setLayerRoute(this.checked)">And let event continue
+<INPUT TYPE="checkbox" NAME="setLyrShortCircuit" onMouseDown ="setLayerShortcut(this.checked)">Send event to 'layerButton2'<P>
+<HR>
+<INPUT TYPE="button" VALUE="Button 'main1'" NAME="main1" 
+	onClick="alert('Event finally reached Button:' + this.name)">
+</FORM>
+
+<LAYER ID="layer1" LEFT=200 TOP=200 BGCOLOR="coral">
+<HEAD>
+<SCRIPT LANGUAGE="JavaScript">
+function doLayerClick(e) {
+	if (e.target.type == "button") {
+		alert("Captured in layer1")
+		if (layerRoute) {
+			routeEvent(e)
+		} else if (layerShortCircuit) {
+			document.forms[0].layerButton2.handleEvent(e)
+		}
+	}
+}
+layer1.captureEvents(Event.CLICK)
+layer1.onclick=doLayerClick
+</SCRIPT>
+</HEAD> 
+<BODY> 
+<FORM> 
+&nbsp;layer1<BR><P><INPUT TYPE="button" VALUE="Button 'layerButton1'" 
+	NAME="layerButton1" 
+	onClick="alert('Event finally reached Button:' + this.name)"></P> 
+<P><INPUT TYPE="button" VALUE="Button 'layerButton2'" 
+	NAME="layerButton2" 
+	onClick="alert('Event finally reached Button:' + this.name)"></P>
+</FORM>
+</BODY>
+</LAYER>
+
+</BODY>
+</HTML>

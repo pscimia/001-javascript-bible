@@ -1,0 +1,46 @@
+<HTML onClick="revealEvent('HTML', event)">
+<HEAD>
+<TITLE>Event Cancelling & Redirecting</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+// display alert with event object info
+function revealEvent(elem, evt) {
+	var msg = "Event (from " + evt.target.tagName + " at "
+	msg += evt.clientX + "," + evt.clientY + ") is now at the "
+	msg += elem + " element."
+	alert(msg)
+}
+function init() {
+	document.onclick = docEvent
+	document.body.onclick = docBodEvent
+}
+function docEvent(evt) {
+	revealEvent("document", evt)
+}
+function docBodEvent(evt) {
+	revealEvent("BODY", evt)
+}
+function buttonEvent(form, evt) {
+	revealEvent("BUTTON", evt)
+	// redirect if checked
+	if (form.redirect.checked) {
+		document.body.dispatchEvent(evt)
+	}
+	// cancel if checked
+	if (form.bubbleCancelState.checked) {
+		evt.stopPropagation()
+	}
+}
+</SCRIPT>
+</HEAD>
+<BODY onLoad="init()">
+<H1>Event Cancelling & Redirecting</H1>
+<HR>
+<FORM onClick="revealEvent('FORM', event)">
+<P><BUTTON NAME="main1" onClick="buttonEvent(this.form, event)">Button 'main1'
+</BUTTON></P>
+<P><INPUT TYPE="checkbox" NAME="bubbleCancelState" onClick="event.stopPropagation()">Cancel Bubbling at BUTTON<BR>
+<INPUT TYPE="checkbox" NAME="redirect" onClick="event.stopPropagation()">
+Redirect Event to BODY</P>
+</FORM>
+</BODY>
+</HTML>

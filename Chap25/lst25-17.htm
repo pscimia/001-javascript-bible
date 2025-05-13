@@ -1,0 +1,46 @@
+<HTML>
+<HEAD>
+<TITLE>srcElement Property</TITLE>
+<STYLE TYPE="text/css">
+.bold {font-weight:bold}
+.ital {font-style:italic}
+</STYLE>
+<SCRIPT LANGUAGE="JavaScript">
+function highlight() {
+	var elem = event.srcElement
+	if (elem.className == "bold") {
+		document.styleSheets[0].rules[0].style.color = "red"
+	} else {
+		elem.style.color = "#FFCC00"
+	}
+}
+function restore() {
+	var elem = event.srcElement
+	if (elem.className == "bold") {
+		document.styleSheets[0].rules[0].style.color = ""
+	} else {
+		elem.style.color = ""
+	}
+}
+</SCRIPT>
+</HEAD>
+<BODY onMouseDown="highlight()" onMouseUp="restore()">
+<H1>srcElement Property</H1>
+<HR>
+<P>One event handler...</P>
+<UL>
+<LI>Can
+<LI>Cover
+<LI>Many
+<LI>Objects
+</UL>
+<P>
+Lorem ipsum dolor sit amet, consectetaur adipisicing elit, 
+<SPAN CLASS="bold">sed do </SPAN>eiusmod tempor incididunt 
+<SPAN CLASS="ital">ut labore et </SPAN>dolore magna aliqua. 
+Ut enim adminim veniam, <SPAN CLASS="bold">quis nostrud 
+exercitation </SPAN>ullamco laboris nisi ut aliquip ex ea 
+<SPAN CLASS="bold">commodo consequat</SPAN>.
+</P>
+</BODY>
+</HTML>

@@ -1,0 +1,37 @@
+<HTML>
+<HEAD>
+<TITLE>Button and Key Properties</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+function checkWhich(evt) {
+	evt = (evt) ? evt : (window.event) ? window.event : ""
+	if (evt) {
+		var thingPressed = ""
+		var elem = (evt.target) ? evt.target : evt.srcElement
+		if (evt.which) {
+			thingPressed = evt.which
+		} else {
+			if (elem.type == "textarea") {
+				thingPressed = evt.keyCode
+			} else if (elem.type == "button") {
+				thingPressed = evt.button
+			}
+		}
+		status = thingPressed
+	}
+	return false
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+<H1>Button and Key Properties</H1> (results in the status bar)
+<HR>
+<FORM>
+<P>Mouse down atop this
+<INPUT TYPE="button" VALUE="Button" onMouseDown="checkWhich(event)"> 
+with either mouse button (if you have more than one).</P>
+<P>Enter some text with uppercase and lowercase letters:
+<TEXTAREA COLS=40 ROWS=4 onKeyPress="checkWhich(event)" WRAP="virtual">
+</TEXTAREA></P>
+</FORM>
+</BODY>
+</HTML>
