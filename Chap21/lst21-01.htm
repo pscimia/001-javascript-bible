@@ -1,0 +1,36 @@
+<HTML>
+<HEAD>
+<TITLE>Beatle Picker</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+function processData(form) {
+	for (var i = 0; i < form.Beatles.length; i++) {
+		if (form.Beatles[i].checked) {
+			break
+		}
+	}
+	var chosenBeatle = form.Beatles[i].value
+	var chosenSong = form.song.value
+	alert("Looking to see if " + chosenSong + " was written by " + chosenBeatle + "...")
+}
+
+function checkSong(songTitle) {
+	var enteredSong = songTitle.value
+	alert("Making sure that " + enteredSong + " was recorded by the Beatles.")
+}
+</SCRIPT>
+</HEAD>
+
+<BODY>
+<FORM NAME="Abbey Road">
+Choose your favorite Beatle:
+<INPUT TYPE="radio" NAME="Beatles" VALUE="John Lennon" CHECKED="true">John
+<INPUT TYPE="radio" NAME="Beatles" VALUE="Paul McCartney">Paul
+<INPUT TYPE="radio" NAME="Beatles" VALUE="George Harrison">George
+<INPUT TYPE="radio" NAME="Beatles" VALUE="Ringo Starr">Ringo<P>
+
+Enter the name of your favorite Beatles song:<BR>
+<INPUT TYPE="text" NAME="song" VALUE="Eleanor Rigby" onChange="checkSong(this)"><P>
+<INPUT TYPE="button" NAME="process" VALUE="Process Request..." onClick="processData(this.form)">
+</FORM>
+</BODY>
+</HTML>

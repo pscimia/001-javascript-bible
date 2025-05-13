@@ -1,0 +1,19 @@
+<HTML>
+<HEAD>
+<TITLE>Registration Form</TITLE>
+</HEAD>
+<BODY>
+<FORM NAME="entries" METHOD=POST ACTION="http://www.u.edu/pub/cgi-bin/register">
+Enter your first name:<INPUT TYPE="text" NAME="firstName"><P>
+Enter your last name:<INPUT TYPE="text" NAME="lastName"><P>
+Enter your address:<INPUT TYPE="text" NAME="address"><P>
+Enter your city:<INPUT TYPE="text" NAME="city"><P>
+<INPUT TYPE="radio" NAME="gender" CHECKED>Male
+<INPUT TYPE="radio" NAME="gender">Female <P>
+<INPUT TYPE="checkbox" NAME="retired">I am retired
+</FORM>
+<P>
+<A HREF="javascript:document.forms[0].submit()"><IMG SRC="submit.jpg" HEIGHT=25 WIDTH=100 BORDER=0></A>
+<A HREF="javascript:document.forms[0].reset()"><IMG SRC="reset.jpg" HEIGHT=25 WIDTH=100 BORDER=0></A>
+</BODY>
+</HTML>
