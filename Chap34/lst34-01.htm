@@ -1,0 +1,23 @@
+<HTML>
+<HEAD>
+<TITLE>Number Conversion Table</TITLE>
+</HEAD>
+<BODY>
+<B>Using toString() to convert to other number bases:</B>
+<HR>
+<TABLE BORDER=1>
+<TR>
+<TH>Decimal</TH><TH>Hexadecimal</TH><TH>Binary</TH></TR>
+<SCRIPT LANGUAGE="JavaScript">
+var content = ""
+for (var i = 0; i <= 20; i++) {
+	content += "<TR>"
+	content += "<TD>" + i.toString(10) + "</TD>"
+	content += "<TD>" + i.toString(16) + "</TD>"
+	content += "<TD>" + i.toString(2) + "</TD></TR>"
+}
+document.write(content)
+</SCRIPT>
+</TABLE>
+</BODY>
+</HTML>

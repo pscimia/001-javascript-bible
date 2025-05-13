@@ -1,0 +1,32 @@
+<HTML>
+<HEAD>
+<TITLE>const(ant)</TITLE>
+<STYLE TYPE="text/css">
+.cold {font-weight:bold; color:blue}
+TD {text-align:center}
+</STYLE>
+<SCRIPT LANGUAGE="JavaScript">
+const FREEZING_F = 32
+var cities = ["London", "Moscow", "New York", "Tokyo", "Sydney"]
+var tempsF = [33, 12, 20, 40, 75]
+function showData() {
+	var tableData = ""
+	for (var i = 0; i < cities.length; i++) {
+		tableData += "<TR><TD>" + cities[i] + "</TD><TD "
+		tableData += (tempsF[i] < FREEZING_F) ? "CLASS='cold'" : ""
+		tableData += ">" + tempsF[i] + "</TR>"
+	}
+	document.getElementById("display").innerHTML = tableData
+}
+</SCRIPT>
+</HEAD>
+<BODY onLoad="showData()">
+<H1>The const keyword</H1>
+<HR>
+<TABLE ID="temps">
+<TR><TH>City<TH>Temperature</TR>
+<TBODY ID="display">
+</TBODY>
+</TABLE>
+</BODY>
+</HTML>

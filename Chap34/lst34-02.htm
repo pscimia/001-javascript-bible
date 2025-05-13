@@ -1,0 +1,27 @@
+<HTML>
+<HEAD>
+<TITLE>Custom toString()</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+function customToString() {
+	var dataArray = new Array()
+	var count = 0
+	for (var i in this) {
+		dataArray[count++] = this[i]
+		if (count > 2) {
+			break
+		}
+	}
+	return dataArray.join(",")
+}
+var book = {title:"The Aeneid", author:"Virgil", pageCount:543}
+book.toString = customToString
+</SCRIPT>
+</HEAD>
+<BODY>
+<B>A user-defined toString() result:</B>
+<HR>
+<SCRIPT LANGUAGE="JavaScript">
+document.write(book.toString())
+</SCRIPT>
+</BODY>
+</HTML>
