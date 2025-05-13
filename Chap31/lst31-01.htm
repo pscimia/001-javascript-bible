@@ -1,0 +1,28 @@
+<HTML>
+<HEAD>
+<SCRIPT LANGUAGE="JavaScript">
+function testLetter(form){
+	inpVal = form.entry.value  // assign to shorter variable name
+	if (inpVal != "") {  // if entry is not empty then dive in...
+		if (inpVal == "A") {  // Is it an "A"?
+			alert("Thanks for the A.")
+		} else if (inpVal == "B") {  // No.  Is it a "B"?
+			alert("Thanks for the B.")
+		} else if (inpVal == "C") {  // No.  Is it a "C"?
+			alert("Thanks for the C.")
+		} else {          // Nope.  None of the above
+			alert("Sorry, wrong letter or case.")
+		}
+	} else {   // value was empty, so skipped all other stuff above
+		alert("You did not enter anything.")
+	}
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+<FORM>
+Please enter A, B, or C:
+<INPUT TYPE="text" NAME="entry" onChange="testLetter(this.form)">
+</FORM>
+</BODY>
+</HTML>

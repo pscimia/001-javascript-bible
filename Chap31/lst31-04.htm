@@ -1,0 +1,18 @@
+<HTML>
+<HEAD>
+<SCRIPT LANGUAGE="JavaScript">
+function showProps(obj,objName) {
+	var result = ""
+	for (var i in obj) {
+		result += objName + "." + i + " = " + obj[i] + "<BR>"
+	}
+	return result
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+<B>Here are the properties of the current window:</B><P>
+<SCRIPT LANGUAGE="JavaScript">
+document.write(showProps(window, "window"))
+</SCRIPT>
+</BODY>

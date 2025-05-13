@@ -1,0 +1,44 @@
+<HTML>
+<HEAD>
+<TITLE>Throwing an Error Object Exception</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+var letters = new Array("A","B","C","D","E")
+function getErrorObj(msg) {
+	var err = new Error(msg)
+	// take care of IE5/5.5
+	if (!err.message) {
+		err.message = msg
+	}
+	return err
+}
+function getLetter(fld) {
+	try {
+		var inp = parseInt(fld.value, 10)
+		if (isNaN(inp)) {
+			throw getErrorObj("Entry was not a number.")
+		}
+		if (inp < 1 || inp > 5) {
+			throw getErrorObj("Enter only 1 through 5.")
+		}
+		fld.form.output.value = letters[inp]
+	}
+	catch (e)  {
+		alert(e.message)
+		fld.form.output.value = ""
+		fld.focus()
+		fld.select()
+	}
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+<H1>Throwing an Error Object Exception</H1>
+<HR>
+<FORM>
+Enter a number from 1 to 5: 
+<INPUT TYPE="text" NAME="input" SIZE=5>
+<INPUT TYPE="button" VALUE="Get Letter" onClick=getLetter(this.form.input)>
+Matching Letter is:<INPUT TYPE="text" NAME="output" SIZE=5>
+</FORM>
+</BODY>
+</HTML>

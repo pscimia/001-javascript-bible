@@ -1,0 +1,53 @@
+<HTML>
+<HEAD>
+<TITLE>Breaking Out of Nested Labeled Loops</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+var targetA = 2
+var targetB = 2
+var range = 5
+function run1() {
+	var out = document.forms[0].output
+	out.value = "Running WITHOUT labeled break\n"
+	for (var i = 0; i <= range; i++) {
+		out.value += "Outer loop #" + i + "\n"
+		for (var j = 0; j <= range; j++) {
+			out.value += "  Inner loop #" + j + "\n"
+			if (i == targetA && j == targetB) {
+				out.value += "**BREAKING OUT OF INNER LOOP**\n"
+				break
+			}
+		}
+	}
+	out.value += "After looping, i = " + i + ", j = " + j + "\n"
+}
+function run2() {
+	var out = document.forms[0].output
+	out.value = "Running WITH labeled break\n"
+	outerLoop:
+	for (var i = 0; i <= range; i++) {
+		out.value += "Outer loop #" + i + "\n"
+		innerLoop:
+		for (var j = 0; j <= range; j++) {
+			out.value += "  Inner loop #" + j + "\n"
+			if (i == targetA && j == targetB) {
+				out.value += "**BREAKING OUT OF OUTER LOOP**\n"
+				break outerLoop
+			}
+		}
+	}
+	out.value += "After looping, i = " + i + ", j = " + j + "\n"
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+<H1>Breaking Out of Nested Labeled Loops</H1>
+<HR>
+<P>Look in the Results field for traces of these button scripts:</P>
+<FORM>
+<P><INPUT TYPE="button" VALUE="Execute WITHOUT Label" onClick="run1()"></P>
+<P><INPUT TYPE="button" VALUE="Execute WITH Label" onClick="run2()"></P>
+<P>Results:</P>
+<TEXTAREA NAME="output" ROWS=43 COLS=60> </TEXTAREA>
+</FORM>
+</BODY>
+</HTML>
