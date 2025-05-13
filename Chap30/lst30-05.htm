@@ -1,0 +1,24 @@
+<HTML>
+<HEAD>
+<TITLE>Array prototypes</TITLE>
+<SCRIPT LANGUAGE="JavaScript1.1">
+// add prototype to all Array objects
+Array.prototype.sponsor = "DG"
+a = new Array(5)
+b = new Array(5)
+c = new Array(5)
+// override prototype property for one 'instance'
+c.sponsor = "JS"
+// this one picks up the original prototype
+d = new Array(5)
+</SCRIPT>
+<BODY><H2>
+<SCRIPT LANGUAGE="JavaScript">
+document.write("Array a is brought to you by: " + a.sponsor + "<P>")
+document.write("Array b is brought to you by: " + b.sponsor + "<P>")
+document.write("Array c is brought to you by: " + c.sponsor + "<P>")
+document.write("Array d is brought to you by: " + d.sponsor + "<P>")
+</SCRIPT>
+</H2>
+</BODY>
+</HTML>

@@ -1,0 +1,42 @@
+<HTML>
+<HEAD>
+<TITLE>Array.reverse()</TITLE>
+<SCRIPT LANGUAGE="JavaScript1.1">
+solarSys = new Array(9)
+solarSys[0] = "Mercury"
+solarSys[1] = "Venus"
+solarSys[2] = "Earth"
+solarSys[3] = "Mars"
+solarSys[4] = "Jupiter"
+solarSys[5] = "Saturn"
+solarSys[6] = "Uranus"
+solarSys[7] = "Neptune"
+solarSys[8] = "Pluto"
+
+// show array as currently in memory
+function showAsIs(form) {
+	var delimiter = form.delim.value
+	form.output.value = unescape(solarSys.join(delimiter))
+}
+// reverse array order, then display as string
+function reverseIt(form) {
+	var delimiter = form.delim.value
+	solarSys.reverse()   // reverses original array
+	form.output.value = unescape(solarSys.join(delimiter))
+}
+</SCRIPT>
+<BODY>
+<H2>Reversing array element order</H2>
+This document contains an array of planets in our solar system.<HR>
+<FORM>
+Enter a string to act as a delimiter between entries:
+<INPUT TYPE="text" NAME="delim" VALUE="," SIZE=5><P>
+<INPUT TYPE="button" VALUE="Array as-is" onClick="showAsIs(this.form)">
+<INPUT TYPE="button" VALUE="Reverse the array" onClick="reverseIt(this.form)">
+<INPUT TYPE="reset">
+<INPUT TYPE="button" VALUE="Reload" onClick="self.location.reload()">
+<TEXTAREA NAME="output" ROWS=4 COLS=60>
+</TEXTAREA>
+</FORM>
+</BODY>
+</HTML>

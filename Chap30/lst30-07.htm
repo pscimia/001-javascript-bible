@@ -1,0 +1,34 @@
+<HTML>
+<HEAD>
+<TITLE>Array.join()</TITLE>
+<SCRIPT LANGUAGE="JavaScript1.1">
+solarSys = new Array(9)
+solarSys[0] = "Mercury"
+solarSys[1] = "Venus"
+solarSys[2] = "Earth"
+solarSys[3] = "Mars"
+solarSys[4] = "Jupiter"
+solarSys[5] = "Saturn"
+solarSys[6] = "Uranus"
+solarSys[7] = "Neptune"
+solarSys[8] = "Pluto"
+
+// join array elements into a string
+function convert(form) {
+	var delimiter = form.delim.value
+	form.output.value = unescape(solarSys.join(delimiter))
+}
+</SCRIPT>
+<BODY>
+<H2>Converting arrays to strings</H2>
+This document contains an array of planets in our solar system.<HR>
+<FORM>
+Enter a string to act as a delimiter between entries:
+<INPUT TYPE="text" NAME="delim" VALUE="," SIZE=5><P>
+<INPUT TYPE="button" VALUE="Display as String" onClick="convert(this.form)">
+<INPUT TYPE="reset">
+<TEXTAREA NAME="output" ROWS=4 COLS=40 WRAP="virtual">
+</TEXTAREA>
+</FORM>
+</BODY>
+</HTML>

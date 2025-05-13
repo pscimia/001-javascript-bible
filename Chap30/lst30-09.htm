@@ -1,0 +1,60 @@
+<HTML>
+<HEAD>
+<TITLE>Array.sort()</TITLE>
+<SCRIPT LANGUAGE="JavaScript1.1">
+solarSys = new Array(9)
+solarSys[0] = "Mercury"
+solarSys[1] = "Venus"
+solarSys[2] = "Earth"
+solarSys[3] = "Mars"
+solarSys[4] = "Jupiter"
+solarSys[5] = "Saturn"
+solarSys[6] = "Uranus"
+solarSys[7] = "Neptune"
+solarSys[8] = "Pluto"
+// comparison functions
+function compare1(a,b) {
+	// reverse alphabetical order
+	if (a > b) {return -1}
+	if (b > a) {return 1}
+	return 0
+}
+function compare2(a,b) {
+	// last character of planet names
+	var aComp = a.charAt(a.length - 1)
+	var bComp = b.charAt(b.length - 1)
+	if (aComp < bComp) {return -1}
+	if (aComp > bComp) {return 1}
+	return 0
+}
+function compare3(a,b) {
+	// length of planet names
+	return a.length - b.length
+}
+// sort and display array
+function sortIt(form, compFunc) {
+	var delimiter = ";"
+	if (compFunc == null) {
+		solarSys.sort()
+	} else {
+		solarSys.sort(compFunc)
+	}
+	// display results in field
+	form.output.value = unescape(solarSys.join(delimiter))
+}
+</SCRIPT>
+<BODY onLoad="document.forms[0].output.value = unescape(solarSys.join(';'))">
+<H2>Sorting array elements</H2>
+This document contains an array of planets in our solar system.<HR>
+<FORM>
+Click on a button to sort the array:<P>
+<INPUT TYPE="button" VALUE="Alphabetical A-Z" onClick="sortIt(this.form)">
+<INPUT TYPE="button" VALUE="Alphabetical Z-A" onClick="sortIt(this.form,compare1)">
+<INPUT TYPE="button" VALUE="Last Character" onClick="sortIt(this.form,compare2)">
+<INPUT TYPE="button" VALUE="Name Length" onClick="sortIt(this.form,compare3)">
+<INPUT TYPE="button" VALUE="Reload Original" onClick="self.location.reload()">
+<INPUT TYPE="text" NAME="output" SIZE=62>
+</TEXTAREA>
+</FORM>
+</BODY>
+</HTML>
