@@ -1,0 +1,21 @@
+<HTML>
+<HEAD>
+<TITLE>History Object</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+function showCount() {
+	var histCount = window.history.length
+	if (histCount > 5) {
+		alert("My, my, you\'ve been busy. You have visited " + histCount + " pages so far.")
+	} else {
+		alert("You have been to " + histCount + " Web pages this session.")
+	}
+}
+</SCRIPT>
+</HEAD>
+
+<BODY>
+<FORM>
+<INPUT TYPE="button" NAME="activity" VALUE="My Activity" onClick="showCount()">
+</FORM>
+</BODY>
+</HTML>

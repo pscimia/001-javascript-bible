@@ -1,0 +1,24 @@
+<HTML>
+<HEAD>
+<TITLE>Lab Controls</TITLE>
+</HEAD>
+<BODY>
+<B>Load a series of documents into the right frame by clicking some of these links (make a note of the sequence you click on):</B><P>
+<A HREF="lst17-01.htm" TARGET="display">Listing 17-1</A><BR>
+<A HREF="lst17-05.htm" TARGET="display">Listing 17-5</A><BR>
+<A HREF="lst17-09.htm" TARGET="display">Listing 17-9</A><BR>
+<HR>
+<FORM NAME="input">
+<B>Click on the various buttons below to see the results in this frameset:</B><P>
+<UL>
+<LI><B>NN4+</B> Substitute for toolbar buttons -- <TT>window.back()</TT> and <TT>window.forward()</TT>:<INPUT TYPE="button" VALUE="Back" onClick="window.back()"><INPUT TYPE="button" VALUE="Forward" onClick="window.forward()"><P>
+
+<LI><TT> history.back()</TT> and <TT>history.forward()</TT> for righthand frame:<INPUT TYPE="button" VALUE="Back" onClick="parent.display.history.back()"><INPUT TYPE="button" VALUE="Forward" onClick="parent.display.history.forward()"><P>
+
+<LI><TT>history.back()</TT> for this frame:<INPUT TYPE="button" VALUE="Back" onClick="history.back()"><P>
+
+<LI><TT>history.back()</TT> for parent:<INPUT TYPE="button" VALUE="Back" onClick="parent.history.back()"><P>
+</UL>
+</FORM>
+</BODY>
+</HTML>

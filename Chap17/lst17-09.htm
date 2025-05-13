@@ -1,0 +1,29 @@
+<HTML>
+<HEAD>
+<TITLE>Reload Comparisons</TITLE>
+<SCRIPT LANGUAGE="JavaScript1.1">
+function hardReload() {
+	location.reload(true)
+}
+function softReload() {
+	history.go(0)
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+<FORM NAME="myForm">
+<INPUT TYPE="radio" NAME="rad1" VALUE = 1>Radio 1<BR>
+<INPUT TYPE="radio" NAME="rad1" VALUE = 2>Radio 2<BR>
+<INPUT TYPE="radio" NAME="rad1" VALUE = 3>Radio 3<P>
+<INPUT TYPE="text" NAME="entry" VALUE="Original"><P>
+<SELECT NAME="theList">
+<OPTION>Red
+<OPTION>Green
+<OPTION>Blue
+</SELECT>
+<HR>
+<INPUT TYPE="button" VALUE="Soft Reload" onClick="softReload()">
+<INPUT TYPE="button" VALUE="Hard Reload" onClick="hardReload()">
+</FORM>
+</BODY>
+</HTML>

@@ -1,0 +1,40 @@
+<HTML>
+<HEAD>
+<TITLE>Example Frameset</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+// Convert location.search into an array of values
+// indexed by name.
+function getSearchAsArray() {
+	var minNav3 = (navigator.appName == "Netscape" && 
+parseInt(navigator.appVersion) >= 3)
+	var minIE4 = (navigator.appName.indexOf("Microsoft") >= 0 && parseInt(navigator.appVersion) >= 4)
+	var minDOM = minNav3 || minIE4   // baseline DOM required for this function
+	var results = new Array()
+	if (minDOM) {
+		var input = unescape(location.search.substr(1))
+		if (input) {
+			var srchArray = input.split("&")
+			var tempArray = new Array()
+			for (var i = 0; i < srchArray.length; i++) {
+				tempArray = srchArray[i].split("=")
+				results[tempArray[0]] = tempArray[1]
+			}
+		}
+	}
+	return results
+}
+function loadFrame() {
+	if (location.search) {
+		var srchArray = getSearchAsArray()
+		if (srchArray["content"]) {
+			self.content.location.href = srchArray["content"]
+		}
+	}
+}
+</SCRIPT>
+</HEAD>
+<FRAMESET COLS="250,*" onLoad="loadFrame()">
+	<FRAME NAME="toc" SRC="lst17-07.htm">
+	<FRAME NAME="content" SRC="lst17-08.htm">
+</FRAMESET>
+</HTML>

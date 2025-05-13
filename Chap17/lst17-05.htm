@@ -1,0 +1,22 @@
+<HTML>
+<HEAD>
+<TITLE>Extract pathname</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+// general purpose function to extract URL of current directory
+function getDirPath(URL) {
+	var result = unescape(URL.substring(0,(URL.lastIndexOf("/")) + 1))
+	return result
+}
+// handle button event, passing work onto general purpose function
+function showDirPath(URL) {
+	alert(getDirPath(URL))
+}
+</SCRIPT>
+</HEAD>
+
+<BODY>
+<FORM>
+<INPUT TYPE="button" VALUE="View directory URL" onClick="showDirPath(window.location.href)">
+</FORM>
+</BODY>
+</HTML>

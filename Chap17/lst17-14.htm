@@ -1,0 +1,24 @@
+<HTML>
+<HEAD>
+<TITLE>history.go() Method</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+function doGoNum(form) {
+	window.history.go(parseInt(form.histNum.value))
+}
+function doGoTxt(form) {
+	window.history.go(form.histWord.value)
+}
+</SCRIPT>
+</HEAD>
+
+<BODY>
+<FORM>
+<B>Calling the history.go() method:</B>
+<HR>
+Enter a number (+/-):<INPUT TYPE="text" NAME="histNum" SIZE=3 VALUE="0">
+<INPUT TYPE="button" VALUE="Go to Offset" onClick="doGoNum(this.form)"><P>
+Enter a word in a title:<INPUT TYPE="text" NAME="histWord">
+<INPUT TYPE="button" VALUE="Go to Match" onClick="doGoTxt(this.form)">
+</FORM>
+</BODY>
+</HTML>

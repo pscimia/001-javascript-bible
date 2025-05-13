@@ -1,0 +1,86 @@
+<HTML>
+<HEAD>
+<TITLE>Property Picker</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+var isNav4 = (navigator.appName == "Netscape" && navigator.appVersion.charAt(0) >= 4) ? true : false
+
+function fillLeftFrame() {
+	newURL = prompt("Enter the URL of a document to show in the left frame:","")
+	if (newURL != null && newURL != "") {
+	parent.frames[0].location = newURL
+	}
+}
+
+function showLocationData(form) {
+	for (var i = 0; i <3; i++) {
+		if (form.whichFrame[i].checked) {
+			var windName = form.whichFrame[i].value
+			break
+		}
+	}
+	var theWind = "" + windName + ".location"
+	if (isNav4) {
+		netscape.security.PrivilegeManager.enablePrivilege("UniversalBrowserRead")
+	}
+	var theObj = eval(theWind)
+	form.windName.value = windName
+	form.windHash.value = theObj.hash
+	form.windHost.value = theObj.host
+	form.windHostname.value = theObj.hostname
+	form.windHref.value = theObj.href
+	form.windPath.value = theObj.pathname
+	form.windPort.value = theObj.port
+	form.windProtocol.value = theObj.protocol
+	form.windSearch.value = theObj.search
+	if (isNav4) {
+		netscape.security.PrivilegeManager.disablePrivilege("UniversalBrowserRead")
+	}
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+Click the "Open URL" button to enter the location of an HTML document to display in the left frame of this window.
+<FORM>
+<INPUT TYPE="button" NAME="opener" VALUE="Open URL..." onClick="fillLeftFrame()">
+<HR>
+<CENTER>
+Select a window/frame. Then click the "Show Location Properties" button to view each window.location property value for the desired window.<P>
+<INPUT TYPE="radio" NAME="whichFrame" VALUE="parent" CHECKED>Parent window
+<INPUT TYPE="radio" NAME="whichFrame" VALUE="parent.frames[0]">Left frame
+<INPUT TYPE="radio" NAME="whichFrame" VALUE="parent.frames[1]">This frame
+<P>
+<INPUT TYPE="button" NAME="getProperties" VALUE="Show Location Properties" onClick="showLocationData(this.form)">
+<INPUT TYPE="reset" VALUE="Clear"><P>
+<TABLE BORDER=2>
+<TR><TD ALIGN=right>Window:</TD><TD><INPUT TYPE="text" NAME="windName" SIZE=30></TD></TR>
+<TR><TD ALIGN=right>hash:</TD>
+<TD><INPUT TYPE="text" NAME="windHash" SIZE=30></TD></TR>
+
+<TR><TD ALIGN=right>host:</TD>
+<TD><INPUT TYPE="text" NAME="windHost" SIZE=30></TD></TR>
+
+<TR><TD ALIGN=right>hostname:</TD>
+<TD><INPUT TYPE="text" NAME="windHostname" SIZE=30></TD></TR>
+
+<TR><TD ALIGN=right>href:</TD>
+<TD><TEXTAREA NAME="windHref" ROWS=3 COLS=30 WRAP="soft">
+</TEXTAREA></TD></TR>
+
+<TR><TD ALIGN=right>pathname:</TD>
+<TD><TEXTAREA NAME="windPath" ROWS=3 COLS=30 WRAP="soft">
+</TEXTAREA></TD></TR>
+
+<TR><TD ALIGN=right>port:</TD>
+<TD><INPUT TYPE="text" NAME="windPort" SIZE=30></TD></TR>
+
+<TR><TD ALIGN=right>protocol:</TD>
+<TD><INPUT TYPE="text" NAME="windProtocol" SIZE=30></TD></TR>
+
+<TR><TD ALIGN=right>search:</TD>
+<TD><TEXTAREA NAME="windSearch" ROWS=3 COLS=30 WRAP="soft">
+</TEXTAREA></TD></TR>
+</TABLE>
+</CENTER>
+</FORM>
+</BODY>
+</HTML>
