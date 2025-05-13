@@ -1,0 +1,34 @@
+<HTML>
+<HEAD>
+<TITLE>document.forms example</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+function goMusic() {
+	if (document.forms[0].bluish.checked) {
+		alert("Now going to the Blues music area...")
+	} else {
+		alert("Now going to Rock music area...")
+	}
+}
+</SCRIPT>
+</HEAD>
+
+<BODY>
+<FORM NAME="theBlues">
+<INPUT TYPE="checkbox" NAME="bluish">Check here if you've got the blues.
+</FORM>
+<HR>
+M<BR>
+o<BR>
+r<BR>
+e<BR>
+<BR>
+C<BR>
+o<BR>
+p<BR>
+y<BR>
+<HR>
+<FORM NAME="visit">
+<INPUT TYPE="button" VALUE="Visit music site" onClick="goMusic()">
+</FORM>
+</BODY>
+</HTML>

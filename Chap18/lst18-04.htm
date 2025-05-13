@@ -1,0 +1,28 @@
+<HTML>
+<HEAD>
+<TITLE>fileCreatedDate and fileModifiedDate Properties</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+function fillInBlanks() {
+	var created = document.fileCreatedDate
+	var modified = document.fileModifiedDate
+	document.all.created.innerText = created
+	document.all.modified.innerText = modified
+	var createdDate = new Date(created).getTime()
+	var today = new Date().getTime()
+	var diff = Math.floor((today - createdDate) / (1000*60*60*24))
+	document.all.diff.innerText = diff
+	document.all.size.innerText = document.fileSize
+}
+</SCRIPT>
+</HEAD>
+
+<BODY onLoad="fillInBlanks()">
+<H1>fileCreatedDate and fileModifiedDate Properties</H1>
+<HR>
+<P>This file (<SPAN ID="size">&nbsp;</SPAN> bytes) was created 
+on <SPAN ID="created">&nbsp;</SPAN> and most
+recently modified on <SPAN ID="modified">&nbsp;</SPAN>.</P>
+<P>It has been <SPAN ID="diff">&nbsp;</SPAN> days since this file was
+created.</P>
+</BODY>
+</HTML>

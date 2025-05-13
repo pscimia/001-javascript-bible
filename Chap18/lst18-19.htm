@@ -1,0 +1,30 @@
+<HTML>
+<HEAD>
+<TITLE>onStop Event Handler</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+var counter = 0
+var timerID
+function startCounter() {
+	document.forms[0].display.value = ++counter
+	//clearTimeout(timerID)
+	timerID = setTimeout("startCounter()", 10)
+}
+function haltCounter() {
+	clearTimeout(timerID)
+	counter = 0
+}
+document.onstop = haltCounter
+</SCRIPT>
+</HEAD>
+
+<BODY>
+<H1>onStop Event Handler</H1>
+<HR>
+<P>Click the browser's Stop button (in IE) to stop the script counter.</P>
+<FORM>
+<P><INPUT TYPE="text" NAME="display"></P>
+<INPUT TYPE="button" VALUE="Start Counter" onClick="startCounter()">
+<INPUT TYPE="button" VALUE="Halt Counter" onClick="haltCounter()">
+</FORM>
+</BODY>
+</HTML>

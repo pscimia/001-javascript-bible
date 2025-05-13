@@ -1,0 +1,63 @@
+<HTML>
+<HEAD>
+<TITLE>Color Me</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+function defaultColors() {
+	return "BGCOLOR='#c0c0c0' VLINK='#551a8b' LINK='#0000ff'"
+}
+
+function uglyColors() {
+	return "BGCOLOR='yellow' VLINK='pink' LINK='lawngreen'"
+}
+function showColorValues() {
+	var result = ""
+	result += "bgColor: " + newWindow.document.bgColor + "\n"
+	result += "vlinkColor: " + newWindow.document.vlinkColor + "\n"
+	result += "linkColor: " + newWindow.document.linkColor + "\n"
+	document.forms[0].results.value = result
+}
+// dynamically writes contents of another window
+function drawPage(colorStyle) {
+	var thePage = ""
+	thePage += "<HTML><HEAD><TITLE>Color Sampler</TITLE></HEAD><BODY "
+	if (colorStyle == "default") {
+		thePage += defaultColors()
+	} else {
+		thePage += uglyColors()
+	}
+	thePage += ">Just so you can see the variety of items and color, <A "
+	thePage += "HREF='http://www.nowhere.com'>here\'s a link</A>, and <A HREF='http://home.netscape.com'> here is another link </A> you can use on-line to visit and see how its color differs from the standard link."
+	thePage += "<FORM>"
+	thePage += "<INPUT TYPE='button' NAME='sample' VALUE='Just a Button'>"
+	thePage += "</FORM></BODY></HTML>"
+	newWindow.document.write(thePage)
+	newWindow.document.close()
+	showColorValues()
+}
+// the following works properly only in Windows Navigator
+function setColors(colorStyle) {
+	if (colorStyle == "default") {
+		document.bgColor = "#c0c0c0"
+	} else {
+		document.bgColor = "yellow"
+	}
+}
+var newWindow = window.open("","","height=150,width=300")
+</SCRIPT>
+</HEAD>
+
+<BODY>
+Try the two color schemes on the document in the small window. 
+<FORM>
+<INPUT TYPE="button" NAME="default" VALUE='Default Colors' onClick="drawPage('default')">
+<INPUT TYPE="button" NAME="weird" VALUE="Ugly Colors" onClick="drawPage('ugly')"><P>
+<TEXTAREA NAME="results" ROWS=3 COLS=20></TEXTAREA><P><HR>
+These buttons change the current document, but not correctly on all platforms<P>
+<INPUT TYPE="button" NAME="default" VALUE='Default Colors' onClick="setColors('default')">
+<INPUT TYPE="button" NAME="weird" VALUE="Ugly Colors" onClick="setColors('ugly')"><P>
+</FORM>
+<SCRIPT LANGUAGE="JavaScript">
+drawPage("default")
+</SCRIPT>
+</BODY>
+</HTML>

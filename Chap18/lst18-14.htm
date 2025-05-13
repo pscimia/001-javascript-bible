@@ -1,0 +1,45 @@
+<HTML>
+<HEAD>
+<TITLE>document.elementFromPoint() Method</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+function showElemUnderneath() {
+	var elem = document.elementFromPoint(event.clientX, event.clientY)
+	document.all.mySpan.innerText = elem.id
+}
+document.onmouseover = showElemUnderneath
+</SCRIPT>
+</HEAD>
+
+<BODY ID="myBody">
+<H1 ID="header">document.elementFromPoint() Method</H1>
+<HR ID="myHR">
+<P ID="instructions">Roll the mouse around the page. The coordinates
+of the mouse pointer are currently atop an element<BR ID="myBR">whose ID 
+is:"<SPAN ID="mySpan" STYLE="font-weight:bold"></SPAN>".</P>
+<FORM ID="myForm">
+<INPUT ID="myButton" TYPE="button" VALUE="Sample Button" onClick="">&nbsp;
+</FORM>
+<TABLE BORDER=1 ID="myTable">
+<TR ID="tr1">
+	<TD ID="td_A1">Cell A1</TD>
+	<TD ID="td_B1">Cell B1</TD>
+</TR>
+<TR ID="tr2">
+	<TD ID="td_A2">Cell A2</TD>
+	<TD ID="td_B2">Cell B2</TD>
+</TR>
+</TABLE>
+<H2 ID="sec1">Section 1</H2>
+<P ID="p1">Lorem ipsum dolor sit amet, consectetaur adipisicing elit, 
+sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+Ut enim adminim veniam, quis nostrud exercitation ullamco laboris 
+nisi ut aliquip ex ea commodo consequat.</P>
+<H2 ID="sec2">Section 2</H2>
+<P ID="p2">Duis aute irure dolor in reprehenderit involuptate velit esse 
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat 
+cupidatat non proident, sunt in culpa qui officia deseruntmollit 
+anim id est laborum.</P>
+<DIV ID="myDIV" STYLE="position:absolute; top:340; left:300; background-color:yellow">
+Here is a positioned element.</DIV>
+</BODY>
+</HTML>

@@ -1,0 +1,35 @@
+<HTML>
+<HEAD>
+<TITLE>Document Write Controller</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+function takePulse(form) {
+	var msg = "<HTML><HEAD><TITLE>On The Fly with " + form.yourName.value + "</TITLE></HEAD>"
+	msg += "<BODY BGCOLOR='salmon'><H1>Good Day " + form.yourName.value + "!</H1><HR>"
+	for (var i = 0; i < form.how.length; i++) {
+		if (form.how[i].checked) {
+			msg += form.how[i].value
+			break
+		}
+	}
+	msg += "<P>Make it a great day!</BODY></HTML>"
+	parent.Frame2.document.write(msg)
+	parent.Frame2.document.close()
+}
+function getTitle() {
+	alert("Lower frame document.title is now:" + parent.Frame2.document.title)
+}
+</SCRIPT>
+</HEAD>
+
+<BODY>
+Fill in a name, and select how that person feels today. Then click "Write To Below" to see the results in the bottom frame.
+<FORM>
+Enter your first name:<INPUT TYPE="text" NAME="yourName" VALUE="Dave"><P>
+How are you today? <INPUT TYPE="radio" NAME="how" VALUE="I hope that feeling continues forever." CHECKED>Swell
+<INPUT TYPE="radio" NAME="how" VALUE="You may be on your way to feeling Swell">Pretty Good
+<INPUT TYPE="radio" NAME="how" VALUE="Things can only get better from here.">So-So<P>
+<INPUT TYPE="button" NAME="enter" VALUE="Write To Below" onClick="takePulse(this.form)">
+<HR>
+<INPUT TYPE="button" NAME="peek" VALUE="Check Lower Frame Title" onClick="getTitle()">
+</BODY>
+</HTML>

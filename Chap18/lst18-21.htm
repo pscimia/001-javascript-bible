@@ -1,0 +1,22 @@
+<HTML>
+<HEAD>
+<TITLE>onScroll Event Handler</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+function zipBack() {
+	window.scroll(0,0)
+}
+function init() {
+	document.body.onscroll = zipBack
+}
+</SCRIPT>
+</HEAD>
+
+<BODY onLoad="init()">
+<H1>onScroll Event Handler</H1>
+<HR>
+This page always zips back to the top if you try to scroll it.
+<P>
+<IFRAME FRAMEBORDER=0 SCROLLING="no" HEIGHT=1000 SRC="bofright.htm"></IFRAME>
+</P>
+</BODY>
+</HTML>

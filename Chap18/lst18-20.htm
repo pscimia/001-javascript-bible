@@ -1,0 +1,35 @@
+<HTML>
+<HEAD>
+<TITLE>Master of all Windows</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+function leftFrame() {
+	var output = "<HTML><BODY><H3>Body Scroll Values</H3><HR>\n"
+	output += "<FORM>body.scrollLeft:<INPUT TYPE='text' NAME='xOffset' SIZE=4><BR>\n"
+	output += "body.scrollTop:<INPUT TYPE='text' NAME='yOffset' SIZE=4><BR>\n"
+	output += "</FORM></BODY></HTML>"
+	return output
+}
+
+function rightFrame() {
+	var output = "<HTML><HEAD><SCRIPT LANGUAGE='JavaScript'>\n"
+	output += "function showOffsets() {\n"
+	output += "parent.readout.document.forms[0].xOffset.value = document.body.scrollLeft\n"
+	output += "parent.readout.document.forms[0].yOffset.value = document.body.scrollTop\n}\n"
+	output += "document.onclick = showOffsets\n"
+	output += "<\/SCRIPT></HEAD><BODY><H3>Content Page</H3>\n"
+	output += "Scroll this frame and click on a table border to view page offset values.<BR><HR>\n"
+	output += "<TABLE BORDER=5 WIDTH=800>"
+	var oneRow = "<TD>Cell 1</TD><TD>Cell 2</TD><TD>Cell 3</TD><TD>Cell 4</TD><TD>Cell 5</TD>"
+	for (var i = 1; i <= 30; i++) {
+		output += "<TR><TD><B>Row " + i + "</B></TD>" + oneRow + "</TR>"
+	}
+	output += "</TABLE></BODY></HTML>"
+	return output
+}
+</SCRIPT>
+</HEAD>
+<FRAMESET COLS="30%,70%">
+	<FRAME NAME="readout" SRC="javascript:parent.leftFrame()">
+	<FRAME NAME="display" SRC="javascript:parent.rightFrame()">
+</FRAMESET>
+</HTML>

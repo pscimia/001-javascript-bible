@@ -1,0 +1,41 @@
+<HTML>
+<HEAD>
+<TITLE>URL Property Reader</TITLE>
+<SCRIPT LANGUAGE="JavaScript1.1">
+function fillTopFrame() {
+	newURL=prompt("Enter the URL of a document to show in the top frame:","")
+	if (newURL != null && newURL != "") {
+	top.frames[0].location = newURL
+	}
+}
+
+function showLoc(form,item) {
+	var windName = item.value
+	var theRef = windName + ".document"
+	form.dLoc.value = unescape(eval(theRef + ".URL"))
+	form.dTitle.value = unescape(eval(theRef + ".title"))
+}
+</SCRIPT>
+</HEAD>
+
+<BODY>
+Click the "Open URL" button to enter the location of an HTML document to display in the upper frame of this window.
+<FORM>
+<INPUT TYPE="button" NAME="opener" VALUE="Open URL..." onClick="fillTopFrame()">
+</FORM>
+<HR>
+<FORM>
+Select a window or frame to view each document property values.<P>
+<INPUT TYPE="radio" NAME="whichFrame" VALUE="parent" onClick="showLoc(this.form,this)">Parent window
+<INPUT TYPE="radio" NAME="whichFrame" VALUE="top.frames[0]" onClick="showLoc(this.form,this)">Upper frame
+<INPUT TYPE="radio" NAME="whichFrame" VALUE="top.frames[1]" onClick="showLoc(this.form,this)">This frame<P>
+<TABLE BORDER=2>
+<TR><TD ALIGN=RIGHT>document.URL:</TD>
+<TD><TEXTAREA NAME="dLoc" ROWS=3 COLS=30 WRAP="soft"></TEXTAREA></TD></TR>
+
+<TR><TD ALIGN=RIGHT>document.title:</TD>
+<TD><TEXTAREA NAME="dTitle" ROWS=3 COLS=30 WRAP="soft"></TEXTAREA></TD></TR>
+</TABLE>
+</FORM>
+</BODY>
+</HTML>
