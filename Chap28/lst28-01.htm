@@ -1,0 +1,36 @@
+<HTML>
+<HEAD>
+<TITLE>Number Formatting</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+// generic positive number decimal formatting function
+function format (expr, decplaces) {
+	// raise incoming value by power of 10 times the
+	// number of decimal places; round to an integer; convert to string
+	var str = "" + Math.round (eval(expr) * Math.pow(10,decplaces))
+	// pad small value strings with zeros to the left of rounded number
+	while (str.length <= decplaces) {
+		str = "0" + str
+	}
+	// establish location of decimal point
+	var decpoint = str.length - decplaces
+	// assemble final result from: (a) the string up to the position of
+	// the decimal point; (b) the decimal point; and (c) the balance
+	// of the string. Return finished product.
+	return str.substring(0,decpoint) + "." + str.substring(decpoint,str.length);
+}
+// turn incoming expression into a dollar value
+function dollarize (expr) {
+	return "$" + format(expr,2)
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+<H1>How to Make Money</H1>
+<FORM>
+Enter a positive floating point value or arithmetic expression to be converted to a currency format:<P>
+<INPUT TYPE="text" NAME="entry" VALUE="1/3">
+<INPUT TYPE="button" VALUE=">Dollars and Cents>" onClick="this.form.result.value=dollarize(this.form.entry.value)">
+<INPUT TYPE="text" NAME="result">
+</FORM>
+</BODY>
+</HTML>
