@@ -1,0 +1,37 @@
+<HTML>
+<HEAD>
+<TITLE>Message Scroller</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+var msg = "Welcome to my world..."
+var delay = 150
+var timerId
+var maxCount = 0
+var currCount = 1
+
+function scrollMsg() {
+	// set the number of times scrolling message is to run
+	if (maxCount == 0) {
+		maxCount = 3 * msg.length
+	}
+	window.status = msg
+	// keep track of how many characters have scrolled
+	currCount++
+	// shift first character of msg to end of msg
+	msg = msg.substring (1, msg.length) + msg.substring (0, 1)
+	// test whether we've reached maximum character count
+	if (currCount >= maxCount) {
+		timerID = 0		// zero out the timer
+		window.status = ""	// clear the status bar
+		return			// break out of function
+	} else {
+		// recursive call to this function
+		timerId = setTimeout("scrollMsg()", delay)
+	}
+}
+// -->
+</SCRIPT>
+</HEAD>
+<BODY onLoad="scrollMsg()">
+</BODY>
+</HTML>

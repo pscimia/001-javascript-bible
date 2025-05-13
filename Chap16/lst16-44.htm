@@ -1,0 +1,20 @@
+<HTML>
+<HEAD>
+<TITLE>DragDrop Event</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+function reportDrag(e) {
+	var msg = "You dropped the file:\n"
+	netscape.security.PrivilegeManager.enablePrivilege("UniversalBrowserRead")
+	msg += e.data
+	netscape.security.PrivilegeManager.disablePrivilege("UniversalBrowserRead")
+	msg += "\nonto the window object at screen location ("
+	msg += e.screenX + "," + e.screenY + ")."
+	alert(msg)
+	return false
+}
+</SCRIPT>
+</HEAD>
+<BODY onDragDrop="return reportDrag(event)">
+<B>Drag and Drop a file onto this window</B>
+</BODY>
+</HTML>

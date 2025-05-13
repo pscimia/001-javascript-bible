@@ -1,0 +1,12 @@
+<HTML>
+<HEAD>
+<TITLE>window.defaultStatus property</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+window.defaultStatus = "Welcome to my Web site."
+</SCRIPT>
+</HEAD>
+<BODY>
+<A HREF="http://www.microsoft.com" onMouseOver="window.status = 'Visit Microsoft\'s Home page.';return true" onMouseOut="window.status = '';return true">Microsoft</A><P>
+<A HREF="http://home.netscape.com" onMouseOver="window.status = 'Visit Netscape\'s Home page.';return true" onMouseOut="window.status = window.defaultStatus;return true">Netscape</A>
+</BODY>
+</HTML>

@@ -1,0 +1,137 @@
+<HTML>
+<HEAD>
+<TITLE>User Preferences</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+// Close the dialog
+function closeme() {
+	window.close()
+}
+
+// Handle click of OK button
+function handleOK() {
+	var returnFunc = window.dialogArguments
+	returnFunc(getFormData())
+	closeme()
+}
+
+// Handle click of Apply button
+function handleApply() {
+	var returnFunc = window.dialogArguments
+	returnFunc(getFormData())
+}
+
+// Handle click of Cancel button
+function handleCancel() {
+	window.returnValue = ""
+	closeme()
+}
+// Generic function converts form element name-value pairs
+// into an array
+function getFormData() {
+	var form = document.prefs
+	var returnedData = new Array()
+	// Harvest values for each type of form element
+	for (var i = 0; i < form.elements.length; i++) {
+		if (form.elements[i].type == "text") {
+			returnedData[form.elements[i].name] = form.elements[i].value
+		} else if (form.elements[i].type.indexOf("select") != -1) {
+			returnedData[form.elements[i].name] = form.elements[i].options[form.elements[i].selectedIndex].value
+		} else if (form.elements[i].type == "radio") {
+			returnedData[form.elements[i].name] = form.elements[i].value
+		} else if (form.elements[i].type == "checkbox") {
+			returnedData[form.elements[i].name] = form.elements[i].value
+		} else continue
+	}
+	return returnedData
+}
+// Initialize by setting form elements from passed data
+function init(currPrefs) {
+	if (currPrefs) {
+		var form = document.prefs
+		if (currPrefs["name"]) {
+			form.name.value = currPrefs["name"]
+		}
+		if (currPrefs["bgColor"]) {
+			setSelected(form.bgColor, currPrefs["bgColor"])
+		}
+		if (currPrefs["textColor"]) {
+			setSelected(form.textColor, currPrefs["textColor"])
+		}
+		if (currPrefs["h1Size"]) {
+			setSelected(form.h1Size, currPrefs["h1Size"])
+		}
+	}
+}
+// Utility function to set a SELECT element to one value
+function setSelected(select, value) {
+	for (var i = 0; i < select.options.length; i++) {
+		if (select.options[i].value == value) {
+			select.selectedIndex = i
+			break
+		}	
+	}
+	return
+}
+// Utility function to accept a press of the
+// Enter key in the text field as a click of OK
+function checkEnter() {
+	if (window.event.keyCode == 13) {
+		handleOK()	
+	}
+}
+</SCRIPT>
+</HEAD>
+
+<BODY BGCOLOR="#eeeeee" onLoad="init()">
+<H2>Web Site Preferences</H2>
+<HR>
+<TABLE BORDER=0 CELLSPACING=2>
+<FORM NAME="prefs" onSubmit="return false">
+<TR>
+<TD>Enter your first name:<INPUT NAME="name" TYPE="text" VALUE="" SIZE=20 onKeyDown="checkEnter()">
+</TR>
+
+<TR>
+<TD>Select a background color:
+<SELECT NAME="bgColor">
+	<OPTION VALUE="beige">Beige
+	<OPTION VALUE="antiquewhite">Antique White
+	<OPTION VALUE="goldenrod">Goldenrod
+	<OPTION VALUE="lime">Lime
+	<OPTION VALUE="powderblue">Powder Blue
+	<OPTION VALUE="slategray">Slate Gray
+</SELECT>
+</TR>
+
+<TR>
+<TD>Select a text color:
+<SELECT NAME="textColor">
+	<OPTION VALUE="black">Black
+	<OPTION VALUE="white">White
+	<OPTION VALUE="navy">Navy Blue
+	<OPTION VALUE="darkorange">Dark Orange
+	<OPTION VALUE="seagreen">Sea Green
+	<OPTION VALUE="teal">Teal
+</SELECT>
+</TR>
+
+<TR>
+<TD>Select "Welcome" heading font point size:
+<SELECT NAME="h1Size">
+	<OPTION VALUE="12">12
+	<OPTION VALUE="14">14
+	<OPTION VALUE="18">18
+	<OPTION VALUE="24">24
+	<OPTION VALUE="32">32
+	<OPTION VALUE="48">48
+</SELECT>
+</TR>
+</TABLE>
+</FORM>
+<DIV STYLE="position:absolute; left:120px; top:220px">
+<BUTTON STYLE="width:80px" onClick="handleOK()">OK</BUTTON>&nbsp;&nbsp;
+<BUTTON STYLE="width:80px" onClick="handleCancel()">Cancel</BUTTON>&nbsp;&nbsp;
+<BUTTON STYLE="width:80px" onClick="handleApply()">Apply</BUTTON>
+</DIV>
+</BODY>
+</HTML>

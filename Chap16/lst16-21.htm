@@ -1,0 +1,34 @@
+<HTML>
+<HEAD>
+<TITLE>Window Event Capture</TITLE>
+<SCRIPT LANGUAGE="JavaScript1.2">
+// function to run when window captures a click event
+function flash(e) {
+	if (e.modifiers == Event.CONTROL_MASK && e.target.name.indexOf("button") == 0) {
+		document.bgColor = "red"
+		setTimeout("document.bgColor = 'white'", 500)
+	}
+	// let event continue to target
+	routeEvent(e)
+}
+// default setting to capture click events
+window.captureEvents(Event.CLICK)
+// assign flash() function to click events captured by window
+window.onclick = flash
+</SCRIPT>
+</HEAD>
+<BODY BGCOLOR="white">
+<FORM NAME="buttons">
+<B>Turn window click event capture on or off (Default is "On")</B><P>
+<INPUT NAME="captureOn" TYPE="button" VALUE="Capture On" onClick="window.captureEvents(Event.CLICK)">&nbsp;
+<INPUT NAME="captureOff" TYPE="button" VALUE="Capture Off" onClick="window.releaseEvents(Event.CLICK)">
+<HR>
+<B>Ctrl+Click on a button to see if clicks are being captured by the window (background color will flash red):</B><P>
+<UL>
+<LI><INPUT NAME="button1" TYPE="button" VALUE="Informix" onClick="alert('You clicked on Informix.')">
+<LI><INPUT NAME="button2" TYPE="button" VALUE="Oracle" onClick="alert('You clicked on Oracle.')">
+<LI><INPUT NAME="button3" TYPE="button" VALUE="Sybase" onClick="alert('You clicked on Sybase.')">
+</UL>
+</FORM>
+</BODY>
+</HTML>

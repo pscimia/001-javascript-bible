@@ -1,0 +1,46 @@
+<HTML>
+<HEAD>
+<TITLE>window.closed Property</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+// initialize global var for new window object
+// so it can be accessed by all functions on the page
+var newWind 
+// set flag to help out with special handling for window closing
+var isIE3 = (navigator.appVersion.indexOf("MSIE 3") != -1) ? true : false
+// make the new window and put some stuff in it
+function newWindow() {
+	newWind = window.open("","subwindow","HEIGHT=200,WIDTH=200")
+	// take care of Navigator 2
+	if (newWind.opener == null) {
+		newWind.opener = window
+	}
+	setTimeout("finishNewWindow()", 100)
+}
+function finishNewWindow() {
+	var output = ""
+	output += "<HTML><BODY><H1>A Sub-window</H1>"
+	output += "<FORM><INPUT TYPE='button' VALUE='Close Main Window'"
+	output +="onClick='window.opener.close()'></FORM></BODY></HTML>"
+	newWind.document.write(output)
+	newWind.document.close()
+}
+// close subwindow, including ugly workaround for IE3
+function closeWindow() {
+	if (isIE3) {
+		// if window is already open, nothing appears to happen
+		// but if not, the subwindow flashes momentarily (yech!)
+		newWind = window.open("","subwindow","HEIGHT=200,WIDTH=200")	
+	}
+	if (newWind && !newWind.closed) {
+		newWind.close()
+	}
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+<FORM>
+<INPUT TYPE="button" VALUE="Open Window" onClick="newWindow()"><BR>
+<INPUT TYPE="button" VALUE="Close it if Still Open" onClick="closeWindow()">
+</FORM>
+</BODY>
+</HTML>

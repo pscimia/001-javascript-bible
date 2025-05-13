@@ -1,0 +1,15 @@
+<!-- XMP tags added for display of HTML in a browser window -->
+<XMP>
+<SCRIPT LANGUAGE="JavaScript">
+var isNav4 = (navigator.appName == "Netscape" && parseInt(navigator.appVersion) == 4)
+if (top.location.href == window.location.href) {
+	if (isNav4) {
+		if (window.innerWidth != 0) {
+			top.location.href = "myFrameset.html"
+		}
+	} else {
+		top.location.href = " myFrameset.html"
+	}
+}
+</SCRIPT>
+</XMP>

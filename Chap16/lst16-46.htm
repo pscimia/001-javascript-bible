@@ -1,0 +1,33 @@
+<HTML>
+<HEAD>
+<TITLE>Hide/Show Frame Example</TITLE>
+</HEAD>
+<SCRIPT LANGUAGE="JavaScript">
+var origCols
+function toggleTOC(elem, frm) {
+	if (origCols) {
+		showTOC(elem)
+	} else {
+		hideTOC(elem, frm)
+	}
+}
+function hideTOC(elem, frm) {
+	var frameset = document.getElementById("outerFrameset")
+	origCols = frameset.cols
+	frameset.cols = "0,*"
+}
+function showTOC(elem) {
+	if (origCols) {
+		document.getElementById("outerFrameset").cols = origCols
+		origCols = null
+	}
+}
+</SCRIPT>
+<FRAMESET ID="outerFrameset" FRAMEBORDER="no" COLS="150,*">
+	<FRAME ID="TOC" NAME="TOCFrame" SRC="lst16-47.htm">
+	<FRAMESET ID="innerFrameset1" ROWS="80,*">
+		<FRAME ID="controls" NAME="controlsFrame" SRC="lst16-48.htm">
+		<FRAME ID="content" NAME="contentFrame" SRC="bofright.htm">
+	</FRAMESET>
+</FRAMESET>
+</HTML>

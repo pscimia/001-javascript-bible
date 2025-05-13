@@ -1,0 +1,21 @@
+<HTML>
+<HEAD>
+<TITLE>window.prompt() Method</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+function populateTable() {
+	var howMany = prompt("Fill in table for how many factors?","")
+	if (howMany != null && howMany != "") {
+		alert("Filling the table for " + howMany) // for demo
+		//statements that validate the entry and
+		//actually populate the fields of the table
+	}
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+<FORM>
+<!-- other statements that display and populate a large table -->
+<INPUT TYPE="button" NAME="fill" VALUE="Fill Table..." onClick="populateTable()">
+</FORM>
+</BODY>
+</HTML>

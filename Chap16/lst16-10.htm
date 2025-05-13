@@ -1,0 +1,52 @@
+<HTML>
+<TITLE>Error Dialog Control</TITLE>
+<SCRIPT LANGUAGE="JavaScript1.1">
+// function with invalid variable value
+function goWrong() {
+	var x = fred
+}
+// turn off error dialogs
+function errOff() {
+	window.onerror = doNothing
+}
+// turn on error dialogs with hard reload
+function errOn() {
+	window.onerror = handleError
+}
+
+// assign default error handler
+window.onerror = handleError
+
+// error handler when errors are turned off...prevents error dialog
+function doNothing() {return true}
+
+function handleError(msg, URL, lineNum) {
+	var errWind = window.open("","errors","HEIGHT=270,WIDTH=400")
+	var wintxt = "<HTML><BODY BGCOLOR=RED>"
+	wintxt += "<B>An error has occurred on this page.  Please report it to Tech Support.</B>"
+	wintxt += "<FORM METHOD=POST ENCTYPE='text/plain' ACTION=mailTo:support4@dannyg.com >"
+	wintxt += "<TEXTAREA NAME='errMsg' COLS=45 ROWS=8 WRAP=VIRTUAL>"
+	wintxt += "Error: " + msg + "\n"
+	wintxt += "URL: " + URL + "\n"
+	wintxt += "Line: " + lineNum + "\n"
+	wintxt += "Client: " + navigator.userAgent + "\n"
+	wintxt += "-----------------------------------------\n"
+	wintxt += "Please describe what you were doing when the error occurred:"
+	wintxt += "</TEXTAREA><P>"
+	wintxt += "<INPUT TYPE=SUBMIT VALUE='Send Error Report'>"
+	wintxt += "<INPUT TYPE=button VALUE='Close' onClick='self.close()'>"
+	wintxt += "</FORM></BODY></HTML>"
+	errWind.document.write(wintxt)
+	errWind.document.close()
+	return true
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+<FORM NAME="myform">
+<INPUT TYPE="button" VALUE="Cause an Error" onClick="goWrong()"><P>
+<INPUT TYPE="button" VALUE="Turn Off Error Dialogs" onClick="errOff()">
+<INPUT TYPE="button" VALUE="Turn On Error Dialogs" onClick="errOn()">
+</FORM> 
+</BODY>
+</HTML>

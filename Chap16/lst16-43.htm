@@ -1,0 +1,20 @@
+<HTML>
+<HEAD>
+<TITLE>onBeforeUnload Event Handler</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+function verifyClose() {
+	event.returnValue = "We really like you and hope you will stay longer."
+}
+window.onbeforeunload = verifyClose
+</SCRIPT>
+
+</HEAD>
+<BODY>
+<H1>onBeforeUnload Event Handler</H1>
+<HR>
+<P>Use this button to navigate to the previous page:
+<BUTTON ID="go" onClick="history.back()">
+Go Back
+</BUTTON>
+</BODY>
+</HTML>

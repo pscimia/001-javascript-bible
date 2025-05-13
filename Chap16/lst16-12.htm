@@ -1,0 +1,28 @@
+<HTML>
+<HEAD>
+<TITLE>New Window on the Block</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+function getColor() {
+	// shorten the reference
+	colorButtons = self.opener.document.forms[0].color
+	// see which radio button is checked
+	for (var i = 0; i < colorButtons.length; i++) {
+		if (colorButtons[i].checked) {
+			return colorButtons[i].value
+		}
+	}
+	return "white"
+}
+</SCRIPT>
+</HEAD>
+<SCRIPT LANGUAGE="JavaScript">
+document.write("<BODY BGCOLOR='" + getColor() + "'>")
+</SCRIPT>
+<H1>This is a new window.</H1>
+<FORM>
+<INPUT TYPE="button" VALUE="Who's in the Main window?" onClick="alert(self.opener.document.title)"><P>
+Type text here for the main window:
+<INPUT TYPE="text" SIZE=25 onChange="self.opener.document.forms[0].entry.value = this.value">
+</FORM>
+</BODY>
+</HTML>

@@ -1,0 +1,12 @@
+<HTML>
+<HEAD>
+<TITLE>self Property</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+self.defaultStatus = "Welcome to my Web site."
+</SCRIPT>
+</HEAD>
+<BODY>
+<A HREF="http://www.microsoft.com" onMouseOver="self.status = 'Visit Microsoft\'s Home page.';return true" onMouseOut="self.status = '';return true">Microsoft</A><P>
+<A HREF="http://home.netscape.com" onMouseOver="self.status = 'Visit Netscape\'s Home page.';return true" onMouseOut="self.status = self.defaultStatus;return true">Netscape</A>
+</BODY>
+</HTML>

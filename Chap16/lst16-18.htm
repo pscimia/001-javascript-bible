@@ -1,0 +1,15 @@
+<HTML>
+<HEAD>
+<TITLE>Generalizable window.status Property</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+function showStatus(msg) {
+	window.status = msg
+	return true
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+<A HREF="http://home.netscape.com" onMouseOver="return showStatus('Go to my Home page.')" onMouseOut="return showStatus('')">Home</A><P>
+<A HREF="http://home.netscape.com" onMouseOver="return showStatus('Visit Netscape Home page.')" onMouseOut="return showStatus('')">Netscape</A>
+</BODY>
+</HTML>

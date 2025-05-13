@@ -1,0 +1,70 @@
+<HTML>
+<HEAD>
+<TITLE>window.open() Options</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+var isNav4 = (navigator.appName == "Netscape" && navigator.appVersion.charAt(0) >= 4) ? true : false
+
+function makeNewWind(form) {
+	if (isNav4) {
+		netscape.security.PrivilegeManager.enablePrivilege("UniversalBrowserWrite")
+	}
+	var attr = "HEIGHT=300,WIDTH=300"
+	for (var i = 0; i < form.elements.length; i++) {
+		if (form.elements[i].type == "checkbox") {
+			attr += "," + form.elements[i].name + "=" 
+			attr += (form.elements[i].checked) ? "yes" : "no"
+		}
+	}
+	var newWind = window.open("bofright.htm","subwindow",attr)	
+	if (isNav4) {
+		netscape.security.PrivilegeManager.revertPrivilege("CanvasAccess")
+	}
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+<FORM>
+<B>Select new window options:</B>
+<TABLE BORDER=2>
+<TR>
+	<TD COLSPAN=2 BGCOLOR="yellow" ALIGN="middle">All Browsers Features:</TD>
+</TR>
+<TR>
+	<TD><INPUT TYPE="checkbox" NAME="toolbar">toolbar</TD>
+	<TD><INPUT TYPE="checkbox" NAME="location">location</TD>
+</TR>
+<TR>
+	<TD><INPUT TYPE="checkbox" NAME="directories">directories</TD>
+	<TD><INPUT TYPE="checkbox" NAME="status">status</TD>
+</TR>
+<TR>
+	<TD><INPUT TYPE="checkbox" NAME="menubar">menubar</TD>
+	<TD><INPUT TYPE="checkbox" NAME="scrollbars">scrollbars</TD>
+</TR>
+<TR>
+	<TD><INPUT TYPE="checkbox" NAME="resizable">resizable</TD>
+	<TD><INPUT TYPE="checkbox" NAME="copyhistory">copyhistory</TD>
+</TR>
+<TR>
+	<TD COLSPAN=2 BGCOLOR="yellow" ALIGN="middle">Communicator Features:</TD>
+</TR>
+<TR>
+	<TD><INPUT TYPE="checkbox" NAME="alwaysLowered">alwaysLowered</TD>
+	<TD><INPUT TYPE="checkbox" NAME="alwaysRaised">alwaysRaised</TD>
+</TR>
+<TR>
+	<TD><INPUT TYPE="checkbox" NAME="dependent">dependent</TD>
+	<TD><INPUT TYPE="checkbox" NAME="hotkeys" CHECKED>hotkeys</TD>
+</TR>
+<TR>
+	<TD><INPUT TYPE="checkbox" NAME="titlebar" CHECKED>titlebar</TD>
+	<TD><INPUT TYPE="checkbox" NAME="z-lock">z-lock</TD>
+</TR>
+<TR>
+	<TD COLSPAN=2 ALIGN="middle"><INPUT TYPE="button" NAME="forAll" VALUE="Make New Window" onClick="makeNewWind(this.form)"></TD>
+</TR>
+</TABLE>
+<BR>
+</FORM>
+</BODY>
+</HTML>

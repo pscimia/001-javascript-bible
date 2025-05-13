@@ -1,0 +1,34 @@
+<HTML>
+<HEAD>
+<TITLE>Window Resize Methods</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+function doResizeBy(form) {
+	var x = parseInt(form.resizeByX.value)
+	var y = parseInt(form.resizeByY.value)
+	var count = parseInt(form.count.value)
+	for (var i = 0; i < count; i++) {
+		window.resizeBy(x, y)
+	}
+}
+function doResizeTo(form) {
+	var x = parseInt(form.resizeToX.value)
+	var y = parseInt(form.resizeToY.value)
+	window.resizeTo(x, y)
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+<FORM>
+<B>Enter the x and y increment, plus how many times the window should be resized by these increments:</B><BR>
+Horiz:<INPUT TYPE="text" NAME="resizeByX" SIZE=4>
+Vert:<INPUT TYPE="text" NAME="resizeByY" SIZE=4>
+How Many:<INPUT TYPE="text" NAME="count" SIZE=4>
+<INPUT TYPE="button" NAME="ResizeBy" VALUE="Show resizeBy()" onClick="doResizeBy(this.form)">
+<HR>
+<B>Enter the desired width and height of the current window:</B><BR>
+Width:<INPUT TYPE="text" NAME="resizeToX" SIZE=4>
+Height:<INPUT TYPE="text" NAME="resizeToY" SIZE=4>
+<INPUT TYPE="button" NAME="ResizeTo" VALUE="Show resizeTo()" onClick="doResizeTo(this.form)">
+</FORM>
+</BODY>
+</HTML>

@@ -1,0 +1,33 @@
+<HTML>
+<HEAD>
+<TITLE>ScrollBy Controller</TITLE>
+<SCRIPT LANGUAGE="JavaScript1.2">
+function page(direction) {
+	var pixFrame = parent.display
+	var deltaY = (pixFrame.innerHeight) ? pixFrame.innerHeight : pixFrame.document.body.scrollHeight
+	if (direction == "up") {
+		deltaY = -deltaY
+	}
+	parent.display.scrollBy(0, deltaY)
+}
+function customScroll(form) {
+	parent.display.scrollBy(parseInt(form.x.value), parseInt(form.y.value))
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+<B>ScrollBy Controller</B>
+<FORM NAME="custom">
+Enter an Horizontal increment
+<INPUT TYPE="text" NAME="x" VALUE="0" SIZE=4">
+and Vertical
+<INPUT TYPE="text" NAME="y" VALUE="0" SIZE=4">
+value.<BR>Then
+<INPUT TYPE="button" VALUE="click to scrollBy()" onClick="customScroll(this.form)">
+<HR>
+<INPUT TYPE="button" VALUE="PageDown" onClick="page('down')">
+<INPUT TYPE="button" VALUE="PageUp" onClick="page('up')">
+
+</FORM>
+</BODY>
+</HTML>

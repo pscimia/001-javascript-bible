@@ -1,0 +1,66 @@
+<HTML>
+<HEAD>
+<TITLE>ScrollBy Controller</TITLE>
+<SCRIPT LANGUAGE="JavaScript1.2">
+var scrollSpeed = 500
+var scrollJump = 1
+var scrollDirection = "down"
+var intervalID
+
+function autoScroll() {
+	if (scrollDirection == "down") {
+		scrollJump = Math.abs(scrollJump)
+	} else if (scrollDirection == "up" && scrollJump > 0) {
+		scrollJump = -scrollJump
+	}
+	parent.display.scrollBy(0, scrollJump)
+	if (parent.display.pageYOffset <= 0) {
+		clearInterval(intervalID)
+	}
+}
+
+function reduceInterval() {
+	stopScroll()
+	scrollSpeed -= 200
+	startScroll()
+}
+function increaseInterval() {
+	stopScroll()
+	scrollSpeed += 200
+	startScroll()
+}
+function reduceJump() {
+	scrollJump -= 2
+}
+function increaseJump() {
+	scrollJump += 2
+}
+function swapDirection() {
+	scrollDirection = (scrollDirection == "down") ? "up" : "down"
+}
+function startScroll() {
+	parent.display.scrollBy(0, scrollJump)
+	if (intervalID) {
+		clearInterval(intervalID)
+	}
+	intervalID = setInterval("autoScroll()",scrollSpeed)
+}
+function stopScroll() {
+	clearInterval(intervalID)
+}
+</SCRIPT>
+</HEAD>
+<BODY onLoad="startScroll()">
+<B>AutoScroll by setInterval() Controller</B>
+<FORM NAME="custom">
+<INPUT TYPE="button" VALUE="Start Scrolling" onClick="startScroll()">
+<INPUT TYPE="button" VALUE="Stop Scrolling" onClick="stopScroll()"><P>
+<INPUT TYPE="button" VALUE="Shorter Time Interval" onClick="reduceInterval()">
+<INPUT TYPE="button" VALUE="Longer Time Interval" onClick="increaseInterval()"><P>
+<INPUT TYPE="button" VALUE="Bigger Scroll Jumps" onClick="increaseJump()">
+<INPUT TYPE="button" VALUE="Smaller Scroll Jumps" onClick="reduceJump()"><P>
+<INPUT TYPE="button" VALUE="Change Direction" onClick="swapDirection()">
+
+</FORM>
+</BODY>
+</HTML>

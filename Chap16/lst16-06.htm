@@ -1,0 +1,45 @@
+<HTML>
+<HEAD>
+<TITLE>Bars Bars Bars</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+// store original outer dimensions as page loads
+var originalLocationbar = window.locationbar.visible
+var originalMenubar = window.menubar.visible
+var originalPersonalbar = window.personalbar.visible
+var originalScrollbars = window.scrollbars.visible
+var originalStatusbar = window.statusbar.visible
+var originalToolbar = window.toolbar.visible
+
+// generic function to set inner dimensions
+function toggleBar(bar) {
+netscape.security.PrivilegeManager.enablePrivilege("UniversalBrowserWrite")
+	bar.visible = !bar.visible
+	netscape.security.PrivilegeManager.revertPrivilege("UniversalBrowserWrite")
+}
+// restore settings
+function restore() {
+netscape.security.PrivilegeManager.enablePrivilege("UniversalBrowserWrite")
+	window.locationbar.visible = originalLocationbar
+	window.menubar.visible = originalMenubar
+	window.personalbar.visible = originalPersonalbar
+	window.scrollbars.visible = originalScrollbars
+	window.statusbar.visible = originalStatusbar
+	window.toolbar.visible = originalToolbar
+netscape.security.PrivilegeManager.revertPrivilege("UniversalBrowserWrite")
+}
+</SCRIPT>
+</HEAD>
+<BODY onUnload="restore()">
+<FORM>
+<B>Toggle Window Bars</B><BR>
+<INPUT TYPE="button" VALUE="Location Bar" onClick="toggleBar(window.locationbar)"><BR>
+<INPUT TYPE="button" VALUE="Menu Bar" onClick="toggleBar(window.menubar)"><BR>
+<INPUT TYPE="button" VALUE="Personal Bar" onClick="toggleBar(window.personalbar)"><BR>
+<INPUT TYPE="button" VALUE="Scrollbars" onClick="toggleBar(window.scrollbars)"><BR>
+<INPUT TYPE="button" VALUE="Status Bar" onClick="toggleBar(window.statusbar)"><BR>
+<INPUT TYPE="button" VALUE="Tool Bar" onClick="toggleBar(window.toolbar)"><BR>
+<HR>
+<INPUT TYPE="button" VALUE="Restore Original Settings" onClick="restore()"><BR>
+</FORM>
+</BODY>
+</HTML>

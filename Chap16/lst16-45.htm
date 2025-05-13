@@ -1,0 +1,41 @@
+<HTML>
+<HEAD>
+<TITLE>frame.scrolling Property</TITLE>
+</HEAD>
+<SCRIPT LANGUAGE="JavaScript">
+function toggleFrameScroll(frameID) {
+	// IE5 & NN6 version
+	var theFrame = document.getElementById(frameID)
+	// IE4+ version
+	// var theFrame = document.all[frameID]
+
+	if (theFrame.scrolling != "no") {
+		theFrame.scrolling = "no"
+	} else {
+		theFrame.scrolling = "yes"
+	}
+}
+// generate content for each frame
+function fillFrame(frameID) {
+	var page = "<HTML><BODY onClick='parent.toggleFrameScroll(\"" + 
+		frameID + "\")'><SPAN STYLE='font-size:24pt'>"
+	page += "<P>This frame has the ID of:</P><P>" + frameID + ".</P>"
+	page += "</SPAN></BODY></HTML>"
+	return page
+}
+</SCRIPT>
+<FRAMESET ID="outerFrameset" COLS="50%,50%">
+	<FRAMESET ID="innerFrameset1" ROWS="25%,25%,25%,25%">
+		<FRAME ID="myFrame1" SRC="javascript:parent.fillFrame('myFrame1')">
+		<FRAME ID="myFrame2" SRC="javascript:parent.fillFrame('myFrame2')">
+		<FRAME ID="myFrame3" SRC="javascript:parent.fillFrame('myFrame3')">
+		<FRAME ID="myFrame4" SRC="javascript:parent.fillFrame('myFrame4')">
+	</FRAMESET>
+	<FRAMESET ID="innerFrameset2" ROWS="25%,25%,25%,25%">
+		<FRAME ID="myFrame5" SRC="javascript:parent.fillFrame('myFrame5')">
+		<FRAME ID="myFrame6" SRC="javascript:parent.fillFrame('myFrame6')">
+		<FRAME ID="myFrame7" SRC="javascript:parent.fillFrame('myFrame7')">
+		<FRAME ID="myFrame8" SRC="javascript:parent.fillFrame('myFrame8')">
+	</FRAMESET>
+</FRAMESET>
+</HTML>

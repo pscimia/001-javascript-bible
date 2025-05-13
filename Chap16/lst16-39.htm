@@ -1,0 +1,44 @@
+<HTML>
+<HEAD>
+<TITLE>window.setModalDialog() Method</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+var currPrefs = new Array()
+function getPrefsData() {
+	var prefs = showModalDialog("lst16-40.htm", currPrefs, 
+		"dialogWidth:400px; dialogHeight:300px")
+	if (prefs) {
+		if (prefs["name"]) {
+			document.all.firstName.innerText = prefs["name"]
+			currPrefs["name"] = prefs["name"]
+		}
+		if (prefs["bgColor"]) {
+			document.body.style.backgroundColor = prefs["bgColor"]
+			currPrefs["bgColor"] = prefs["bgColor"]
+		}
+		if (prefs["textColor"]) {
+			document.body.style.color = prefs["textColor"]
+			currPrefs["textColor"] = prefs["textColor"]
+		}
+		if (prefs["h1Size"]) {
+			document.all.welcomeHeader.style.fontSize = prefs["h1Size"]
+			currPrefs["h1Size"] = prefs["h1Size"]
+		}
+	}
+}
+function init() {
+	document.all.firstName.innerText = "friend"
+}
+</SCRIPT>
+
+</HEAD>
+<BODY BGCOLOR="#eeeeee" STYLE="margin:20px" onLoad="init()">
+<H1>window.setModalDialog() Method</H1>
+<HR>
+<H2 ID="welcomeHeader">Welcome, <SPAN ID="firstName">&nbsp;</SPAN>!</H2>
+<HR>
+<P>Use this button to set style preferences for this page:
+<BUTTON ID="prefsButton" onClick="getPrefsData()">
+Preferences
+</BUTTON>
+</BODY>
+</HTML>

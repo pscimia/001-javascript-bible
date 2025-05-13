@@ -1,0 +1,22 @@
+<HTML>
+<HEAD>
+<TITLE>Window Revealer II</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+function gatherWindowData() {
+	var msg = ""
+	msg += "<B>From the point of view of this frame:</B><BR>"
+	msg += "window.frames.length: " + window.frames.length + "<BR>"
+	msg += "window.name: " + window.name + "<P>"
+	msg += "<B>From the point of view of the framesetting document:</B><BR>"
+	msg += "parent.frames.length: " + parent.frames.length + "<BR>"
+	msg += "parent.frames[0].name: " + parent.frames[0].name
+	return msg
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+<SCRIPT LANGUAGE="JavaScript">
+document.write(gatherWindowData())
+</SCRIPT>
+</BODY>
+</HTML>

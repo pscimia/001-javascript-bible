@@ -1,0 +1,22 @@
+<HTML>
+<HEAD>
+<TITLE>Window Revealer II</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+function gatherWindowData() {
+	var msg = ""
+	msg = msg + "top name: " + top.name + "<BR>"
+	msg = msg + "parent name: " + parent.name + "<BR>"
+	msg = msg + "parent.document.title: " + parent.document.title + "<P>"
+	msg = msg + "window name: " + window.name + "<BR>"
+	msg = msg + "self name: " + self.name + "<BR>"
+	msg = msg + "self.document.title: " + self.document.title
+	return msg
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+<SCRIPT LANGUAGE="JavaScript">
+document.write(gatherWindowData())
+</SCRIPT>
+</BODY>
+</HTML>

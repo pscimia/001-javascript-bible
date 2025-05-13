@@ -1,0 +1,36 @@
+<HTML>
+<HEAD>
+<TITLE>Scroll Controller</TITLE>
+<SCRIPT LANGUAGE="JavaScript1.1">
+function scroll(x,y) {
+	parent.frames[0].scroll(x,y)
+}
+function customScroll(form) {
+	parent.frames[0].scroll(parseInt(form.x.value),parseInt(form.y.value))
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+<H2>Scroll Controller</H2>
+<HR>
+<FORM NAME="fixed">
+Click on a scroll coordinate for the upper frame:<P>
+<INPUT TYPE="button" VALUE="0,0" onClick="scroll(0,0)">
+<INPUT TYPE="button" VALUE="0,100" onClick="scroll(0,100)">
+<INPUT TYPE="button" VALUE="100,0" onClick="scroll(100,0)">
+<P>
+<INPUT TYPE="button" VALUE="-100,100" onClick="scroll(-100,100)">
+<INPUT TYPE="button" VALUE="20,200" onClick="scroll(20,200)">
+<INPUT TYPE="button" VALUE="1000,3000" onClick="scroll(1000,3000)">
+</FORM>
+<HR>
+<FORM NAME="custom">
+Enter a Horizontal
+<INPUT TYPE="text" NAME="x" VALUE="0" SIZE=4>
+and Vertical
+<INPUT TYPE="text" NAME="y" VALUE="0" SIZE=4>
+value.  Then
+<INPUT TYPE="button" VALUE="click to scroll" onClick="customScroll(this.form)">
+</FORM>
+</BODY>
+</HTML>

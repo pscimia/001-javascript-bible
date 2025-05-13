@@ -1,0 +1,44 @@
+<HTML>
+<HEAD>
+<TITLE>popup Object</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+var popup
+function initContent() {
+	if (popup && !popup.isOpen) {
+		var popBody = popup.document.body
+		popBody.style.border = "solid 3px red"
+		popBody.style.padding = "10px"
+		popBody.style.fontSize = "24pt"
+		popBody.style.textAlign = "center"
+		var bodyText = "<P>This popup will self-destruct in "
+		bodyText += "<SPAN ID='counter'>05</SPAN>"
+		bodyText += " seconds...</P>"
+		popBody.innerHTML = bodyText
+	}
+}
+function countDown() {
+	if (popup && popup.isOpen) {
+		var currCount = parseInt(popup.document.all.counter.innerText, 10)
+		if (--currCount == 0) {
+			popup.hide()
+			popup = null
+		} else {
+			popup.document.all.counter.innerText = "0" + currCount
+			setTimeout("countDown()", 1000)
+		}
+	}
+}
+function selfTimer() {
+	popup = window.createPopup()
+	initContent()
+	popup.show(200,200,400,100,document.body)
+	setTimeout("countDown()", 1000)
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+<FORM>
+<INPUT TYPE="button" VALUE="Impossible Mission" onClick="selfTimer()">
+</FORM>
+</BODY>
+</HTML>

@@ -1,0 +1,28 @@
+<HTML>
+<HEAD>
+<TITLE>Master of all Windows</TITLE>
+<SCRIPT LANGUAGE="JavaScript1.1">
+var myWind
+function doNew() {
+	if (!myWind || myWind.closed) {
+		myWind = window.open("lst16-12.htm","subWindow","HEIGHT=200,WIDTH=350,resizable")
+	} else {
+		// bring existing subwindow to the front
+		myWind.focus()
+	}
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+<FORM NAME="input">
+Select a color for a new window:
+<INPUT TYPE="radio" NAME="color" VALUE="red" CHECKED>Red
+<INPUT TYPE="radio" NAME="color" VALUE="yellow">Yellow
+<INPUT TYPE="radio" NAME="color" VALUE="blue">Blue
+<INPUT TYPE="button" NAME="storage" VALUE="Make a Window" onClick="doNew()">
+<HR>
+This field will be filled from an entry in another window:
+<INPUT TYPE="text" NAME="entry" SIZE=25>
+</FORM>
+</BODY>
+</HTML>

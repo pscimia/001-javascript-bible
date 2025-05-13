@@ -1,0 +1,36 @@
+<HTML>
+<HEAD>
+<TITLE>New Window</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+var newWindow
+function makeNewWindow() {
+	if (!newWindow || newWindow.closed) {
+		newWindow = window.open("","","status,height=200,width=300")
+		if (!newWindow.opener) {
+			newWindow.opener = window
+		}
+		// force small delay for IE to catch up
+		setTimeout("writeToWindow()", 50)
+	} else {
+		// window's already open; bring to front
+		newWindow.focus()
+	}
+}
+function writeToWindow() {
+	// assemble content for new window
+	var newContent = "<HTML><HEAD><TITLE>One Sub Window</TITLE></HEAD>"
+	newContent += "<BODY><H1>This window is brand new.</H1>"
+	newContent += "</BODY></HTML>"
+	// write HTML to new window document
+	newWindow.document.write(newContent)
+	newWindow.document.close() // close layout stream
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+<FORM>
+<INPUT TYPE="button" NAME="newOne" VALUE="Create New Window"
+ onClick="makeNewWindow()">
+</FORM>
+</BODY>
+</HTML>

@@ -1,0 +1,19 @@
+<HTML>
+<HEAD>
+<TITLE>window.confirm() Method</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+function clearTable() {
+	if (confirm("Are you sure you want to empty the table?")) {
+		alert("Emptying the table...") // for demo purposes
+		//statements that actually empty the fields
+	}
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+<FORM>
+<!-- other statements that display and populate a large table -->
+<INPUT TYPE="button" NAME="clear" VALUE="Reset Table" onClick="clearTable()">
+</FORM>
+</BODY>
+</HTML>
