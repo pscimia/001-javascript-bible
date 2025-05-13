@@ -1,0 +1,17 @@
+<HTML>
+<HEAD>
+<TITLE>Text Object Value</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+function upperMe(form) {
+	inputStr = form.converter.value
+	form.converter.value = inputStr.toUpperCase()
+}
+</SCRIPT>
+</HEAD>
+
+<BODY>
+<FORM onSubmit="window.focus(); return false">
+Enter lowercase letters for conversion to uppercase: <INPUT TYPE="text" NAME="converter" VALUE="sample" onChange="upperMe(this.form)">
+</FORM>
+</BODY>
+</HTML>

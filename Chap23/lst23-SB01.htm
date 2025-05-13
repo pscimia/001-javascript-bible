@@ -1,0 +1,36 @@
+<HTML>
+<HEAD>
+<TITLE>Enter/Return Event Trigger</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+// Event object processor for NN4, IE4+, NN6
+function isEnterKey(evt) {
+	if (!evt) {
+		// grab IE event object
+		evt = window.event	
+	} else if (!evt.keyCode) {
+		// grab NN4 event info
+		evt.keyCode = evt.which
+	}
+	return (evt.keyCode == 13)
+}
+
+function processOnEnter(fld, evt) {
+	if (isEnterKey(evt)) {
+		alert("Ready to do some work with the form.")
+		return false
+	}
+	return true
+}
+</SCRIPT>
+</HEAD>
+
+<BODY>
+<H1>Enter/Return Event Trigger</H1>
+<HR>
+<FORM>
+Field 1: <INPUT TYPE="text" NAME="field1" onKeyDown="return processOnEnter(this, event)">
+Field 2: <INPUT TYPE="text" NAME="field2" onKeyDown="return processOnEnter(this, event)">
+Field 3: <INPUT TYPE="text" NAME="field3" onKeyDown="return processOnEnter(this, event)">
+</FORM>
+</BODY>
+</HTML>

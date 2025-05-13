@@ -1,0 +1,40 @@
+<HTML>
+<HEAD>
+<TITLE>Text Object Select/Focus</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+// general purpose function to see if a suspected numeric input is a number
+function isNumber(inputStr) {
+	for (var i = 0; i < inputStr.length; i++) {
+		var oneChar = inputStr.charAt(i)
+		if (oneChar < "0" || oneChar > "9") {
+			alert("Please make sure entries are numbers only.")
+			return false
+		}
+	}
+	return true
+}
+function checkNumeric(fld) {
+	var inputStr = fld.value
+	var fldName = fld.name
+	var formName = fld.form.name
+	if (isNumber(inputStr)) {
+		// statements if true
+	} else {
+		setTimeout("doSelection(document." + formName + ". " + fldName + ")", 0)
+	}
+}
+
+function doSelection(fld) {
+	fld.focus()
+	fld.select()
+}
+</SCRIPT>
+</HEAD>
+
+<BODY>
+<FORM NAME="entryForm" onSubmit="return false">
+Enter any positive integer: <INPUT TYPE="text" NAME="numeric"><P>
+<INPUT TYPE="button" VALUE="Verify" onClick="checkNumeric(this.form.numeric)">
+</FORM>
+</BODY>
+</HTML>

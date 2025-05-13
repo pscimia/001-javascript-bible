@@ -1,0 +1,21 @@
+<HTML>
+<HEAD>
+<TITLE>Text Object DefaultValue</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+function upperMe(field) {
+	field.value = field.value.toUpperCase()
+}
+function resetField(form) {
+	form.converter.value = form.converter.defaultValue
+}
+</SCRIPT>
+</HEAD>
+
+<BODY>
+<FORM onSubmit="window.focus(); return false">
+Enter lowercase letters for conversion to uppercase: <INPUT TYPE="text" NAME="converter" VALUE="sample" onChange="upperMe(this)">
+<INPUT TYPE="button" VALUE="Reset Field" 
+onClick="resetField(this.form)">
+</FORM>
+</BODY>
+</HTML>
