@@ -1,0 +1,32 @@
+<HTML>
+<HEAD>
+<TITLE>Variable Scope Trials</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+var headGlobal = "Gumby"
+function doNothing() {
+	var headLocal = "Pokey"
+	return headLocal
+}
+</SCRIPT>
+</HEAD>
+
+<BODY>
+<SCRIPT LANGUAGE="JavaScript">
+// two global variables
+var aBoy = "Charlie Brown"
+var hisDog = "Snoopy"
+function testValues() {
+	var hisDog = "Gromit"  // initializes local version of "hisDog"
+	var page = ""
+	page += "headGlobal is: " + headGlobal + "<BR>"
+	// page += "headLocal is: " + headLocal + "<BR>" // won't run: headLocal not defined
+	page += "headLocal value returned from head function is: " + doNothing() + "<P>"
+	page += " aBoy is: " + aBoy + "<BR>" // picks up global
+	page += "local version of hisDog is: " + hisDog + "<P>" // "sees" only local version
+	document.write(page)
+}
+testValues()
+document.write("global version of hisDog is intact: " + hisDog)
+</SCRIPT>
+</BODY>
+</HTML>

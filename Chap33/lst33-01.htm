@@ -1,0 +1,27 @@
+<HTML>
+<HEAD>
+<SCRIPT LANGUAGE="JavaScript">
+function hansel(x,y) {
+	var args = hansel.arguments
+	document.write("<P>hansel.caller is " + hansel.caller + "<BR>")
+	document.write("hansel.arguments.length is " + hansel.arguments.length + "<BR>")
+	for (var i = 0; i < args.length; i++) {
+		document.write("argument " + i + " is " + args[i] + "<BR>")
+	}
+	document.write("</P>")
+}
+
+function gretel(x,y,z) {
+	today = new Date()
+	thisYear = today.getFullYear()
+	hansel(x,y,z,thisYear)
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+<SCRIPT LANGUAGE="JavaScript"> 
+hansel(1, "two", 3);
+gretel(4, "five", 6, "seven");
+</SCRIPT>
+</BODY>
+</HTML>

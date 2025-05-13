@@ -1,0 +1,34 @@
+<HTML>
+<HEAD>
+<TITLE>Object Watching</TITLE>
+<SCRIPT LANGUAGE="JavaScript1.2">
+function setIt(msg) {
+	document.forms[0].entry.value = msg
+}
+function watchIt(on) {
+	var obj = document.forms[0].entry
+	if (on) {
+		obj.watch("value",report)
+	} else {
+		obj.unwatch("value")
+	}
+}
+function report(id, oldval, newval) {
+	alert("The field's " + id + " property on its way from \n'" + oldval + "'\n to \n'" + newval + "'.")
+	return newval
+}
+</SCRIPT>
+<BODY>
+<B>Watching Over You</B>
+<HR>
+<FORM>
+Enter text here:
+<INPUT TYPE="text" NAME="entry" SIZE=50 VALUE="Default Value"><P>
+<INPUT TYPE="button" VALUE="Set to Phrase I" onClick="setIt('Four score and seven years ago...')"><BR>
+<INPUT TYPE="button" VALUE="Set to Phrase 2" onClick="setIt('When in the course of human events...')"><BR>
+<INPUT TYPE="reset" onClick="setIt('Default Value')"><P>
+<INPUT TYPE="button" VALUE="Watch It" onClick="watchIt(true)">
+<INPUT TYPE="button" VALUE="Don't Watch It" onClick="watchIt(false)">
+</FORM>
+</BODY>
+</HTML>
