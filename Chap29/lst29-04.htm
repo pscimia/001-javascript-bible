@@ -1,0 +1,60 @@
+<HTML>
+<HEAD>
+<TITLE>Summer Games Countdown</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+// globals -- calculate only once
+// set target date to 1700GMT on August 13, 2004
+var targetDate = Date.UTC(2004, 7, 13, 17, 0, 0, 0)
+var oneMinute = 60 * 1000
+var oneHour = oneMinute * 60
+var oneDay = oneHour * 24
+
+function getTimeUntil(targetMS) {
+	var today = new Date()
+	var diff = targetMS - today.valueOf()
+	return Math.floor(diff)
+}
+function getCountDown() {
+	var ms = getTimeUntil(targetDate)
+	var output = ""
+	var days, hrs, mins, secs
+	if (ms >= 0) {
+		days = Math.floor(ms/oneDay)
+		ms -= oneDay * days
+		hrs = Math.floor(ms/oneHour)
+		ms -= oneHour * hrs
+		mins = Math.floor(ms/oneMinute)
+		ms -= oneMinute * mins
+		secs = Math.floor(ms/1000)
+		output += days + " Days, " + 
+				  hrs + " Hours, " +
+				  mins + " Minutes, " +
+				  secs + " Seconds"
+	} else {
+		output += "The time has passed."
+	}
+	return output
+}
+function updateCountDown() {
+	document.forms[0].timer.value = getCountDown()
+	setTimeout("updateCountDown()", 1000)
+}
+</SCRIPT>
+</HEAD>
+
+<BODY onLoad="updateCountDown()">
+<H1>Athens Games Torch Lighting Countdown</H1>
+<P>
+<SCRIPT LANGUAGE="JavaScript">
+if (navigator.userAgent.indexOf("Win") >= 0) {
+	document.write("(" + (new Date(targetDate)).toLocaleString())
+	document.write(" in your time zone.)")
+}
+</SCRIPT>
+</P>
+<FORM>
+<INPUT TYPE="text" NAME="timer" SIZE=60>
+</FORM>
+<HR>
+</BODY>
+</HTML>

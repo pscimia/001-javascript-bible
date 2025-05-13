@@ -1,0 +1,140 @@
+<HTML>
+<HEAD>
+<TITLE>Date Entry Validation</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+// **BEGIN GENERIC VALIDATION FUNCTIONS**
+// general purpose function to see if an input value has been entered at all
+function isEmpty(inputStr) {
+	if (inputStr == "" || inputStr == null) {
+		return true
+	}
+	return false
+}
+
+// function to determine if value is in acceptable range for this application
+function inRange(inputStr, lo, hi) {
+	var num = parseInt(inputStr, 10)
+	if (num < lo || num > hi) {
+		return false
+	}
+	return true
+}
+// **END GENERIC VALIDATION FUNCTIONS**
+
+function validateMonth(field, bypassUpdate) {
+	var input = field.value
+	if (isEmpty(input)) {
+		alert("Be sure to enter a month value.")
+		select(field)
+		return false
+	} else {
+		input = parseInt(field.value, 10)
+		if (isNaN(input)) {
+			alert("Entries must be numbers only.")
+			select(field)
+			return false
+		} else {
+			if (!inRange(input,1,12)) {
+				alert("Enter a number between 1 (January) and 12 (December).")
+				select(field)
+				return false
+			}
+		}
+	}
+	if (!bypassUpdate) {
+		calcDate()
+	}
+	return true
+}
+
+function validateDate(field) {
+	var input = field.value
+	if (isEmpty(input)) {
+		alert("Be sure to enter a date value.")
+		select(field)
+		return false
+	} else {
+		input = parseInt(field.value, 10)
+		if (isNaN(input)) {
+			alert("Entries must be numbers only.")
+			select(field)
+			return false
+		} else {
+			var monthField = document.birthdate.month
+			if (!validateMonth(monthField, true)) return false
+			var monthVal = parseInt(monthField.value, 10)
+			var monthMax = new Array(31,31,29,31,30,31,30,31,31,30,31,30,31)
+			var top = monthMax[monthVal]
+			if (!inRange(input,1,top)) {
+				alert("Enter a number between 1 and " + top + ".")
+				select(field)
+				return false
+			}
+		}
+	}
+	calcDate()
+	return true
+}
+
+function validateYear(field) {
+	var input = field.value
+	if (isEmpty(input)) {
+		alert("Be sure to enter a year value.")
+		select(field)
+		return false
+	} else {
+		input = parseInt(field.value, 10)
+		if (isNaN(input)) {
+			alert("Entries must be numbers only.")
+			select(field)
+			return false
+		} else {
+			if (!inRange(input,1900,2005)) {
+				alert("Enter a number between 1900 and 2005.")
+				select(field)
+				return false
+			}
+		}
+	}
+	calcDate()
+	return true
+}
+
+function select(field) {
+	field.focus()
+	field.select()
+}
+
+function calcDate() {
+	var mm = parseInt(document.birthdate.month.value, 10)
+	var dd = parseInt(document.birthdate.date.value, 10)
+	var yy = parseInt(document.birthdate.year.value, 10)
+	document.birthdate.fullDate.value = mm + "/" + dd + "/" + yy
+}
+
+function checkForm(form) {
+	if (validateMonth(form.month)) {
+		if (validateDate(form.date)) {
+			if (validateYear(form.year)) {
+				return true
+			}
+		}
+	}
+	return false
+}
+//-->
+</SCRIPT>
+</HEAD>
+<BODY>
+<FORM NAME="birthdate" ACTION="mailto:fun@dannyg.com" METHOD=POST onSubmit="return checkForm(this)">
+Please enter your birthdate...<BR>
+Month:<INPUT TYPE="text" NAME="month" VALUE=1 SIZE=2 onChange="validateMonth(this)">
+Date:<INPUT TYPE="text" NAME="date" VALUE=1 SIZE=2 onChange="validateDate(this)">
+Year:<INPUT TYPE="text" NAME="year" VALUE=1900 SIZE=4 onChange="validateYear(this)">
+<P>
+Thank you for entering:<INPUT TYPE="text" NAME="fullDate" SIZE=10><P>
+<INPUT TYPE="submit"> <INPUT TYPE="Reset">
+</FORM>
+</BODY>
+</HTML>
