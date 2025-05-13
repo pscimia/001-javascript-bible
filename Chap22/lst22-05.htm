@@ -1,0 +1,67 @@
+<HTML>
+<HEAD>
+<TITLE>Checkbox Event Handler</TITLE>
+<STYLE TYPE="text/css">
+#monGroup {visibility:hidden}
+#comGroup {visibility:hidden}
+</STYLE>
+<SCRIPT LANGUAGE="JavaScript">
+// toggle visibility of a main group spans
+function toggle(chkbox, group) {
+	var visSetting = (chkbox.checked) ? "visible" : "hidden"
+	document.getElementById(group).style.visibility = visSetting
+}
+// swap display of communications sub group spans
+function swap(radBtn, group) {
+	var modemsVisSetting = (group == "modems") ? ((radBtn.checked) ? "" : "none") : "none"
+	var netwksVisSetting = (group == "netwks") ? ((radBtn.checked) ? "" : "none") : "none"
+	document.getElementById("modems").style.display = modemsVisSetting
+	document.getElementById("netwks").style.display = netwksVisSetting
+}
+</SCRIPT>
+</HEAD>
+
+<BODY>
+<FORM>
+<H3>Check all accessories for your computer:</H3>
+<TABLE BORDER=2 CELLPADDING=5>
+<TR>
+	<TD>
+	<INPUT TYPE="checkbox" NAME="monitor" onClick="toggle(this, 'monGroup')">Monitor
+	</TD>
+	<TD>
+	<SPAN ID="monGroup">
+		<INPUT TYPE="radio" NAME="monitorType">15"
+		<INPUT TYPE="radio" NAME="monitorType">17"
+		<INPUT TYPE="radio" NAME="monitorType">21"
+		<INPUT TYPE="radio" NAME="monitorType">&gt;21"
+	</SPAN>
+	</TD>
+</TR>
+<TR>
+	<TD>
+	<INPUT TYPE="checkbox" NAME="comms" onClick="toggle(this, 'comGroup')">Communications
+	</TD>
+	<TD>
+	<SPAN ID="comGroup">
+		<P><INPUT TYPE="radio" NAME="commType" onClick="swap(this, 'modems')">Modem
+		<INPUT TYPE="radio" NAME="commType" onClick="swap(this, 'netwks')">Network</P>
+			<P><SPAN ID="modems" STYLE="display:none">
+				<INPUT TYPE="radio" NAME="modemType">&lt;56kbps
+				<INPUT TYPE="radio" NAME="modemType">56kbps
+				<INPUT TYPE="radio" NAME="modemType">ISDN (any speed)
+				<INPUT TYPE="radio" NAME="modemType">Cable
+			</SPAN>
+			<SPAN ID="netwks" STYLE="display:none">
+				<INPUT TYPE="radio" NAME="netwkType">Ethernet 10Mbps (10-Base T)
+				<INPUT TYPE="radio" NAME="netwkType">Ethernet 100Mbps (10/100)
+				<INPUT TYPE="radio" NAME="netwkType">T1 or greater
+			</SPAN>&nbsp;</P>
+	</SPAN>
+	</TD>
+</TR>
+
+</TABLE>
+</FORM>
+</BODY>
+</HTML>

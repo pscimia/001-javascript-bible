@@ -1,0 +1,21 @@
+<HTML>
+<HEAD>
+<TITLE>Checkbox Inspector</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+function inspectBox(form) {
+	if (form.checkThis.checked) {
+		alert("The box is checked.")
+	} else {
+		alert("The box is not checked at the moment.")
+	}
+}
+</SCRIPT>
+</HEAD>
+
+<BODY>
+<FORM>
+<INPUT TYPE="checkbox" NAME="checkThis">Check here<P>
+<INPUT TYPE="button" NAME="boxChecker" VALUE="Inspect Box" onClick="inspectBox(this.form)">
+</FORM>
+</BODY>
+</HTML>

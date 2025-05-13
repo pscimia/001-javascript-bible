@@ -1,0 +1,21 @@
+<HTML>
+<HEAD>
+<TITLE>Checkbox Submission</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+function setAction(form) {
+	if (form.checkThis.checked) {
+		form.action = form.checkThis.value
+	} else {
+		form.action = "file://primaryURL"
+	}
+	return true
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+<FORM METHOD="POST" ACTION="">
+<INPUT TYPE="checkbox" NAME="checkThis" VALUE="file://alternateURL">Use alternate<P>
+<INPUT TYPE="submit" NAME="boxChecker" onClick="return setAction(this.form)">
+</FORM>
+</BODY>
+</HTML>

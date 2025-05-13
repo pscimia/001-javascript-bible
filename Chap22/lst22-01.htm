@@ -1,0 +1,21 @@
+<HTML>
+<HEAD>
+<TITLE>Button Click</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+function displayTeam(btn) {
+	if (btn.value == "Abbott") {alert("Abbott & Costello")}
+	if (btn.value == "Rowan") {alert("Rowan & Martin")}
+	if (btn.value == "Martin") {alert("Martin & Lewis")}
+}
+</SCRIPT>
+</HEAD>
+
+<BODY>
+Click on your favorite half of a popular comedy team:<P>
+<FORM>
+<INPUT TYPE="button" VALUE="Abbott" onClick="displayTeam(this)">
+<INPUT TYPE="button" VALUE="Rowan" onClick="displayTeam(this)">
+<INPUT TYPE="button" VALUE="Martin" onClick="displayTeam(this)">
+</FORM>
+</BODY>
+</HTML>

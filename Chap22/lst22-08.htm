@@ -1,0 +1,38 @@
+<HTML>
+<HEAD>
+<TITLE>Radio Button onClick Handler</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+var ShempOPhile = false
+function initValue() {
+	ShempOPhile = document.forms[0].stooges[3].checked
+}
+ function fullName(form) {
+	for (var i = 0; i < form.stooges.length; i++) {
+		if (form.stooges[i].checked) {
+			break
+		}
+	}
+	alert("You chose " + form.stooges[i].value + ".")
+}
+function setShemp(setting) {
+	ShempOPhile = setting
+}
+function exitMsg() {
+	if (ShempOPhile) {
+		alert("You like SHEMP?")
+	}
+}
+</SCRIPT>
+</HEAD>
+
+<BODY onLoad="initValue()" onUnload="exitMsg()">
+<FORM>
+<B>Select your favorite Stooge:</B><P>
+<INPUT TYPE="radio" NAME="stooges" VALUE="Moe Howard" CHECKED onClick="setShemp(false)">Moe
+<INPUT TYPE="radio" NAME="stooges" VALUE="Larry Fine" onClick="setShemp(false)">Larry
+<INPUT TYPE="radio" NAME="stooges" VALUE="Curly Howard" onClick="setShemp(false)">Curly
+<INPUT TYPE="radio" NAME="stooges" VALUE="Shemp Howard" onClick="setShemp(true)">Shemp<P>
+<INPUT TYPE="button" NAME="Viewer" VALUE="View Full Name..." onClick="fullName(this.form)">
+</FORM>
+</BODY>
+</HTML>
