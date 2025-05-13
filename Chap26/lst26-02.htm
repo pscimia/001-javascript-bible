@@ -1,0 +1,55 @@
+<HTML>
+<HEAD>
+<TITLE>IE4+ Transition and Choices</TITLE>
+<STYLE TYPE="text/css">
+IMG {filter:revealTrans(transition=10)}
+</STYLE>
+<SCRIPT LANGUAGE="JavaScript">
+function doReveal() {
+	document.all.myIMG.filters["revealTrans"].transition = document.forms[0].transChoice.value
+	document.all.myIMG.filters["revealTrans"].apply()
+	if (document.all.myIMG.src.indexOf("desk1") != -1) {
+		document.all.myIMG.src = "desk3.gif"
+	} else {
+		document.all.myIMG.src = "desk1.gif"
+	}
+	document.all.myIMG.filters["revealTrans"].play()
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+<H1>IE4+ Transition and Choices</H1>
+<HR>
+<FORM>
+<P>Choose the desired transition type:
+<SELECT NAME="transChoice">
+	<OPTION VALUE=0>Box in
+	<OPTION VALUE=1>Box out
+	<OPTION VALUE=2>Circle in
+	<OPTION VALUE=3>Circle out
+	<OPTION VALUE=4>Wipe up
+	<OPTION VALUE=5>Wipe down
+	<OPTION VALUE=6>Wipe right
+	<OPTION VALUE=7>Wipe left
+	<OPTION VALUE=8>Vertical blinds
+	<OPTION VALUE=9>Horizontal blinds
+	<OPTION VALUE=10>Checkerboard across
+	<OPTION VALUE=11>Checkerboard down
+	<OPTION VALUE=12>Random dissolve
+	<OPTION VALUE=13>Split vertical in
+	<OPTION VALUE=14>Split verical out
+	<OPTION VALUE=15>Split horizontal in
+	<OPTION VALUE=16>Split horizontal out
+	<OPTION VALUE=17>Strips left down
+	<OPTION VALUE=18>Strips left up
+	<OPTION VALUE=19>Strips right down
+	<OPTION VALUE=20>Strips right up
+	<OPTION VALUE=21>Random bars horizontally
+	<OPTION VALUE=22>Random bars vertically
+	<OPTION VALUE=23>Random effect
+</SELECT>
+</FORM>
+<P>Click on the image to cause a reveal transition.</P>
+<IMG ID="myIMG" SRC="desk1.gif" HEIGHT=90 WIDTH=120 onClick="doReveal()">
+</BODY>
+</HTML>

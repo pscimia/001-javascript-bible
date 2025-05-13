@@ -1,0 +1,25 @@
+<HTML>
+<HEAD>
+<TITLE>IE4+ Transition</TITLE>
+<STYLE TYPE="text/css">
+IMG {filter:revealTrans(transition=10)}
+</STYLE>
+<SCRIPT LANGUAGE="JavaScript">
+function doReveal() {
+	document.all.myIMG.filters["revealTrans"].apply()
+	if (document.all.myIMG.src.indexOf("desk1") != -1) {
+		document.all.myIMG.src = "desk3.gif"
+	} else {
+		document.all.myIMG.src = "desk1.gif"
+	}
+	document.all.myIMG.filters["revealTrans"].play()
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+<H1>IE4+ Transition</H1>
+<HR>
+<P>Click on the image to cause a reveal transition.</P>
+<IMG ID="myIMG" SRC="desk1.gif" HEIGHT=90 WIDTH=120 onClick="doReveal()">
+</BODY>
+</HTML>
