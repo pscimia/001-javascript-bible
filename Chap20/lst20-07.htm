@@ -1,0 +1,80 @@
+<HTML>
+<HEAD>
+<TITLE>MAP Element Object</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+// generate area elements on the fly
+function makeAreas() {
+	document.myIMG.src = "desk3.gif"
+	// build area element objects
+	var area1 = document.createElement("AREA")
+	area1.href = "Script-Made-Shade.html"
+	area1.shape = "polygon"
+	area1.coords = "52,28,108,35,119,29,119,8,63,0,52,28"
+	var area2 = document.createElement("AREA")
+	area2.href = "Script-Made-Base.html"
+	area2.shape = "rect"
+	area2.coords = "75,65,117,87"
+	var area3 = document.createElement("AREA")
+	area3.href = "Script-Made-Chain.html"
+	area3.shape = "polygon"
+	area3.coords = "68,51,73,51,69,32,68,51"
+	var area4 = document.createElement("AREA")
+	area4.href = "Script-Made-Emptyness.html"
+	area4.shape = "rect"
+	area4.coords = "0,0,50,120"
+	// stuff new elements into MAP child nodes
+	if (document.all) {
+		// works for IE4+
+		document.all.lamp_map.areas.length = 0
+		document.all.lamp_map.areas[0] = area1
+		document.all.lamp_map.areas[1] = area2
+		document.all.lamp_map.areas[2] = area3
+		document.all.lamp_map.areas[3] = area4
+	} else if (document.getElementById) {
+		// NN6 adheres to node model
+		var mapObj = document.getElementById("lamp_map")
+		while (mapObj.childNodes.length) {
+			mapObj.removeChild(mapObj.firstChild)
+		}
+		mapObj.appendChild(area1)
+		mapObj.appendChild(area2)
+		mapObj.appendChild(area3)
+		mapObj.appendChild(area4)
+		// workaround NN6 display bug
+		document.myIMG.style.display = "inline"
+	}
+}
+
+function changeToKeyboard() {
+	document.myIMG.src = "cpu2.gif"
+	document.myIMG.useMap = "#keyboardMap"
+}
+
+function changeToLamp() {
+	document.myIMG.src = "desk3.gif"
+	document.myIMG.useMap = "#lampMap"
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+<H1>MAP Element Object</H1>
+<HR>
+<IMG NAME="myIMG" SRC="cpu2.gif" WIDTH=120 HEIGHT=90 USEMAP="#keyboardMap">
+<MAP NAME="keyboardMap">
+<AREA HREF="AlpaKeys.htm" SHAPE="rect" COORDS="0,0,26,42">
+<AREA HREF="ArrowKeys.htm" SHAPE="polygon" COORDS="48,89,57,77,69,82,77,70,89,78,84,89,48,89">
+<AREA HREF="PageKeys.htm" SHAPE="circle" COORDS="104,51,14">
+</MAP>
+<MAP NAME="lampMap" ID="lamp_map">
+<AREA HREF="Shade.htm" SHAPE="polygon" COORDS="52,28,108,35,119,29,119,8,63,0,52,28">
+<AREA HREF="Base.htm" SHAPE="rect" COORDS="75,65,117,87">
+<AREA HREF="Chain.htm" SHAPE="polygon" COORDS="68,51,73,51,69,32,68,51">
+</MAP>
+<FORM>
+<P><INPUT TYPE="button" VALUE="Load Lamp Image" onClick="changeToLamp()">
+<INPUT TYPE="button" VALUE="Write Map on the Fly" onClick="makeAreas()"></P>
+<P>
+<INPUT TYPE="button" VALUE="Load Keyboard Image" onClick="changeToKeyboard()"></P>
+</FORM>
+</BODY>
+</HTML>

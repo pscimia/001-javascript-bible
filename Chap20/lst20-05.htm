@@ -1,0 +1,33 @@
+<HTML>
+<HEAD>
+<SCRIPT LANGUAGE="JavaScript">
+function loadIt(theImage,form) {
+	if (document.images) {
+		form.result.value = ""
+		document.images[0].lowsrc = "desk1.gif"
+		document.images[0].src = theImage
+	}
+}
+function checkLoad(form) {
+	if (document.images) {
+		form.result.value = document.images[0].complete
+	}
+}
+function signal() {
+	if(confirm("You have stopped the image from loading. Do you want to try again?")) {
+		location.reload()
+	}
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+<IMG SRC="cpu2.gif" LOWSRC="desk4.gif" WIDTH=120 HEIGHT=90 onLoad="if (document.forms[0].result) document.forms[0].result.value='done'" onAbort="signal()">
+<FORM>
+<INPUT TYPE="button" VALUE="Load keyboard" onClick="loadIt('cpu2.gif',this.form)">
+<INPUT TYPE="button" VALUE="Load arch" onClick="loadIt('arch.gif',this.form)"><P>
+<INPUT TYPE="button" VALUE="Is it loaded yet?" onClick="checkLoad(this.form)">
+<INPUT TYPE="text" NAME="result">
+<INPUT TYPE="hidden">
+</FORM>
+</BODY>
+</HTML>

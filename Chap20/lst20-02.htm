@@ -1,0 +1,22 @@
+<HTML>
+<HEAD>
+<SCRIPT LANGUAGE="JavaScript1.1">
+function loadIt(theImage,form) {
+	form.result.value = ""
+	document.images[0].src = theImage
+}
+function checkLoad(form) {
+	form.result.value = document.images[0].complete
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+<IMG SRC="cpu2.gif" WIDTH=120 HEIGHT=90 onLoad="">
+<FORM>
+<INPUT TYPE="button" VALUE="Load keyboard" onClick="loadIt('cpu2.gif',this.form)">
+<INPUT TYPE="button" VALUE="Load arch" onClick="loadIt('arch.gif',this.form)"><P>
+<INPUT TYPE="button" VALUE="Is it loaded yet?" onClick="checkLoad(this.form)">
+<INPUT TYPE="text" NAME="result">
+</FORM>
+</BODY>
+</HTML>

@@ -1,0 +1,35 @@
+<HTML>
+<HEAD>
+<TITLE>IMG align Property</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+
+function setAlignment(sel) {
+	document.myIMG.align = sel.options[sel.selectedIndex].text
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+<H1>IMG align Property</H1>
+<HR>
+<FORM>
+Choose the image alignment:
+<SELECT onChange="setAlignment(this)">
+	<OPTION>absbottom
+	<OPTION>absmiddle
+	<OPTION>baseline
+	<OPTION SELECTED >bottom
+	<OPTION >left
+	<OPTION>middle
+	<OPTION>right
+	<OPTION>texttop
+	<OPTION>top
+</SELECT>
+</FORM>
+<HR>
+<P>Lorem ipsum dolor sit amet, consectetaur adipisicing elit, 
+sed do eiusmod tempor incididunt ut labore et dolore magna 
+aliqua. <IMG NAME="myIMG" SRC="desk1.gif" HEIGHT=90 WIDTH=120>
+Ut enim adminim veniam, quis nostrud exercitation 
+ullamco laboris nisi ut aliquip ex ea commodo consequat.</P>
+</BODY>
+</HTML>

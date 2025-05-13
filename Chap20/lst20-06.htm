@@ -1,0 +1,29 @@
+<HTML>
+<HEAD>
+<SCRIPT LANGUAGE="JavaScript">
+function show(msg) {
+	window.status = msg
+	return true
+}
+function go(where) {
+	alert("We're going to " + where + "!")
+}
+function clearIt() {
+	window.status = ""
+	return true
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+<H1>Sinai and Vicinity</H1>
+<IMG SRC="nile.gif" WIDTH=320 HEIGHT=240 USEMAP="#sinai">
+<MAP NAME="sinai">
+	<AREA HREF="javascript:go('Cairo')" COORDS="12,152,26,161" SHAPE="rect" onMouseOver="return show('Cairo')" onMouseOut="return clearIt()">
+	<AREA HREF="javascript:go('the Nile River')" COORDS="1,155,6,162,0,175,3,201,61,232,109,227,167,238,274,239,292,220,307,220,319,230,319,217,298,213,282,217,267,233,198,228,154,227,107,221,71,225,21,199,19,165,0,149" SHAPE="poly" onMouseOver="return show('Nile River')" onMouseOut="return clearIt()">
+	<AREA HREF="javascript:go('Israel')" COORDS="95,69,201,91" SHAPE="rect" onMouseOver="return show('Israel')" onMouseOut="return clearIt()">
+	<AREA HREF="javascript:go('Saudi Arabia')" COORDS="256,57,319,121" SHAPE="rect" onMouseOver="return show('Saudi Arabia')" onMouseOut="return clearIt()">
+	<AREA HREF="javascript:go('the Mediterranean Sea')" COORDS="1,55,26,123" SHAPE="rect" onMouseOver="return show('Mediterranean Sea')" onMouseOut="return clearIt()">
+	<AREA HREF="javascript:go('the Mediterranean Sea')" COORDS="27,56,104,103" SHAPE="rect" onMouseOver="return show('Mediterranean Sea')" onMouseOut="return clearIt()">
+</MAP>
+</BODY>
+</HTML>

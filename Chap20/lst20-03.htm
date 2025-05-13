@@ -1,0 +1,44 @@
+<HTML>
+<HEAD>
+<TITLE>IMG dynsrc Property</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+
+var trainImg = new Image(160,120)
+trainImg.src = "amtrak.jpg"
+trainImg.dynsrc = "amtrak.mpg"
+
+function setLoop() {
+	var selector = document.forms[0].looper
+	document.myIMG.loop = selector.options[selector.selectedIndex].value
+}
+
+function setImage(type) {
+	if (type == "jpg") {
+		document.myIMG.dynsrc = ""
+		document.myIMG.src = trainImg.src
+	} else {
+		document.myIMG.src = ""
+		document.myIMG.start = "fileopen"
+		setLoop()
+		document.myIMG.dynsrc = trainImg.dynsrc
+	}
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+<H1>IMG dynsrc Property</H1>
+<HR>
+<FORM>
+Choose image type: 
+<INPUT TYPE="radio" NAME="imgGroup" CHECKED onClick="setImage('jpg')">Still
+<INPUT TYPE="radio" NAME="imgGroup" onClick="setImage('mpg')">Video
+<P>Play video how many times after loading: <SELECT NAME="looper" onChange="setLoop()">
+	<OPTION VALUE=1 SELECTED>Once
+	<OPTION VALUE=2>Twice
+	<OPTION VALUE=-1>Continuously
+</SELECT></P>
+</FORM>
+<HR>
+<IMG NAME="myIMG" SRC="amtrak.jpg" HEIGHT=120 WIDTH=160>
+</BODY>
+</HTML>
