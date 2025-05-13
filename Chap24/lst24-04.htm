@@ -1,0 +1,32 @@
+<HTML>
+<HEAD>
+<TITLE>Accessories List</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+function seeList(form) {
+	var result = ""
+	for (var i = 0; i < form.accList.length; i++) {
+		if (form.accList.options[i].selected) {
+			result += "\n  " + form.accList.options[i].text
+		}
+}
+	alert("You have selected:" + result)
+}
+</SCRIPT>
+</HEAD>
+
+<BODY>
+<FORM>
+<P>Control/Command-click on all accessories you use:
+<SELECT NAME="accList" SIZE=9 MULTIPLE>
+	<OPTION SELECTED>Color Monitor
+	<OPTION>Modem
+	<OPTION>Scanner
+	<OPTION>Laser Printer
+	<OPTION>Tape Backup
+	<OPTION>MO Drive
+	<OPTION>Video Camera
+</SELECT> </P>
+<P><INPUT TYPE="button" VALUE="View Summary..." onClick="seeList(this.form)"></P>
+</FORM>
+</BODY>
+</HTML>

@@ -1,0 +1,21 @@
+<HTML>
+<HEAD>
+<TITLE>Select Inspector</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+function inspect(form) {
+	alert(form.colorsList.options[form.colorsList.selectedIndex].text)
+}
+</SCRIPT>
+</HEAD>
+
+<BODY>
+<FORM>
+<P><SELECT NAME="colorsList">
+	<OPTION SELECTED>Red
+	<OPTION VALUE="Plants"><I>Green</I>
+	<OPTION>Blue
+</SELECT></P>
+<P><INPUT TYPE="button" VALUE="Show Selection" onClick="inspect(this.form)"></P>
+</FORM>
+</BODY>
+</HTML>

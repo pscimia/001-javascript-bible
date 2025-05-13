@@ -1,0 +1,58 @@
+<HTML>
+<HEAD>
+<TITLE>Color Changer 3</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+var regularLabels = ["Reds","Greens","Blues"]
+var naturalLabels = ["Apples","Leaves","Sea"]
+function setRegularLabels(list) {
+	var optGrps = list.getElementsByTagName("OPTGROUP")
+	for (var i = 0; i < optGrps.length; i++) {
+		optGrps[i].label = regularLabels[i]
+	}
+}
+function setNaturalLabels(list) {
+	var optGrps = list.getElementsByTagName("OPTGROUP")
+	for (var i = 0; i < optGrps.length; i++) {
+		optGrps[i].label = naturalLabels[i]
+	}
+}
+function seeColor(list) {
+	var newColor = (list.options[list.selectedIndex].value)
+	if (newColor) {
+		document.bgColor = newColor
+	}
+}
+</SCRIPT>
+</HEAD>
+
+<BODY onUnload="document.forms[0].reset()">
+<FORM>
+<P>Choose a background color:
+<SELECT name="colorsList" onChange="seeColor(this)">
+	<OPTGROUP ID="optGrp1" label="Reds">
+		<OPTION value="#ff9999">Light Red
+		<OPTION value="#ff3366">Medium Red
+		<OPTION value="#ff0000">Bright Red
+		<OPTION value="#660000">Dark Red
+	</OPTGROUP>
+	<OPTGROUP ID="optGrp2" label="Greens">
+		<OPTION value="#ccff66">Light Green
+		<OPTION value="#99ff33">Medium Green
+		<OPTION value="#00ff00">Bright Green
+		<OPTION value="#006600">Dark Green
+	</OPTGROUP>
+	<OPTGROUP ID="optGrp3" label="Blues">
+		<OPTION value="#ccffff">Light Blue
+		<OPTION value="#66ccff">Medium Blue
+		<OPTION value="#0000ff">Bright Blue
+		<OPTION value="#000066">Dark Blue
+	</OPTGROUP>
+</SELECT></P>
+<P>
+<INPUT TYPE="radio" NAME="labels" CHECKED
+onClick="setRegularLabels(this.form.colorsList)">Regular Label Names
+<INPUT TYPE="radio" NAME="labels" 
+onClick="setNaturalLabels(this.form.colorsList)">Label Names from Nature</P>
+</FORM>
+</BODY>
+</HTML>

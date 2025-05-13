@@ -1,0 +1,26 @@
+<HTML>
+<HEAD>
+<TITLE>Color Changer 2</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+function seeColor(list) {
+	var newColor = (list.options[list.selectedIndex].value)
+	if (newColor) {
+		document.bgColor = newColor
+	}
+}
+</SCRIPT>
+</HEAD>
+
+<BODY onUnload="document.forms[0].reset()">
+<FORM>
+<P>Choose a background color:
+<SELECT NAME="colorsList" onChange="seeColor(this)">
+	<OPTION SELECTED VALUE="">
+	<OPTION VALUE="cornflowerblue">Cornflower Blue
+	<OPTION VALUE="darksalmon">Dark Salmon
+	<OPTION VALUE="lightgoldenrodyellow">Light Goldenrod Yellow
+	<OPTION VALUE="seagreen">Sea Green
+</SELECT></P>
+</FORM>
+</BODY>
+</HTML>

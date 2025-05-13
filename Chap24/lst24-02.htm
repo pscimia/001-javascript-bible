@@ -1,0 +1,88 @@
+<HTML>
+<HEAD>
+<TITLE>Changing Options On The Fly</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+// flag to reload page for older NNs
+var isPreNN6 = (navigator.appName == "Netscape" && parseInt(navigator.appVersion) <= 4)
+
+// initialize color list arrays
+plainList = new Array(6)
+hardList = new Array(6)
+plainList[0] = "cyan"
+hardList[0] = "#00FFFF"
+plainList[1] = "magenta"
+hardList[1] = "#FF00FF"
+plainList[2] = "yellow"
+hardList[2] = "#FFFF00"
+plainList[3] = "lightgoldenrodyellow"
+hardList[3] = "#FAFAD2"
+plainList[4] = "salmon"
+hardList[4] = "#FA8072"
+plainList[5] = "dodgerblue"
+hardList[5] = "#1E90FF"
+
+// change color language set
+function setLang(which) {
+	var listObj = document.forms[0].colors
+	var newOpt
+	// filter out old IE browsers
+	if (listObj.type) {
+		// find out if it's 3 or 6 entries
+		var listLength = listObj.length
+		// save selected index
+		var currSelected = listObj.selectedIndex
+		// replace individual existing entries
+		for (var i = 0; i < listLength; i++) {
+			newOpt = document.createElement("OPTION")
+			newOpt.text = (which == "plain") ? plainList[i] : hardList[i]
+			listObj.options.remove(i)
+			listObj.options.add(newOpt, i)
+		}
+		listObj.selectedIndex = currSelected
+	}
+}
+
+// create entirely new options list
+function setCount(choice) {
+	var listObj = document.forms[0].colors
+	var newOpt
+	// filter out old browsers
+	if (listObj.type) {
+		// get language setting
+		var lang = (document.forms[0].geekLevel[0].checked) ? "plain" : "hard"
+		// empty options from list
+		while (listObj.options.length) {
+			listObj.options.remove(0)
+		}
+		// create new option object for each entry
+		for (var i = 0; i < choice.value; i++) {
+			newOpt = document.createElement("OPTION")
+			newOpt.text = (lang == "plain") ? plainList[i] : hardList[i]
+			listObj.options.add(newOpt)
+		}
+		listObj.options[0].selected = true
+	}
+}
+</SCRIPT>
+</HEAD>
+
+<BODY>
+<H1>Flying Select Options</H1>
+<FORM>
+Choose a palette size:
+<INPUT TYPE="radio" NAME="paletteSize" VALUE=3 onClick="setCount(this)" CHECKED>Three
+<INPUT TYPE="radio" NAME="paletteSize" VALUE=6 onClick="setCount(this)">Six
+<P>
+Choose geek level:
+<INPUT TYPE="radio" NAME="geekLevel" VALUE="" onClick="setLang('plain')" CHECKED>Plain-language
+<INPUT TYPE="radio" NAME="geekLevel" VALUE="" onClick="setLang('hard')">Gimme hex-triplets!
+<P>
+Select a color:
+<SELECT NAME="colors">
+	<OPTION SELECTED>cyan
+	<OPTION>magenta
+	<OPTION>yellow
+</SELECT>
+</FORM>
+</BODY>
+</HTML>
