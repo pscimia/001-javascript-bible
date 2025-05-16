@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta content="text/html; charset=ISO-8859-1"
+http-equiv="content-type">
+<title></title>
+<script lang="JavaScript">
+    var USStates = new Array(51)
+    USStates[0] = "Alabama"
+    USStates[1] = "Alaska"
+    USStates[2] = "Arizona"
+    USStates[3] = "Arkansas"
+    USStates[4] = "California"
+    USStates[5] = "Colorado"
+    USStates[6] = "Connecticut"
+    USStates[7] = "Delaware"
+    USStates[8] = "District of Columbia"
+    USStates[9] = "Florida"
+    USStates[10] = "Georgia"
+    USStates[11] = "Hawaii"
+    USStates[12] = "Idaho"
+    USStates[13] = "Illinois"
+    USStates[14] = "Indiana"
+    USStates[15] = "Iowa"
+    USStates[16] = "Kansas"
+    USStates[17] = "Kentucky"
+    USStates[18] = "Louisiana"
+    USStates[19] = "Maine"
+    USStates[20] = "Maryland"
+    USStates[21] = "Massachuserts"
+    USStates[22] = "Michigan"
+    USStates[23] = "Minnesota"
+    USStates[24] = "Mississipi"
+    USStates[25] = "Missouri"
+    USStates[26] = "Montana"
+    USStates[27] = "Nebraska"
+    USStates[28] = "Nevada"
+    USStates[29] = "New Hampshire"
+    USStates[30] = "New Jersey"
+    USStates[31] = "New Mexico"
+    USStates[32] = "New York"
+    USStates[33] = "North Carolina"
+    USStates[34] = "North Dakota"
+    USStates[35] = "Ohio"
+    USStates[36] = "Oklahoma"
+    USStates[37] = "Oregon"
+    USStates[38] = "Pennsylvania"
+    USStates[39] = "Rhode Island"
+    USStates[40] = "South Carolina"
+    USStates[41] = "South Dakota"
+    USStates[42] = "Tennessee"
+    USStates[43] = "Texas"
+    USStates[44] = "Utah"
+    USStates[45] = "Vermont"
+    USStates[46] = "Virginia"
+    USStates[47] = "Washington"
+    USStates[48] = "West Virginia"
+    USStates[49] = "Wisconsin"
+    USStates[50] = "Wyoming"
+
+    var stateEntered = new Array[51]
+    stateEntered[0] = 1819
+    stateEntered[1] = 1959
+    stateEntered[2] = 1912
+    stateEntered[3] = 1836
+    stateEntered[4] = 1850
+    stateEntered[5] = 1876
+    stateEntered[6] = 1788
+    stateEntered[7] = 1787
+    stateEntered[8] = 2000
+    stateEntered[9] = 1845
+    stateEntered[10] = 1788
+    stateEntered[11] = 1959
+    stateEntered[12] = 1890
+    stateEntered[13] = 1818
+    stateEntered[14] = 1816
+    stateEntered[15] = 1846
+    stateEntered[16] = 1961
+    stateEntered[17] = 1792
+    stateEntered[18] = 1812
+    stateEntered[19] = 1820
+    stateEntered[20] = 1788
+    stateEntered[21] = 1788
+    stateEntered[22] = 1837
+    stateEntered[23] = 1858
+    stateEntered[24] = 1817
+    stateEntered[25] = 1823
+    stateEntered[26] = 1889
+    stateEntered[27] = 1867
+    stateEntered[28] = 1864
+    stateEntered[29] = 1788
+    stateEntered[30] = 1787
+    stateEntered[31] = 1912
+    stateEntered[32] = 1789
+    stateEntered[33] = 1789
+    stateEntered[34] = 1889
+    stateEntered[35] = 1803
+    stateEntered[36] = 1907
+    stateEntered[37] = 1859
+    stateEntered[38] = 1787
+    stateEntered[39] = 1790
+    stateEntered[40] = 1788
+    stateEntered[41] = 1889
+    stateEntered[42] = 1796
+    stateEntered[43] = 1845
+    stateEntered[44] = 1896
+    stateEntered[45] = 1791
+    stateEntered[46] = 1788
+    stateEntered[47] = 1889
+    stateEntered[48] = 1863
+    stateEntered[49] = 1848
+    stateEntered[50]= 1890
+
+    function getStateDate() {
+        var selectedState = document.entryForm.entry.value
+        for ( var i = 0; i < USStates.length; i++) {
+            if (USStates[i] == selectedState) {
+               
+                break
+         }
+        }
+        alert("Questo stato e\' entrato nell\'Unione nel " + stateEntered[i] + ".")
+    }
+</script>
+</head>
+<body>
+<form name="entryForm">
+Inserisci il nome di uno stato:
+<input type="text" name="entry">
+<input type="button" value="Cerca data di entrata" onClick="getStateDate()">
+</form>
+</body>
+</html>
