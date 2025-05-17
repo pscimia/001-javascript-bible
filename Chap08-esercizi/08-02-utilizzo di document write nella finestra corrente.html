@@ -1,0 +1,27 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta content="text/html; charset=ISO-8859-1"
+http-equiv="content-type">
+<title>Scrivere nello stesso doc</title>
+<script lang="javascript">
+    function reWrite() {
+        // assembla il contenuto per la nuova finestra
+        var nuovoContenuto = "<HTML><HEAD><TITLE>Un nuovo doc</TITLE></HEAD>"
+            nuovoContenuto += "<BODY BGCOLOR='aqua'><H1>Questo documento e\' nuovo,</H1>"
+                nuovoContenuto += "Fai click sul pulsante Indietro per vedere il documento originale."
+                nuovoContenuto += "</BODY></HTML>"
+                // scrive HTML nel nuovo documento
+                document.write(nuovoContenuto)
+                document.close() // chiude flusso di layout
+    }
+</script>
+</head>
+<body>
+<br>
+<form>
+    <input type="button" value="Sostituisci contenuto" onclick="reWrite()">
+</form>
+</body>
+</html>

@@ -1,0 +1,29 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+<title>Aprire e chiudere finestre</title>
+<script lang="javascript">
+    var nuovaFinestra
+    function creaNuovaFinestra() {
+        nuovaFinestra = window.open("","","HEIGHT=300,WIDTH=300")
+    }
+    function chiudiNuovaFinestra() {
+        if (nuovaFinestra) {
+            nuovaFinestra.close()
+            nuovaFinestra = null
+        }
+    }
+</script>
+</head>
+<body>
+<form>
+    <input type="button" value="Crea nuova finestra" onclick="creaNuovaFinestra()">
+    <input type="button" value="Chiudi nuova finestra" onclick="chiudiNuovaFinestra()">
+</form>
+<br>
+<hr>
+<a href="https://www.google.it" onmouseover="window.status='visita la home page di google (home.google.it)'; return true">Google</a>
+</body>
+</html>
