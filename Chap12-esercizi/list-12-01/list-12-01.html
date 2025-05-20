@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta content="text/html; charset=ISO-8859-1"
+http-equiv="content-type">
+<title>Oggetto image</title>
+<script lang="javascript">
+    // pre-carica quattro image
+    image1 = new Image(120,90)
+    image1.src = "desk1.gif"
+     image2 = new Image(120,90)
+    image2.src = "desk2.gif"
+     image3 = new Image(120,90)
+    image3.src = "desk3.gif"
+     image4 = new Image(120,90)
+    image4.src = "desk4.gif"
+
+    // carica una immagine scelta dall'elenco
+    function loadCached(list) {
+        var img = list.options[list.selectedIndex].value
+        document.thumbnail.src = eval(img + ".src")
+    }
+</script>
+</head>
+<body>
+    <h2>Oggetto image</h2>
+    <img src="desk1.gif" name="thumbnail" height="90" width="120">
+    <form>
+        <select name="cached" onchange="loadCached(this)">
+            <option value="image1">Elastici</option>
+            <option value="image2">Graffette</option>
+            <option value="image3">Lampada</option>
+            <option value="image4">Gomme</option>
+        </select>
+    </form>
+<br>
+</body>
+</html>

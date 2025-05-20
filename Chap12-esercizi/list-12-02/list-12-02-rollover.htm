@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta content="text/html; charset=ISO-8859-1"
+http-equiv="content-type">
+<title>Jukebox/Rollover di immagini</title>
+<script lang="javascript">
+    if (document.images) {
+    // precarica tutte le immagini 'off' dei pulsanti
+var offImgArray = new Array()
+    offImgArray["play"] = new Image(75,33)
+     offImgArray["stop"] = new Image(75,33)
+      offImgArray["pause"] = new Image(75,33)
+       offImgArray["rewind"] = new Image(86,33)
+
+// array di immagini off - imposta il percorso di immagine 'off' per ogni pulsante
+offImgArray["play"].src = "images/playoff.jpg"
+offImgArray["stop"].src = "images/stopoff.jpg"
+offImgArray["pause"].src = "images/pauseoff.jpg"
+offImgArray["rewind"].src = "images/rewindoff.jpg"
+
+// precarica tutte le immagini dei pulsanti 'on'
+var onImgArray = new Array()
+ onImgArray["play"] = new Image(75,33)
+     onImgArray["stop"] = new Image(75,33)
+      onImgArray["pause"] = new Image(75,33)
+       onImgArray["rewind"] = new Image(86,33)
+
+// array di immagini on - imposta il percorso di immagine 'on' per ogni pulsante
+onImgArray["play"].src = "images/playon.jpg"
+onImgArray["stop"].src = "images/stopon.jpg"
+onImgArray["pause"].src = "images/pauseon.jpg"
+onImgArray["rewind"].src = "images/rewindon.jpg"
+}
+
+// funzioni che scambiano immagini e barra di stato
+function imageOn(imgName) {
+    if (document.images) {
+        document.images[imgName].src = onImgArray[imgName].src
+    }
+}
+
+function imageOff(imgName) {
+    if (document.images) {
+        document.images[imgName].src = offImgArray[imgName].src
+    }
+}
+
+function setMsg(msg) {
+    window.status = msg
+    return true
+}
+
+// funzioni di controllo (disabilitate)
+function playIt() {
+}
+function stopIt() {
+}
+function pauseIt(){
+}
+function rewindIt() {
+}
+</script>
+</head>
+<body>
+    <center>
+        <form>
+            Controlli del jhukebox<br>
+            <a href="javascript:playIt()" onmouseover="imageOn('play'); return setMsg('Suona il brano selezionato')" onmouseout="imageOff('play'); return setMsg('')">
+                <img src="images/playoff.jpg" name="play" height="33" width="75">
+            </a>
+            <a href="javascript:stopIt()" onmouseover="imageOn('stop'); return setMsg('Ferma il brano in esecuzione')" onmouseout="imageOff('stop'); return setMsg('')">
+                <img src="images/stopoff.jpg" name="stop" height="33" width="75">
+            </a>
+            <a href="javascript:pauseIt()" onmouseover="imageOn('pause'); return setMsg('Metti in pausa il brano in esecuzione')" onmouseout="imageOff('pause'); return setMsg('')">
+                <img src="images/pauseoff.jpg" name="pause" height="33" width="75">
+            </a>
+            <a href="javascript:rewindIt()" onmouseover="imageOn('rewind'); return setMsg('Torna indietro')" onmouseout="imageOff('rewind'); return setMsg('')">
+                <img src="images/rewindoff.jpg" name="rewind" height="33" width="86">
+            </a>
+        </form>
+    </center>
+<br>
+</body>
+</html>
