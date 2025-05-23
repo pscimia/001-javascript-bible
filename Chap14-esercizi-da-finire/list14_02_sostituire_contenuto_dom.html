@@ -1,0 +1,24 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta content="text/html; charset=ISO-8859-1"
+http-equiv="content-type">
+<title>Una semplice pagina</title>
+<script lang="javascript">
+    function modify() {
+        var newElem = document.createElement("P")
+        newElem.id = "newP"
+        var newText = document.createTextNode("Questo e\' il secondo paragrafo.")
+        newElem.appendChild(newText)
+        document.body.appendChild(newElem)
+        document.getElementById("enfasi1").childNodes[0].nodeValue = "il primo"
+    }
+</script>
+</head>
+<body>
+   <button onclick="modify()">Aggiungi / sostituisci testo</button>
+   <p id="paragrafo1">Questo e' <em id="enfasi1">l'unico </em>paragrafo nella pagina.</p>
+<br>
+</body>
+</html>

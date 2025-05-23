@@ -1,0 +1,25 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta content="text/html; charset=ISO-8859-1"
+http-equiv="content-type">
+<title></title>
+<script lang="javascript">
+    // definizione di funzione
+    function fullscreen() {
+        this.moveTo(0,0)
+        this.outerWidth = screen.availWidth
+        this.outerHeight = screen.availHeight
+    }
+    // assegan la funzione a una proprieta personalizzata
+    window.maximize = fullscreen
+</script>
+</head>
+<body>
+<br>
+<form>
+    <input type="button" value="Maximize window" onclick="window.maximize()">
+</form>
+</body>
+</html>
