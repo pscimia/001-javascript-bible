@@ -1,0 +1,34 @@
+<HTML>
+<HEAD>
+<TITLE>className Property</TITLE>
+<STYLE TYPE="text/css">
+.special {font-size:16pt; color:red}
+</STYLE>
+<SCRIPT LANGUAGE="JavaScript">
+function toggleSpecialStyle(elemID) {
+	var elem = (document.all) ? document.all(elemID) : document.getElementById(elemID)
+	if (elem.className == "") {
+		elem.className = "special"
+	} else {
+		elem.className = ""
+	}
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+<H1>className Property Lab</H1>
+<HR>
+<FORM NAME="input">
+<INPUT TYPE="button" VALUE="Toggle Class Name - Attiva/disattiva il nome della classe" onClick="toggleSpecialStyle('head1')">
+</FORM>
+<BR>
+<H1 ID="head1">ARTICLE I</H1>
+<P>Congress shall make no law respecting an establishment of religion, or prohibiting the free exercise thereof; or abridging the freedom of speech, or of the press; or the right of the people peaceably to assemble, and to petition the government for a redress of grievances.</P>
+<P>Il Congresso non potrà emanare alcuna legge che stabilisca una religione o che ne proibisca il libero esercizio; o che limiti la libertà di parola o di stampa; o il diritto del popolo di riunirsi pacificamente e di presentare petizioni al governo per la riparazione di torti subiti.</P>
+
+<H1>ARTICLE II</H1>
+<P>A well regulated militia, being necessary to the security of a free state, the right of the people to keep and bear arms, shall not be infringed.</P>
+<P>Essendo una milizia ben regolamentata necessaria alla sicurezza di uno Stato libero, il diritto del popolo di detenere e portare armi non potrà essere violato.</P>
+
+</BODY>
+</HTML>
